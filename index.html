@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ko" data-accent="navy" data-hero="masthead" data-density="compact">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>조아리 — AI·SW 교육 콘텐츠 기획자</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* palette */
+  --bg:#fbfaf6;
+  --surface:#ffffff;
+  --surface-2:#f5f3ec;
+  --ink:#1b1a16;
+  --ink-soft:#56544c;
+  --ink-faint:#8f8d82;
+  --line:#e9e6dd;
+  --line-2:#dcd8cc;
+  --mark:#9a7b4f;
+  /* accent (overridden by [data-accent]) */
+  --accent:#1f5c4d;
+  --accent-ink:#163f34;
+  --accent-soft:#e9f0ec;
+  --accent-rgb:31,92,77;
+  /* type */
+  --serif:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Pretendard',-apple-system,system-ui,sans-serif;
+  /* rhythm */
+  --maxw:1080px;
+  --gutter:clamp(20px,5vw,40px);
+  --sec-pad:clamp(64px,10vw,120px);
+}
+[data-accent="navy"]{--accent:#264a6e;--accent-ink:#1a3551;--accent-soft:#e9eef5;--accent-rgb:38,74,110}
+[data-accent="terracotta"]{--accent:#b1502b;--accent-ink:#883c1f;--accent-soft:#f6ece5;--accent-rgb:177,80,43}
+[data-accent="plum"]{--accent:#6b3a5e;--accent-ink:#502b46;--accent-soft:#f1e9ef;--accent-rgb:107,58,94}
+[data-density="compact"]{--sec-pad:clamp(44px,7vw,84px)}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-weight:400;line-height:1.72;
+  letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  word-break:keep-all;overflow-wrap:break-word;
+}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+a{color:inherit}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+
+/* eyebrow / mono label */
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mark);font-weight:500}
+
+/* buttons */
+.btn{font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:none;border-radius:9px;
+  padding:12px 20px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff;
+  transition:.18s ease;display:inline-flex;align-items:center;gap:7px;letter-spacing:0;line-height:1}
+.btn:hover{background:var(--accent-ink);border-color:var(--accent-ink);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.ghost:hover{background:var(--accent-soft);transform:translateY(-1px)}
+.btn.sm{padding:9px 15px;font-size:13px}
+.btn.disabled{border-color:var(--line-2);background:var(--surface-2);color:var(--ink-faint);cursor:default;transform:none}
+
+/* ───────────── NAV ───────────── */
+nav{position:sticky;top:0;z-index:60;background:rgba(251,250,246,.82);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border-bottom:1px solid var(--line)}
+nav .row{max-width:var(--maxw);margin:0 auto;padding:14px var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:baseline;gap:9px;text-decoration:none;flex-shrink:0;white-space:nowrap}
+.brand .nm{font-weight:800;font-size:18px;letter-spacing:-.02em}
+@media(max-width:420px){.brand .rl{display:none}}
+.brand .rl{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.05em}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{display:block;color:var(--ink-soft);text-decoration:none;font-size:13.5px;font-weight:500;padding:7px 12px;border-radius:7px;transition:.16s}
+.nav-links a:hover{color:var(--accent);background:var(--accent-soft)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--ink);border-radius:8px}
+.hamburger:hover{background:var(--surface-2)}
+.hamburger svg{width:22px;height:22px;display:block}
+@media(max-width:760px){
+  .nav-links{display:none;flex-direction:column;align-items:stretch;position:absolute;top:100%;left:0;right:0;background:rgba(251,250,246,.98);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px var(--gutter) 18px;gap:2px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 12px;font-size:15px}
+  .hamburger{display:block}
+}
+
+/* ───────────── HERO ───────────── */
+header{padding:clamp(52px,9vw,104px) 0 clamp(40px,6vw,68px)}
+.hero-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(26px,4vw,42px)}
+.hero-top .eyebrow{white-space:nowrap}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line-2);border-radius:100px;padding:6px 14px 6px 12px}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.hero-title{font-weight:800;font-size:clamp(40px,8.2vw,82px);line-height:1.04;letter-spacing:-.035em;margin-bottom:clamp(26px,4vw,40px);text-wrap:balance}
+.hero-title em{font-style:normal;color:var(--accent);position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,5vw,56px);align-items:end}
+.lead{font-size:clamp(16px,1.6vw,19px);color:var(--ink-soft);line-height:1.68;max-width:46ch}
+.lead b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;justify-self:start}
+@media(max-width:760px){
+  .hero-grid{grid-template-columns:1fr;gap:24px;align-items:start}
+  .hero-cta{width:100%}
+  .hero-cta .btn{flex:1;justify-content:center}
+}
+[data-hero="centered"] header{text-align:center}
+[data-hero="centered"] .hero-top{justify-content:center}
+[data-hero="centered"] .hero-grid{grid-template-columns:1fr;justify-items:center;gap:26px}
+[data-hero="centered"] .lead{max-width:54ch;margin:0 auto}
+[data-hero="centered"] .hero-cta{justify-self:center}
+[data-hero="centered"] .metrics{margin-left:auto;margin-right:auto}
+
+/* metrics strip */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(40px,6vw,64px);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.metric{padding:clamp(20px,3vw,30px) clamp(14px,2vw,26px);border-right:1px solid var(--line)}
+.metric:last-child{border-right:none}
+.metric .num{font-weight:800;font-size:clamp(26px,3.4vw,38px);color:var(--accent);line-height:1;letter-spacing:-.03em;font-feature-settings:"tnum"}
+.metric .num small{font-size:.55em;font-weight:700;letter-spacing:0}
+.metric .lab{font-size:12.5px;color:var(--ink-faint);margin-top:10px;line-height:1.4}
+@media(max-width:620px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric{border-bottom:1px solid var(--line)}
+  .metric:nth-child(2n){border-right:none}
+  .metric:nth-child(n+3){border-bottom:none}
+}
+
+/* ───────────── SECTIONS ───────────── */
+section{padding:var(--sec-pad) 0}
+section + section{padding-top:0}
+.sec-head{display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);margin-bottom:clamp(30px,4vw,48px)}
+.sec-num{font-family:var(--mono);color:var(--mark);font-size:13px;font-weight:500;letter-spacing:.05em;flex-shrink:0}
+.sec-title{font-weight:800;font-size:clamp(24px,3.6vw,38px);letter-spacing:-.03em;line-height:1.1;flex-shrink:0}
+.sec-line{flex:1;height:1px;background:var(--line-2);transform:translateY(-6px)}
+.sec-intro{color:var(--ink-soft);font-size:14.5px;max-width:60ch;margin:-22px 0 30px}
+
+/* ───────────── STRENGTHS ───────────── */
+.about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:680px){.about-grid{grid-template-columns:1fr}}
+.about-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,3vw,30px);transition:.2s;position:relative;overflow:hidden}
+.about-card:hover{border-color:var(--line-2);box-shadow:0 10px 30px rgba(0,0,0,.04)}
+.about-card .ic{font-family:var(--mono);font-size:12px;color:var(--mark);font-weight:500;margin-bottom:14px;display:block}
+.about-card h3{font-size:17px;font-weight:700;margin-bottom:9px;color:var(--ink);letter-spacing:-.01em}
+.about-card p{font-size:14px;color:var(--ink-soft);line-height:1.65}
+
+/* ───────────── TIMELINE ───────────── */
+.tl{position:relative;padding-left:30px}
+.tl::before{content:"";position:absolute;left:5px;top:10px;bottom:10px;width:1.5px;background:linear-gradient(var(--line-2),var(--line-2)) ,var(--line-2);background:var(--line-2)}
+.job{position:relative;margin-bottom:clamp(24px,3vw,34px)}
+.job:last-child{margin-bottom:0}
+.job::before{content:"";position:absolute;left:-30px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--line-2);transition:.2s}
+.job.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.job .when{font-family:var(--mono);font-size:12px;color:var(--mark);margin-bottom:6px;letter-spacing:.02em}
+.job .role{font-size:17.5px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.job .pos{font-size:13.5px;color:var(--ink-faint);font-weight:500;flex-basis:100%;margin-top:1px}
+.badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;color:#fff;background:var(--accent);border-radius:6px;padding:3px 8px;font-weight:500;letter-spacing:.04em}
+.job ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.job li{font-size:14px;color:var(--ink-soft);padding-left:18px;position:relative;line-height:1.55}
+.job li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1.5px;background:var(--mark)}
+.career-hidden{display:none}
+.career-hidden.open{display:block}
+.toggle-btn{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line-2);border-radius:100px;padding:11px 22px;font-size:13.5px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:.18s;margin-top:22px;margin-left:30px;font-family:var(--sans)}
+.toggle-btn:hover{border-color:var(--accent);color:var(--accent)}
+.toggle-btn .arrow{transition:transform .25s;display:inline-block;font-size:9px}
+.toggle-btn .arrow.rotated{transform:rotate(180deg)}
+
+/* ───────────── BOOKS ───────────── */
+.book-tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+.book-tab{padding:9px 16px;border-radius:100px;border:1px solid var(--line-2);background:var(--surface);font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:.18s;font-family:var(--sans);display:inline-flex;align-items:center;gap:7px}
+.book-tab:hover{border-color:var(--accent);color:var(--accent)}
+.book-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.book-tab .ct{font-family:var(--mono);font-size:11px;opacity:.7}
+.book-tab.active .ct{opacity:.85}
+.book-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,18px)}
+@media(max-width:960px){.book-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.book-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+.book-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.24s ease;display:flex;flex-direction:column}
+.book-card:hover{border-color:var(--line-2);box-shadow:0 14px 34px rgba(var(--accent-rgb),.1);transform:translateY(-4px)}
+.book-card.hidden{display:none}
+.book-cover-wrap{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--surface-2)}
+.book-cover-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.book-card:hover .book-cover-wrap img{transform:scale(1.04)}
+.book-year{position:absolute;top:10px;right:10px;background:rgba(20,20,18,.74);color:#fff;font-family:var(--mono);font-size:10.5px;padding:4px 9px;border-radius:6px;backdrop-filter:blur(4px);letter-spacing:.02em;z-index:2}
+/* text fallback cover */
+.cover-fallback{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:16px 15px;
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(var(--accent-rgb),.16), transparent 60%),
+    linear-gradient(160deg,var(--surface) 0%,var(--surface-2) 100%);
+  border-right:3px solid var(--accent)}
+.cover-fallback .cf-pub{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--mark);text-transform:uppercase}
+.cover-fallback .cf-title{font-weight:700;font-size:clamp(13px,1.5vw,16px);line-height:1.3;color:var(--ink);letter-spacing:-.01em}
+.cover-fallback .cf-mark{position:absolute;left:15px;bottom:14px;width:22px;height:2px;background:var(--accent);opacity:0}
+.book-info{padding:14px 15px 16px;display:flex;flex-direction:column;gap:5px}
+.book-publisher{font-size:11px;color:var(--mark);font-family:var(--mono);letter-spacing:.03em}
+.book-title{font-weight:700;font-size:14.5px;line-height:1.35;color:var(--ink);letter-spacing:-.01em}
+.book-role{font-size:12px;color:var(--ink-faint);margin-top:1px}
+
+/* ───────────── MATERIALS CARDS ───────────── */
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.work-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,2.6vw,28px);transition:.2s;display:flex;flex-direction:column;position:relative}
+.card[onclick]{cursor:pointer}
+.card:hover{border-color:var(--line-2);box-shadow:0 12px 30px rgba(0,0,0,.05);transform:translateY(-3px)}
+.card .type{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--mark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h4{font-weight:700;font-size:18px;margin-bottom:9px;line-height:1.3;letter-spacing:-.015em}
+.card p{font-size:13.5px;color:var(--ink-soft);flex:1;line-height:1.6}
+.card .meta{font-size:11.5px;color:var(--ink-faint);margin-top:12px;font-family:var(--mono);line-height:1.5}
+.card-actions{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.card.placeholder{border-style:dashed;background:var(--surface-2);cursor:default}
+.card.placeholder:hover{transform:none;box-shadow:none}
+.placeholder-badge{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--ink-faint);background:var(--bg);border:1px solid var(--line-2);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
+.sub-h{font-weight:700;font-size:18px;margin:clamp(30px,4vw,42px) 0 16px;letter-spacing:-.015em}
+
+/* ───────────── SKILLS ───────────── */
+.skill-group{margin-bottom:22px}
+.skill-group:last-child{margin-bottom:0}
+.skill-group-title{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mark);text-transform:uppercase;margin-bottom:12px;font-weight:500}
+.skills{display:flex;flex-wrap:wrap;gap:8px}
+.skill{border:1px solid var(--line-2);background:var(--surface);border-radius:9px;padding:8px 14px;font-size:13px;color:var(--ink-soft);transition:.16s;font-weight:500}
+.skill:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.skill.key{background:var(--accent-soft);border-color:transparent;color:var(--accent-ink);font-weight:600}
+
+/* ───────────── EDU / CERT ───────────── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.two{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,3vw,30px)}
+.panel h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mark);margin-bottom:20px;text-transform:uppercase;font-weight:500}
+.edu-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.edu-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.edu-item .t{font-weight:700;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.edu-item .m{font-size:12px;color:var(--ink-faint);font-family:var(--mono);margin-top:5px}
+.edu-item .d{font-size:13.5px;color:var(--ink-soft);margin-top:7px;line-height:1.55}
+.cert-list{font-size:14px;color:var(--ink-soft);line-height:2}
+.cert-hidden{display:none}
+.cert-hidden.open{display:block}
+.cert-toggle{display:inline-block;font-size:12.5px;color:var(--accent);cursor:pointer;margin-top:10px;border:none;background:none;font-family:var(--sans);font-weight:600;padding:0}
+.cert-toggle:hover{text-decoration:underline}
+.edu-badge{display:inline-flex;font-family:var(--mono);font-size:10px;color:#fff;background:var(--accent);border-radius:6px;padding:3px 8px;font-weight:500;letter-spacing:.04em}
+
+/* ───────────── CONTACT ───────────── */
+.contact{text-align:center;padding:var(--sec-pad) 0}
+.contact .eyebrow{margin-bottom:18px;display:block}
+.contact h2{font-weight:800;font-size:clamp(30px,5.2vw,52px);letter-spacing:-.035em;margin-bottom:14px;line-height:1.08;text-wrap:balance}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.contact p{color:var(--ink-soft);margin-bottom:32px;font-size:16px}
+.contacts{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cbtn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--surface);border:1px solid var(--line-2);border-radius:100px;padding:14px 24px;color:var(--ink);font-family:var(--mono);font-size:14px;transition:.2s;font-weight:400}
+.cbtn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.cbtn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cbtn.primary:hover{background:var(--accent-ink);color:#fff}
+.cbtn svg{width:17px;height:17px}
+
+/* floating CTA */
+.floating-cta{position:fixed;bottom:24px;right:24px;z-index:50;opacity:0;transform:translateY(16px);pointer-events:none;transition:.3s}
+.floating-cta.visible{opacity:1;transform:none;pointer-events:auto}
+.floating-cta a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;text-decoration:none;padding:14px 22px;border-radius:100px;font-size:14px;font-weight:600;box-shadow:0 8px 26px rgba(var(--accent-rgb),.36);transition:.18s}
+.floating-cta a:hover{background:var(--accent-ink);transform:translateY(-2px)}
+@media(max-width:760px){.floating-cta{bottom:16px;right:16px}}
+
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--ink-faint);font-size:12px;font-family:var(--mono);letter-spacing:.03em}
+
+/* ───────────── MODAL ───────────── */
+.modal-bg{position:fixed;inset:0;background:rgba(20,20,18,.42);backdrop-filter:blur(5px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:clamp(16px,5vh,52px) 16px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--surface);border-radius:18px;max-width:740px;width:100%;box-shadow:0 30px 90px rgba(0,0,0,.28);animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.modal-head{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);padding:20px clamp(22px,4vw,32px);display:flex;justify-content:space-between;align-items:center;border-radius:18px 18px 0 0;z-index:2}
+.modal-head h3{font-weight:700;font-size:18px;letter-spacing:-.01em}
+.modal-close{background:var(--surface-2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;color:var(--ink-soft);transition:.18s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--line)}
+.modal-body{padding:clamp(24px,4vw,32px)}
+.modal-body h4{font-weight:700;font-size:15px;margin:24px 0 9px;color:var(--accent);letter-spacing:-.01em}
+.modal-body h4:first-child{margin-top:0}
+.modal-body>p{font-size:14px;color:var(--ink-soft);margin-bottom:10px;line-height:1.65}
+.modal-body ul{margin:0 0 14px;font-size:13.5px;color:var(--ink-soft);list-style:none;display:flex;flex-direction:column;gap:5px}
+.modal-body ul li{padding-left:16px;position:relative;line-height:1.5}
+.modal-body ul li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:1.5px;background:var(--mark)}
+.modal-body a:not(.btn){color:var(--accent);font-weight:500}
+.modal-body .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.modal-body .yt-links{font-size:13px;line-height:2;color:var(--ink-soft)}
+/* modal book header */
+.modal-book-header{display:flex;gap:24px;margin-bottom:8px}
+.modal-book-cover{width:150px;flex-shrink:0;border-radius:12px;overflow:hidden;box-shadow:0 6px 22px rgba(0,0,0,.12);position:relative;background:var(--surface-2)}
+.modal-book-cover img{width:100%;height:auto;object-fit:contain;display:block}
+.modal-book-meta{flex:1;min-width:0}
+.modal-book-meta h4{font-weight:700;font-size:21px;margin:0 0 10px;color:var(--ink);letter-spacing:-.02em;line-height:1.25}
+.modal-book-meta .mb-publisher{font-size:12px;color:var(--mark);font-family:var(--mono);margin-bottom:6px}
+.modal-book-meta .mb-author{font-size:13px;color:var(--ink-soft);margin-bottom:4px}
+.modal-book-meta .mb-date{font-size:12px;color:var(--ink-faint);font-family:var(--mono);margin-bottom:6px}
+.modal-book-meta .mb-role{display:inline-flex;font-size:12px;color:var(--accent-ink);font-weight:600;background:var(--accent-soft);border-radius:7px;padding:4px 10px;margin-bottom:14px}
+.modal-book-meta .mb-desc{font-size:14px;color:var(--ink-soft);line-height:1.68;margin-bottom:16px}
+@media(max-width:520px){.modal-book-header{flex-direction:column;align-items:center;text-align:center}.modal-book-cover{width:130px}.modal-book-meta .mb-role{margin-left:auto;margin-right:auto}}
+
+/* profile photo responsive */
+@media(max-width:600px){
+  .about-intro{flex-direction:column!important;align-items:center!important;text-align:center}
+  .about-intro img{width:120px!important;height:120px!important}
+}
+
+/* resume modal */
+.resume-section{margin-top:20px}
+.resume-section h4{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.resume-section ul{margin:0;padding:0;list-style:none}
+.resume-section li{font-size:13px;color:var(--ink-soft);padding:6px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.resume-section li:last-child{border-bottom:none}
+.resume-section .rs-left{font-weight:600;color:var(--ink)}
+.resume-section .rs-right{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);white-space:nowrap}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important;transition:none}
+  *{animation:none!important}
+  .card:hover,.book-card:hover,.about-card:hover{transform:none}
+}
+
+/* print — 일반 */
+@media print{
+  nav,.hamburger,.floating-cta,.twk-host{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .wrap{max-width:100%;padding:0 12mm}
+  header{padding:10mm 0 6mm}
+  section{padding:6mm 0;page-break-inside:avoid}
+  .card,.about-card,.panel,.book-card{box-shadow:none;border:1px solid #ccc}
+  .career-hidden,.cert-hidden{display:block!important}
+  .toggle-btn,.cert-toggle{display:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+/* print — 이력서 모달 전용 */
+body.printing-resume *{display:none!important}
+body.printing-resume .modal-bg{
+  display:flex!important;position:static!important;background:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important
+}
+body.printing-resume .modal-bg .modal{
+  display:block!important;box-shadow:none!important;border-radius:0!important;max-width:100%!important;animation:none!important
+}
+body.printing-resume .modal-bg .modal *{display:revert!important}
+body.printing-resume .modal-bg .modal-head{display:none!important}
+body.printing-resume .modal-bg .modal-body{padding:0!important}
+body.printing-resume .modal-bg .modal-body .btn{display:none!important}
+body.printing-resume .modal-bg .modal-body img{width:80px!important;height:80px!important}
+body.printing-resume .modal-bg .resume-section{margin-top:14px!important}
+body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
+@media print{
+  body.printing-resume nav,body.printing-resume header,body.printing-resume section,
+  body.printing-resume footer,body.printing-resume .floating-cta,body.printing-resume .twk-host{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <div class="row">
+    <a class="brand" href="#hero">
+      <span class="nm">조아리</span>
+      <span class="rl mono">Cho Ari · Editor</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="메뉴 열기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about" onclick="closeNav()">소개</a></li>
+      <li><a href="#strengths" onclick="closeNav()">역량</a></li>
+      <li><a href="#career" onclick="closeNav()">경력</a></li>
+      <li><a href="#materials" onclick="closeNav()">교육·콘텐츠</a></li>
+      <li><a href="#publications" onclick="closeNav()">출판</a></li>
+      <li><a href="#skills" onclick="closeNav()">기술</a></li>
+      <li><a href="#contact" onclick="closeNav()">연락</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<header id="hero">
+  <div class="wrap">
+    <div class="hero-top reveal">
+      <span class="eyebrow">AI·SW 교육 · 콘텐츠 개발 · IT</span>
+      <span class="avail"><i></i> 제안 환영</span>
+    </div>
+    <h1 class="hero-title reveal">기술을 <em>배움</em>으로<br>설계하는 사람</h1>
+    <div class="hero-grid">
+      <p class="lead reveal">코드를 이해하고, AI를 도구로 쓰고, 배움을 설계합니다. 교육 현장에서 출발해 SW·AI 교육 콘텐츠를 만들어 온 <b>12년 차 콘텐츠 기획자</b> 조아리입니다.</p>
+      <div class="hero-cta reveal">
+        <a class="btn" href="#materials">교육 콘텐츠 보기</a>
+        <button class="btn ghost" onclick="openModal('m-resume')">이력서 보기</button>
+        <a class="btn ghost" href="#contact">연락하기</a>
+      </div>
+    </div>
+    <div class="metrics reveal">
+      <div class="metric"><div class="num">12<small>년</small></div><div class="lab">IT·SW·AI 교육 경력</div></div>
+      <div class="metric"><div class="num">20<small>+</small></div><div class="lab">SW·AI 교육 과정 개발</div></div>
+      <div class="metric"><div class="num">9<small>권</small></div><div class="lab">교육 도서 기획·집필·편집</div></div>
+      <div class="metric"><div class="num">석사</div><div class="lab">AI융합교육 · 연세대</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ 0. 소개 ════════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">00</span><h2 class="sec-title">소개</h2><span class="sec-line"></span></div>
+    <div class="about-intro reveal" style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,4vw,40px);line-height:1.85;font-size:clamp(14.5px,1.4vw,16px);color:var(--ink-soft);display:flex;gap:clamp(24px,4vw,36px);align-items:flex-start">
+      <img src="프로필 사진.png" alt="조아리 프로필 사진" style="width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;border:3px solid var(--line)">
+      <div>
+      <p>12년간 IT/SW·AI 교육 콘텐츠를 기획·개발해온 콘텐츠 기획자입니다. 교육 현장에서 커리어를 시작해 컴퓨터공학 전공과 SW 개발 경험을 토대로 콘텐츠의 기술적 정확성을 직접 검증할 수 있으며, 네이버 엔트리·플레이랩스에서 SW교육 콘텐츠를, 다산북스·한빛미디어에서 교육 도서와 강의 자료를 기획·집필·제작해 왔습니다.</p>
+      <p style="margin-top:14px">특히 생성형 AI를 콘텐츠 제작 전반에 적극 활용하고, Claude Code를 이용해 업무용 도구를 직접 개발·운영하며, 커리큘럼 설계부터 강의·교재·실습 자료 제작까지 한 흐름으로 수행할 수 있습니다. <b style="color:var(--accent)">코드를 이해하고 AI를 도구로 쓰는 콘텐츠 기획자</b>로서 IT 전문성과 학습 효과를 동시에 끌어올릴 수 있으며, 현재 연세대학교 교육대학원 AI융합교육 석사과정을 통해 학습과학·교수설계 이론까지 함께 다지고 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 1. 핵심 역량 ════════ -->
+<section id="strengths">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">01</span><h2 class="sec-title">핵심 역량</h2><span class="sec-line"></span></div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <span class="ic mono">/ 01</span>
+        <h3>개발 기반의 정확성</h3>
+        <p>컴퓨터공학을 전공하고 교육 현장에서 커리어를 시작했습니다. SW 개발 실무 경험도 있어 코드를 직접 읽고 실행해볼 수 있기 때문에, 기술 콘텐츠의 정확성을 저자·전문가와 같은 눈높이에서 검증합니다. 개발 경험이 콘텐츠 품질로 이어지는, 기술을 아는 기획자입니다.</p>
+      </div>
+      <div class="about-card reveal">
+        <span class="ic mono">/ 02</span>
+        <h3>AI 도구 실무 활용</h3>
+        <p>Cursor·Claude Code 등 다양한 AI 도구를 일상 업무에 활용합니다. 경쟁 도서 분석 도구, 원고 포맷팅 자동화 도구를 직접 만들어 쓰고, 자료 조사·원고 검토·데이터 정리까지 AI를 실무 워크플로우에 녹여 생산성을 높입니다. 해외의 새로운 AI 도구를 적극적으로 탐색하고 실무에 빠르게 적용하는 것을 좋아합니다.</p>
+      </div>
+      <div class="about-card reveal">
+        <span class="ic mono">/ 03</span>
+        <h3>기획부터 제작까지 전 과정</h3>
+        <p>커리큘럼·콘텐츠 기획부터 교안·강의자료·실습 제작, 교재 집필·편집, 일정 관리까지 콘텐츠 제작 전 과정을 담당합니다. 네이버 엔트리·플레이랩스에서 SW교육 콘텐츠를 설계했고, 다산북스에서는 아동 SW교육 도서 4권을 기획·집필·편집까지 단독 수행했으며, 한빛미디어에서 AI·IT 도서 5권을 만들었습니다.</p>
+      </div>
+      <div class="about-card reveal">
+        <span class="ic mono">/ 04</span>
+        <h3>이론적 토대</h3>
+        <p>연세대 교육대학원 AI융합교육학과 석사과정에서 학습과학·교수설계를 연구합니다. 10년간 현장에서 쌓은 SW·AI 교육 경험을 학문적으로 체계화하고, 다수의 교육 과정과 교사용 수업 자료를 직접 기획·제작한 실전 역량이 뒷받침합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 2. 경력 ════════ -->
+<section id="career">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">경력</h2><span class="sec-line"></span></div>
+    <div class="tl">
+
+      <div class="job now reveal">
+        <div class="when">2025.07 — 현재</div>
+        <div class="role">한빛미디어 <span class="badge">재직 중</span><span class="pos">콘텐츠1팀 · 기획편집자</span></div>
+        <ul>
+          <li>성인 AI·IT 전문 콘텐츠 기획·개발 전 과정 담당</li>
+          <li>입사 11개월간 도서 5권 기획·편집, 2026년 6월 1권 추가 예정</li>
+          <li>Claude Code 기반 콘텐츠 분석·자동화 도구 직접 개발</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">2022.02 — 2025.03 · 3년 2개월</div>
+        <div class="role">다산북스<span class="pos">다산스마트에듀 · 매니저</span></div>
+        <ul>
+          <li>아동 SW교육 콘텐츠 및 교재 기획·개발</li>
+          <li>도서 4권 출간 — 2권 전 과정 단독, 2권 기획·집필·편집 리딩</li>
+          <li>초·중·고 학교 SW교육 프로그램(클라우드스쿨) 교육 자료 20+ 과정 기획·제작</li>
+          <li>개발 지식 기반 코딩 교육 내용 직접 집필·기술 검수</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="when">2017.03 — 2020.11 · 3년 9개월</div>
+        <div class="role">플레이랩스<span class="pos">교육팀 · 연구원</span></div>
+        <ul>
+          <li>초·중등 소프트웨어 교육 기획 및 콘텐츠 제작</li>
+          <li>연령·학습목표별 맞춤형 커리큘럼·교안 설계</li>
+          <li>SW선도대학 캠프 진행 다수</li>
+        </ul>
+      </div>
+
+      <div class="career-hidden" id="career-hidden">
+        <div class="job reveal">
+          <div class="when">2016.02 — 2017.02 · 1년 1개월</div>
+          <div class="role">엔트리<span class="pos">네이버 엔트리교육연구소 · 연구원</span></div>
+          <ul>
+            <li>비영리 SW교육 플랫폼 엔트리 초·중등 SW교육 기획·제작</li>
+            <li>다양한 학습층 대상 SW교육 강의·자료 개발</li>
+          </ul>
+        </div>
+        <div class="job reveal">
+          <div class="when">2014.08 — 2016.01 · 1년 6개월</div>
+          <div class="role">피에스텍 (PSTEC)<span class="pos">기술연구소 · 연구원</span></div>
+          <ul>
+            <li>원격 데이터 수집 프로그램 개발 및 유지보수</li>
+            <li>현장 중심 문제 해결로 기술 이해도·개발 실무 기반 확보</li>
+          </ul>
+        </div>
+        <div class="job reveal">
+          <div class="when">2013.05 — 2014.04 · 1년</div>
+          <div class="role">대건정보처리학원<span class="pos">교육팀</span></div>
+          <ul>
+            <li>OA 자격증·프로그래밍 교육 및 입시교육 진행</li>
+            <li>아동·성인 대상별 교안·교수법 차별화 설계·강의</li>
+          </ul>
+        </div>
+        <div class="job reveal">
+          <div class="when">2012.09 — 2013.05 · 9개월</div>
+          <div class="role">인문학가<span class="pos">교육팀</span></div>
+          <ul>
+            <li>인문학 융복합 교육 콘텐츠 개발 및 캠프 진행</li>
+          </ul>
+        </div>
+      </div>
+
+      <button class="toggle-btn" onclick="toggleCareer()" id="career-toggle">
+        <span class="tt">이전 경력 4건 더 보기</span> <span class="arrow" id="career-arrow">▼</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 03. 강의·교육 콘텐츠 ════════ -->
+<section id="materials">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">강의·교육 콘텐츠</h2><span class="sec-line"></span></div>
+    <p class="sec-intro reveal">직접 기획·개발한 SW·AI 교육 콘텐츠입니다. 커리큘럼 설계부터 강의안·실습·동영상까지 한 흐름으로 제작했습니다. 카드를 클릭하면 상세 내용을 볼 수 있습니다.</p>
+
+    <div class="work-grid">
+      <div class="card reveal" onclick="openModal('m-cloud')">
+        <div class="type mono">플랫폼 교육 · 20+ 과정</div>
+        <h4>클라우드스쿨 응용SW 교육</h4>
+        <p>초·중·고 학교 SW교육 프로그램에 투입되는 종합 교육 자료. 컴퓨터 기초, OA, 블록코딩(엔트리·스크래치), 텍스트코딩(Python·HTML/CSS·C), 피지컬(다빈치AI·햄스터), AI, 교과서 연계(주요 출판사), 디자인.</p>
+        <div class="meta">20+ 과정 · PPT · PDF · 교수안 · 동영상 · 실습파일</div>
+        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button></div>
+      </div>
+      <div class="card reveal" onclick="openModal('m-scratch')">
+        <div class="type mono">프로젝트형 코딩 · 16차시</div>
+        <h4>런잇나우 스크래치 프로젝트</h4>
+        <p>스크래치 기반 16차시 프로젝트형 코딩 교육. 순차→반복→조건→변수→리스트→게임 제작까지 단계별 학습.</p>
+        <div class="meta">16차시 · 강의안 · 답안지 · 동영상</div>
+        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button> <a class="btn sm" href="https://event.coderland.io/" target="_blank" rel="noopener" onclick="event.stopPropagation()">코더랜드 →</a></div>
+      </div>
+      <div class="card reveal" onclick="openModal('m-ai-ssok')">
+        <div class="type mono">도서 연계 교사용 · 14차시</div>
+        <h4>인공지능 쏙쏙 교사용 자료</h4>
+        <p>도서 연계 수업 자료. AI 인식(영상·사물·음성) → 분류(이미지·소리) → 예측(선형·로지스틱 회귀) → 군집화(k-평균) 단계별 14차시. 이론→프로젝트 일지→실습 3단계 구조.</p>
+        <div class="meta">초5~중2 · 차시당 80분 · PPT · 수업안 · YouTube</div>
+        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button></div>
+      </div>
+      <div class="card reveal" onclick="openModal('m-goldland')">
+        <div class="type mono">도서 연계 교사용 · 16차시</div>
+        <h4>모험 골드랜드 교사용 자료</h4>
+        <p>도서 연계 수업 자료. 모험 스토리를 따라가며 순차→반복→이벤트→좌표→선택→변수→리스트→복제→종합 게임까지. 기본 활동 + 추가 활동 2단계 구성.</p>
+        <div class="meta">초등 · 교수안 56p · PPT · 실습파일 · YouTube</div>
+        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button></div>
+      </div>
+    </div>
+
+    <h3 class="sub-h reveal">사이드 프로젝트</h3>
+    <div class="work-grid">
+      <div class="card reveal">
+        <div class="type mono">사이드 프로젝트 · 웹</div>
+        <h4>리리가 도와줌</h4>
+        <p>Claude Code로 직접 만든 업무 자동화 사이트. 출판 실무를 돕는 도구를 코드로 구현했습니다.</p>
+        <div class="meta">웹사이트 · Claude Code</div>
+        <div class="card-actions"><a class="btn sm" href="https://gmountain01.github.io/book-radar/" target="_blank" rel="noopener">사이트 방문 →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 04. 출판 작업물 (교육 콘텐츠를 책으로) ════════ -->
+<section id="publications">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2 class="sec-title">출판 작업물</h2><span class="sec-line"></span></div>
+    <p class="sec-intro reveal">기획·집필·편집에 참여한 교육 도서 9권. 콘텐츠를 책이라는 형태로도 구현한 결과물입니다. 카드를 클릭하면 상세 정보를 볼 수 있습니다.</p>
+
+    <div class="book-tabs reveal">
+      <button class="book-tab active" onclick="filterBooks('all',this)">전체 <span class="ct">9</span></button>
+      <button class="book-tab" onclick="filterBooks('hanbit',this)">한빛미디어 · AI·IT <span class="ct">5</span></button>
+      <button class="book-tab" onclick="filterBooks('dasan',this)">다산스마트에듀 · 아동교육 <span class="ct">4</span></button>
+    </div>
+
+    <div class="book-grid">
+      <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-multiagent')">
+        <div class="book-cover-wrap"><span class="book-year">2026.06</span><img src="책_표지/이것이 멀티에이전트다_표지.jpeg" alt="이것이 멀티 에이전트다" data-pub="한빛미디어" data-title="이것이 멀티 에이전트다" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">이것이 멀티 에이전트다</div><div class="book-role">기획편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-spring-rev')">
+        <div class="book-cover-wrap"><span class="book-year">2026.03</span><img src="책_표지/spring AI 개정판 표지.jpeg" alt="이것이 Spring AI다 개정판" data-pub="한빛미디어" data-title="이것이 Spring AI다 (개정판)" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">이것이 Spring AI다 (개정판)</div><div class="book-role">기획편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-gemini')">
+        <div class="book-cover-wrap"><span class="book-year">2026.02</span><img src="책_표지/5분 제미나이_표지.jpeg" alt="5분 제미나이" data-pub="한빛미디어" data-title="5분 제미나이" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">5분 제미나이</div><div class="book-role">기획편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-dify')">
+        <div class="book-cover-wrap"><span class="book-year">2025.12</span><img src="책_표지/Dify_표지.jpeg" alt="Dify AI, 코드 없는 미래" data-pub="한빛미디어" data-title="Dify AI, 코드 없는 미래" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">Dify AI, 코드 없는 미래</div><div class="book-role">기획편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-spring')">
+        <div class="book-cover-wrap"><span class="book-year">2025.08</span><img src="책_표지/spring AI 표지.jpeg" alt="이것이 Spring AI다" data-pub="한빛미디어" data-title="이것이 Spring AI다" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">이것이 Spring AI다</div><div class="book-role">기획편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-gold2')">
+        <div class="book-cover-wrap"><span class="book-year">2025.03</span><img src="책_표지/차원의 골드랜드2_표지.jpeg" alt="차원의 골드랜드 2" data-pub="다산스마트에듀" data-title="차원의 골드랜드 2" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">차원의 골드랜드 2</div><div class="book-role">기획·집필·편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-gold1')">
+        <div class="book-cover-wrap"><span class="book-year">2025.01</span><img src="책_표지/차원의 골드랜드1_표지.jpeg" alt="차원의 골드랜드 1" data-pub="다산스마트에듀" data-title="차원의 골드랜드 1" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">차원의 골드랜드 1</div><div class="book-role">기획·집필·편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-ai-ssok')">
+        <div class="book-cover-wrap"><span class="book-year">2024.01</span><img src="책_표지/인공지능쏙쏙_표지.jpeg" alt="인공지능 쏙쏙" data-pub="다산스마트에듀" data-title="인공지능 쏙쏙 with 엔트리" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">인공지능 쏙쏙 with 엔트리</div><div class="book-role">기획·집필·편집</div></div>
+      </div>
+      <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-goldland')">
+        <div class="book-cover-wrap"><span class="book-year">2023.09</span><img src="책_표지/모험골드랜드_표지.jpeg" alt="모험! 골드랜드" data-pub="다산스마트에듀" data-title="모험! 골드랜드 with 엔트리" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">모험! 골드랜드 with 엔트리</div><div class="book-role">기획·집필·편집</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 5. 기술 역량 ════════ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2 class="sec-title">기술 역량</h2><span class="sec-line"></span></div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">콘텐츠·교육</div>
+      <div class="skills">
+        <div class="skill key">커리큘럼 설계</div><div class="skill key">콘텐츠 기획</div><div class="skill key">교수설계(ID)</div><div class="skill key">SW·AI 교육 콘텐츠</div><div class="skill key">교안·강의자료 개발</div><div class="skill key">AI 활용 강의</div><div class="skill key">아동·성인 대상별 교수법</div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">AI·자동화</div>
+      <div class="skills">
+        <div class="skill key">AI 도구 활용</div><div class="skill key">업무 자동화 도구 제작</div><div class="skill key">프롬프트 엔지니어링</div><div class="skill key">AI 기반 콘텐츠 제작</div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">출판·편집</div>
+      <div class="skills">
+        <div class="skill key">IT 도서 기획편집</div><div class="skill key">원고 편집·교정·교열</div><div class="skill key">저자 발굴·기획서 작성</div><div class="skill key">제작 일정 관리</div><div class="skill key">경쟁 도서 분석</div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">개발·데이터</div>
+      <div class="skills">
+        <div class="skill key">Python</div><div class="skill key">SQL</div><div class="skill key">HTML/CSS/JavaScript</div><div class="skill key">PHP·MySQL</div><div class="skill key">데이터 분석</div><div class="skill key">웹 개발</div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">도구</div>
+      <div class="skills">
+        <div class="skill key">Cursor</div><div class="skill key">Claude Code</div><div class="skill key">Notion</div><div class="skill key">Canva</div><div class="skill key">Google Workspace</div><div class="skill key">GitHub</div><div class="skill key">MS Office</div><div class="skill key">한글(HWP)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 6. 학력·자격 ════════ -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">06</span><h2 class="sec-title">학력·자격</h2><span class="sec-line"></span></div>
+    <div class="two">
+      <div class="panel reveal">
+        <h3>Education</h3>
+        <div class="edu-item">
+          <div class="t">연세대학교 교육대학원 (석사과정) <span class="edu-badge">재학 중</span></div>
+          <div class="m">2024.09 — 2027.02 예정 · AI융합교육학과</div>
+          <div class="d">학습과학·교수설계 기반 AI 활용 교육 콘텐츠 연구</div>
+        </div>
+        <div class="edu-item">
+          <div class="t">KAIST AI스쿨 R&amp;D 리더·실무자 양성과정 1기</div>
+          <div class="m">2018 · 수료</div>
+        </div>
+        <div class="edu-item">
+          <div class="t">한국기술교육대학교</div>
+          <div class="m">2006.02 — 2013.02 · 컴퓨터공학부 · 졸업</div>
+          <div class="d">웹 플랫폼 개발(PHP·MySQL) / 안드로이드 유아용 앱 졸업작품</div>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <h3>Certifications</h3>
+        <div class="cert-list">정보처리기사<br>컴퓨터활용능력</div>
+        <div class="cert-hidden" id="cert-hidden">
+          <div class="cert-list" style="margin-top:0">정보기술자격(ITQ)<br>워드프로세서 1급<br>컴퓨터그래픽스운용기능사<br>정보기기운용기능사<br>정보처리기능사<br><span style="color:var(--ink-faint)">외 총 9종</span></div>
+        </div>
+        <button class="cert-toggle" onclick="toggleCert()" id="cert-toggle">+ 기타 자격증 전체 보기</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 7. 연락처 ════════ -->
+<section id="contact">
+  <div class="wrap contact">
+    <span class="eyebrow reveal">Get in touch</span>
+    <h2 class="reveal">다음 <em>콘텐츠</em>,<br>같이 만들어 볼까요?</h2>
+    <p class="reveal">SW·AI 교육 과정 설계, 도서 기획, 강의 콘텐츠 제작까지.<br>필요한 곳에 맞춰 움직이는 사람입니다.</p>
+    <div class="contacts reveal">
+      <a class="cbtn primary" href="mailto:are486@naver.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        are486@naver.com
+      </a>
+      <a class="cbtn" href="tel:01085858017">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        010-8585-8017
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 조아리 · AI·SW 교육 · 콘텐츠 개발 · IT</div></footer>
+
+<div class="floating-cta" id="floating-cta"><a href="#contact">✉ 연락하기</a></div>
+
+<!-- ════════ 모달 ════════ -->
+<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-head"><h3 id="modal-title">자료</h3><button class="modal-close" onclick="closeModal()" aria-label="닫기">×</button></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ════════ Tweaks 마운트 ════════ -->
+<div id="tweaks-root" class="twk-host"></div>
+
+<script>
+/* ── nav ── */
+function closeNav(){document.querySelector('.nav-links').classList.remove('open')}
+
+/* ── 경력 토글 ── */
+function toggleCareer(){
+  const el=document.getElementById('career-hidden'),arrow=document.getElementById('career-arrow'),btn=document.getElementById('career-toggle');
+  const open=el.classList.toggle('open');
+  arrow.classList.toggle('rotated',open);
+  btn.querySelector('.tt').textContent=open?'이전 경력 접기':'이전 경력 4건 더 보기';
+  if(open)el.querySelectorAll('.reveal').forEach(r=>io&&io.observe(r));
+}
+/* ── 자격증 토글 ── */
+function toggleCert(){
+  const el=document.getElementById('cert-hidden'),btn=document.getElementById('cert-toggle');
+  const open=el.classList.toggle('open');
+  btn.textContent=open?'− 기타 자격증 접기':'+ 기타 자격증 전체 보기';
+}
+/* ── 도서 필터 ── */
+function filterBooks(cat,btn){
+  document.querySelectorAll('.book-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.book-card').forEach(c=>c.classList.toggle('hidden',!(cat==='all'||c.dataset.cat===cat)));
+}
+/* ── 표지 이미지 폴백 ── */
+function coverFallback(img){
+  const wrap=img.closest('.book-cover-wrap')||img.closest('.modal-book-cover')||img.parentElement;
+  if(!wrap||wrap.querySelector('.cover-fallback'))return;
+  img.style.display='none';
+  const fb=document.createElement('div');
+  fb.className='cover-fallback';
+  const pub=img.dataset.pub||'', title=img.dataset.title||img.alt||'';
+  fb.innerHTML='<span class="cf-pub">'+pub+'</span><span class="cf-title">'+title+'</span><span class="cf-mark"></span>';
+  wrap.appendChild(fb);
+}
+
+/* ── 모달 ── */
+const contents={
+  'm-resume':{title:'이력서',html:`
+    <div style="display:flex;gap:20px;align-items:center;margin-bottom:20px">
+      <img src="프로필 사진.png" alt="조아리" style="width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:center 20%;border:2px solid var(--line);flex-shrink:0">
+      <div>
+        <div style="font-size:22px;font-weight:800;letter-spacing:-.02em">조아리</div>
+        <div style="font-size:14px;color:var(--accent);font-weight:600;margin-top:4px">AI·SW 교육 콘텐츠 기획자</div>
+        <div style="font-size:12.5px;color:var(--ink-faint);margin-top:6px;font-family:var(--mono)"><a href="mailto:are486@naver.com">are486@naver.com</a> · <a href="tel:01085858017">010-8585-8017</a></div>
+      </div>
+    </div>
+    <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:6px">12년간 IT/SW·AI 교육 콘텐츠를 기획·개발해온 콘텐츠 기획자. 컴퓨터공학 전공, SW 개발 경험 보유. 도서 9권 기획·집필·편집. 코드를 이해하고 AI를 도구로 쓰는 기획자.</p>
+
+    <div class="resume-section">
+      <h4>경력</h4>
+      <ul>
+        <li><span class="rs-left">한빛미디어 · 콘텐츠1팀 기획편집자</span><span class="rs-right">2025.07 — 현재</span></li>
+        <li><span class="rs-left">다산북스 · 매니저 — 도서 4권, 학교 SW교육 자료 20+ 과정</span><span class="rs-right">2022.02 — 2025.03</span></li>
+        <li><span class="rs-left">플레이랩스 · 연구원 — SW교육 콘텐츠, SW선도대학 캠프 다수</span><span class="rs-right">2017.03 — 2020.11</span></li>
+        <li><span class="rs-left">엔트리 · 네이버 엔트리교육연구소 연구원</span><span class="rs-right">2016.02 — 2017.02</span></li>
+        <li><span class="rs-left">피에스텍(PSTEC) · 기술연구소 연구원</span><span class="rs-right">2014.08 — 2016.01</span></li>
+        <li><span class="rs-left">대건정보처리학원 · 교육팀</span><span class="rs-right">2013.05 — 2014.04</span></li>
+        <li><span class="rs-left">인문학가 · 교육팀</span><span class="rs-right">2012.09 — 2013.05</span></li>
+      </ul>
+    </div>
+
+    <div class="resume-section">
+      <h4>학력</h4>
+      <ul>
+        <li><span class="rs-left">연세대학교 교육대학원 · AI융합교육학과 석사과정</span><span class="rs-right">2024.09 — 재학 중</span></li>
+        <li><span class="rs-left">KAIST AI스쿨 R&D 리더·실무자 양성과정 1기</span><span class="rs-right">2018 수료</span></li>
+        <li><span class="rs-left">한국기술교육대학교 · 컴퓨터공학부</span><span class="rs-right">2013.02 졸업</span></li>
+      </ul>
+    </div>
+
+    <div class="resume-section">
+      <h4>출판</h4>
+      <ul>
+        <li><span class="rs-left">이것이 멀티 에이전트다 · 한빛미디어</span><span class="rs-right">2026.06</span></li>
+        <li><span class="rs-left">이것이 Spring AI다 (개정판) · 한빛미디어</span><span class="rs-right">2026.03</span></li>
+        <li><span class="rs-left">5분 제미나이 · 한빛미디어</span><span class="rs-right">2026.02</span></li>
+        <li><span class="rs-left">Dify AI, 코드 없는 미래 · 한빛미디어</span><span class="rs-right">2025.12</span></li>
+        <li><span class="rs-left">이것이 Spring AI다 · 한빛미디어</span><span class="rs-right">2025.08</span></li>
+        <li><span class="rs-left">차원의 골드랜드 2 · 다산스마트에듀</span><span class="rs-right">2025.03</span></li>
+        <li><span class="rs-left">차원의 골드랜드 1 · 다산스마트에듀</span><span class="rs-right">2025.01</span></li>
+        <li><span class="rs-left">인공지능 쏙쏙 with 엔트리 · 다산스마트에듀</span><span class="rs-right">2024.01</span></li>
+        <li><span class="rs-left">모험! 골드랜드 with 엔트리 · 다산스마트에듀</span><span class="rs-right">2023.09</span></li>
+      </ul>
+    </div>
+
+    <div class="resume-section">
+      <h4>자격증</h4>
+      <p style="font-size:13px;color:var(--ink-soft)">정보처리기사, 컴퓨터활용능력, ITQ, 워드프로세서 1급, 컴퓨터그래픽스운용기능사, 정보기기운용기능사, 정보처리기능사 외 총 9종</p>
+    </div>
+
+    <div style="margin-top:24px;text-align:center">
+      <button class="btn" onclick="printResume()">이력서 인쇄 / PDF 저장</button>
+    </div>
+  `},
+  'm-cloud':{title:'클라우드스쿨 응용SW 교육',html:`
+    <p>초·중·고 학교 SW교육 프로그램(클라우드스쿨)에 투입되는 교육 자료를 기획·제작한 <b>종합 콘텐츠 패키지</b>. PPT·PDF·교수안·동영상·실습파일 풀 패키지.</p>
+    <p>각 과정은 PPT 강의안 + PDF 교재 + 교수안 + 실습파일 + 동영상의 풀 패키지로 구성.</p>
+    <h4>컴퓨터 기초</h4>
+    <p>인터넷 활용(네이버/구글), 타자연습, 마우스연습(놀이형 9종)</p>
+    <h4>OA — 각 8차시</h4>
+    <p><b>한글 2016</b>: 퍼스트 네임 스티커, MZ세대 신조어 OX 퀴즈, 이색 편지봉투, 이색 윷놀이, 센스 수학퀴즈, 그림 일기장, 편의점 꿀조합 레시피, 바른 생활 계획표<br><b>파워포인트 2016</b> · <b>엑셀 2016</b> · <b>윈도우 10</b>: 각 8차시 실습</p>
+    <h4>블록 코딩</h4>
+    <p>처음 코딩 엔트리(10차시) · 인크래더블 코딩 · 이야기가 있는 코딩(모험 골드랜드, 16차시) · 처음 코딩 스크래치</p>
+    <h4>텍스트 코딩</h4>
+    <p><b>터틀 파이썬</b>(16차시): 자료형→변수→반복문→함수→애니메이션→거북이 경주<br><b>HTML/CSS</b>(16차시): 웹과 HTML→태그→레이아웃→CSS→박스 모델→구글 글꼴<br><b>C언어 기초</b>(16차시): 기초 문법부터 실습까지</p>
+    <h4>피지컬 컴퓨팅</h4>
+    <p>다빈치AI(16차시: 기억력 테스트 게임, 음악 연주, 고양이 온도계 등) · 햄스터 · 코드위즈(기본+AI) · 코드이노</p>
+    <h4>인공지능 · 교과 실습 · 디자인</h4>
+    <p>엔트리 인공지능(AI블록 활용) · 교과서 연계 실습(교학사·금성·동아·미래엔·비상·천재교과서) · 포토샵 2021(8차시)</p>
+    <h4>샘플 자료 보기</h4>
+    <div class="links">
+      <a class="btn ghost sm" href="samples/처음코딩엔트리_1차시.pdf" target="_blank" rel="noopener">처음 코딩 엔트리 1차시 PDF</a>
+      <a class="btn ghost sm" href="samples/OA한글_1강.pdf" target="_blank" rel="noopener">OA 한글 1강 PDF</a>
+      <a class="btn ghost sm" href="samples/C언어기초_7차시.pdf" target="_blank" rel="noopener">C언어 기초 7차시 PDF</a>
+    </div>`},
+  'm-scratch':{title:'런잇나우 스크래치 프로젝트',html:`
+    <p>스크래치 기반 <b>16차시 프로젝트형</b> 코딩 교육. 강의안·답안지·실습파일·동영상 풀 패키지.</p>
+    <h4>16차시 커리큘럼</h4>
+    <ul>
+      <li>01. 스크래치 알아보기 — 인터페이스, 스프라이트</li>
+      <li>02. 차례차례 대화하기 — 순차 구조, 이벤트</li>
+      <li>03. 누르면 소리나는 돌 — 이벤트, 소리, 반복</li>
+      <li>04. 작업실을 꾸며줘 — 모양 변경, 좌표</li>
+      <li>05. 도형의 숲 — 반복, 펜 블록, 각도</li>
+      <li>06. 벽화를 그릴 거야 — 펜 심화, 색상 제어</li>
+      <li>07. 여긴 어디 미로 탈출 — 조건문, 충돌 감지</li>
+      <li>08. 핑핑퐁퐁 튀어오르자 — 물리, 벽 튕기기</li>
+      <li>09. 문제가 있으니 풀어봅시다 — 선택, 비교 연산</li>
+      <li>10. 몇 번만에 맞힐 수 있어 — 변수, 무작위 수</li>
+      <li>11. 당근은 누구에게 — 리스트(배열)</li>
+      <li>12. 이건 얼마예요 — 변수 심화, 계산기</li>
+      <li>13. 날아오는 당근을 쏘자 — 슈팅 게임, 클론</li>
+      <li>14. 목적지를 향해 — 레이싱 게임</li>
+      <li>15. 점프 점프 — 플랫포머, 중력·점프</li>
+      <li>16. 과연 컴퓨터를 이길 수 있을까 — AI 대전</li>
+    </ul>
+    <h4>자료 구성</h4>
+    <p>강의안 전체 통합본 PDF + 차시별 PPT · 답안지 · 차시별 동영상</p>
+    <h4>샘플 자료 보기</h4>
+    <div class="links"><a class="btn ghost sm" href="samples/스크래치_전체강의안.pdf" target="_blank" rel="noopener">전체 강의안 PDF</a></div>`},
+  'm-ai-ssok':{title:'인공지능 쏙쏙 교사용 자료',html:`
+    <p>도서 『인공지능 쏙쏙 with 엔트리』 연계 교사용 수업 자료. 대상: 초5~중2 / 차시당 80분(이론 30분 + 실습 50분)</p>
+    <h4>14차시 커리큘럼</h4>
+    <ul>
+      <li>00. 인공지능과 엔트리 — AI 개론, 엔트리 기본</li>
+      <li>01. 번역기 만들기 — AI 번역 원리</li>
+      <li>02. 사람 인식 게임 — 휴먼 포즈 에스티메이션</li>
+      <li>03. 손글씨 인식 — 필기 인식 AI</li>
+      <li>04. 준비물 도우미 — CNN·사물 인식</li>
+      <li>05. 음성 인식 프로그램 — 음성 AI</li>
+      <li>06. 착한 휴지통 — 이미지 분류·지도 학습</li>
+      <li>07. 표정 인식 — 얼굴·감정 분석</li>
+      <li>08. 새 소리 분류 — 소리 분류·카카오i/NUGU</li>
+      <li>09. 텍스트 감정 분석 — NLP 기초</li>
+      <li>10. 라면 가격 예측 — 선형 회귀</li>
+      <li>11. 맞춤형 광고 추천 — 분류 알고리즘</li>
+      <li>12. 타이타닉호 생사 확인 — 로지스틱 회귀</li>
+      <li>13. SVM 분류 — 서포트 벡터 머신</li>
+      <li>14. 취미 그룹 — k-평균·비지도 학습</li>
+    </ul>
+    <h4>교수 설계 특징</h4>
+    <p><b>이론 → 프로젝트 일지 → 실습</b> 3단계 구조. 매 차시 실생활 문제를 AI로 해결하는 프로젝트 일지 포함.</p>
+    <h4>실습 동영상 (YouTube)</h4>
+    <p class="yt-links"><a href="https://youtu.be/mVtbeQIopQs" target="_blank" rel="noopener">01차시</a> · <a href="https://youtu.be/ralU6PXuSgU" target="_blank" rel="noopener">02차시</a> · <a href="https://youtu.be/c6lb5tDXZ7k" target="_blank" rel="noopener">03차시</a> · <a href="https://youtu.be/r7SQbmJzkmE" target="_blank" rel="noopener">04차시</a> · <a href="https://youtu.be/_NeCeH1ykaw" target="_blank" rel="noopener">05차시</a> · <a href="https://youtu.be/E4DCMmFRyWA" target="_blank" rel="noopener">06차시</a> · <a href="https://youtu.be/Q_A-kJEN0rc" target="_blank" rel="noopener">07차시</a> · <a href="https://youtu.be/P9GplKSZoI0" target="_blank" rel="noopener">08차시</a> · <a href="https://youtu.be/XhK8MMTGc4s" target="_blank" rel="noopener">09차시</a> · <a href="https://youtu.be/ouy_csHpA9o" target="_blank" rel="noopener">10차시</a> · <a href="https://youtu.be/bvjBWpVU5qY" target="_blank" rel="noopener">13차시</a> · <a href="https://youtu.be/7NGAKuxZtqs" target="_blank" rel="noopener">14차시</a></p>
+    <h4>샘플 자료 보기</h4>
+    <div class="links">
+      <a class="btn ghost sm" href="samples/인공지능쏙쏙_수업안.pdf" target="_blank" rel="noopener">전체 수업안 PDF (67p)</a>
+      <a class="btn ghost sm" href="samples/인공지능쏙쏙_1챕터.pdf" target="_blank" rel="noopener">1챕터 강의 PDF 샘플</a>
+    </div>`},
+  'm-goldland':{title:'모험 골드랜드 교사용 자료',html:`
+    <p>도서 『모험! 골드랜드 with 엔트리』 연계 교사용 수업 자료. 교수안 56페이지.</p>
+    <h4>16차시 커리큘럼 — 스토리텔링 기반</h4>
+    <ul>
+      <li>00. 엔트리와 SW교육 — SW 정의, 화면 구성</li>
+      <li>01. 순서대로 대화하기 — 순차 구조</li>
+      <li>02. 누르면 소리를 내는 연잎 — 이벤트, 반복</li>
+      <li>03. 비밀기지를 꾸며줘 — 신호, 장면 전환</li>
+      <li>04. 도형과 각도의 밀림 — 반복+각도, 도형</li>
+      <li>05. 표식을 남겨줘 — 마우스/오브젝트 클릭</li>
+      <li>06. 출구를 향해 가자 — 2D 좌표, 선택 구조</li>
+      <li>07. 나는 주차왕 — 키보드 제어, 각도 회전</li>
+      <li>08. 어려운 수수께끼 — 입출력, 비교 연산</li>
+      <li>09. 잡아라! 황금동전 — 무작위 수, 마우스 좌표</li>
+      <li>10. 숫자를 맞혀봐 — 변수, 비교 연산</li>
+      <li>11. 황금 동전은 누구에게 — 리스트(배열)</li>
+      <li>12. 마법의 가게에서 물건을 사요 — 변수 심화</li>
+      <li>13. 날아오는 선인장 — 복제(클론), 슈팅</li>
+      <li>14. 목적지를 향해 — 좌표 이동, 타이머</li>
+      <li>15. 통통 튀어 올라 — 중력·점프, 플랫포머</li>
+      <li>16. 적과 싸워 이겨라! — 종합 전투 게임</li>
+    </ul>
+    <h4>교수 설계 특징</h4>
+    <p>모험 이야기를 따라가며 각 장소 미션이 곧 코딩 프로젝트. <b>기본 활동 + 추가 활동</b> 2단계. 개념 나선형 심화: 순차→반복→이벤트→좌표→선택→변수→복제→종합.</p>
+    <h4>실습 동영상 (YouTube)</h4>
+    <p class="yt-links"><a href="https://youtu.be/CH4kKlUG1xA" target="_blank" rel="noopener">01차시</a> · <a href="https://youtu.be/9toG1IXdWRw" target="_blank" rel="noopener">02차시</a> · <a href="https://youtu.be/ocJo4WJyckk" target="_blank" rel="noopener">03차시</a> · <a href="https://youtu.be/0-xdDELaLAQ" target="_blank" rel="noopener">04차시</a> · <a href="https://youtu.be/99uW6mPkEbo" target="_blank" rel="noopener">05차시</a> · <a href="https://youtu.be/7IsqsYVvwBM" target="_blank" rel="noopener">06차시</a> · <a href="https://youtu.be/8D7btygLgmk" target="_blank" rel="noopener">07차시</a> · <a href="https://youtu.be/d0NbJYD4Ui0" target="_blank" rel="noopener">08차시</a> · <a href="https://youtu.be/JbNWWv2L3-M" target="_blank" rel="noopener">09차시</a> · <a href="https://youtu.be/hyVOBifRCuE" target="_blank" rel="noopener">10차시</a> · <a href="https://youtu.be/v7F14M1wUPU" target="_blank" rel="noopener">11차시</a> · <a href="https://youtu.be/iZi03nCUQCA" target="_blank" rel="noopener">12차시</a> · <a href="https://youtu.be/AYfmPWA3mY8" target="_blank" rel="noopener">13차시</a> · <a href="https://youtu.be/857JASsmoTw" target="_blank" rel="noopener">14차시</a> · <a href="https://youtu.be/NL-gTAsIDiE" target="_blank" rel="noopener">15차시</a> · <a href="https://youtu.be/lcCfOAtgrSE" target="_blank" rel="noopener">16차시</a></p>
+    <h4>샘플 자료 보기</h4>
+    <div class="links">
+      <a class="btn ghost sm" href="samples/모험골드랜드_교수안.pdf" target="_blank" rel="noopener">전체 교수안 PDF (56p)</a>
+      <a class="btn ghost sm" href="samples/모험골드랜드_1차시.pdf" target="_blank" rel="noopener">1차시 강의 PDF 샘플</a>
+    </div>`},
+  'book-multiagent':{title:'이것이 멀티 에이전트다',html:bookHTML('이것이 멀티에이전트다_표지.jpeg','한빛미디어','이것이 멀티 에이전트다','저자: 서지영','2026.06','기획편집','싱글 에이전트부터 멀티 에이전트까지 MCP와 A2A를 활용한 협업형 AI 시스템 설계·구현 실전 가이드.','https://www.yes24.com/product/goods/190213684')},
+  'book-spring-rev':{title:'이것이 Spring AI다 (개정판)',html:bookHTML('spring AI 개정판 표지.jpeg','한빛미디어','이것이 Spring AI다 (개정판)','저자: 신용권','2026.03','기획편집','RAG, Tool Calling, MCP Server, 멀티 에이전트까지 단계별 실습으로 배우는 Spring 기반 LLM AI 에이전트 개발 입문서.','https://www.yes24.com/product/goods/181177659')},
+  'book-gemini':{title:'5분 제미나이',html:bookHTML('5분 제미나이_표지.jpeg','한빛미디어','5분 제미나이','저자: 오종현','2026.02','기획편집','Google Gemini를 활용한 업무 효율·콘텐츠 제작·일상 혁신 150가지 실전 프롬프트 가이드.','https://www.yes24.com/product/goods/180162710')},
+  'book-dify':{title:'Dify AI, 코드 없는 미래',html:bookHTML('Dify_표지.jpeg','한빛미디어','Dify AI, 코드 없는 미래','저자: 김정욱','2025.12','기획편집','드래그 앤 드롭만으로 상담봇, 문서 검색 AI, 업무 자동화 시스템을 만드는 노코드 AI 플랫폼 Dify 실전 가이드.','https://www.yes24.com/product/goods/167437364')},
+  'book-spring':{title:'이것이 Spring AI다',html:bookHTML('spring AI 표지.jpeg','한빛미디어','이것이 Spring AI다','저자: 신용권','2025.08','기획편집','생성형 AI 시대의 Java 개발자를 위한 실전 가이드. Spring AI 기초부터 텍스트 대화, 음성 처리, 이미지 생성, RAG, MCP Server 구축까지 체계적으로 학습.','https://www.yes24.com/product/goods/151976296')},
+  'book-gold2':{title:'차원의 골드랜드 2',html:`<div class="modal-book-header">
+    <div class="modal-book-cover"><img src="책_표지/차원의 골드랜드2_표지.jpeg" alt="차원의 골드랜드 2" data-pub="다산스마트에듀" data-title="차원의 골드랜드 2" onerror="coverFallback(this)"></div>
+    <div class="modal-book-meta">
+      <div class="mb-publisher">다산스마트에듀</div>
+      <h4>차원의 골드랜드 2 : 우리는 동전 벌레 헌터</h4>
+      <div class="mb-author">글: 심선민 / 그림: Hako / 감수: 송상수</div>
+      <div class="mb-date">2025.03</div>
+      <div class="mb-role">담당 · 기획·집필·편집</div>
+      <p class="mb-desc">판타지 모험 이야기를 읽으며 엔트리 블록 코딩으로 RPG 게임을 직접 만드는 코딩 학습서.</p>
+      <div class="links">
+        <a class="btn sm" href="https://www.yes24.com/product/goods/143303383" target="_blank" rel="noopener">yes24에서 보기 →</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tUqBdLkcIl8" target="_blank" rel="noopener">소개 영상</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=ZDGQzlE4ZMk" target="_blank" rel="noopener">게임 튜토리얼</a>
+      </div>
+    </div>
+  </div>`},
+  'book-gold1':{title:'차원의 골드랜드 1',html:`<div class="modal-book-header">
+    <div class="modal-book-cover"><img src="책_표지/차원의 골드랜드1_표지.jpeg" alt="차원의 골드랜드 1" data-pub="다산스마트에듀" data-title="차원의 골드랜드 1" onerror="coverFallback(this)"></div>
+    <div class="modal-book-meta">
+      <div class="mb-publisher">다산스마트에듀</div>
+      <h4>차원의 골드랜드 1 : 차원의 문을 건너다</h4>
+      <div class="mb-author">글: 심선민 / 그림: Hako / 감수: 송상수</div>
+      <div class="mb-date">2025.01</div>
+      <div class="mb-role">담당 · 기획·집필·편집</div>
+      <p class="mb-desc">판타지 스토리를 읽으며 엔트리 코딩으로 나만의 RPG 게임을 만드는 창의적 학습서.</p>
+      <div class="links">
+        <a class="btn sm" href="https://www.yes24.com/product/goods/141794406" target="_blank" rel="noopener">yes24에서 보기 →</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tUqBdLkcIl8" target="_blank" rel="noopener">소개 영상</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tijvY4Dw87Y" target="_blank" rel="noopener">게임 튜토리얼</a>
+      </div>
+    </div>
+  </div>`},
+  'book-ai-ssok':{title:'인공지능 쏙쏙 with 엔트리',html:bookHTML('인공지능쏙쏙_표지.jpeg','다산스마트에듀','인공지능 쏙쏙 with 엔트리','저자: 다산스마트에듀 SW교육센터','2024.01','기획·집필·편집','초·중학생 대상 엔트리 블록 코딩으로 인공지능·머신러닝·딥러닝을 다양한 프로젝트로 배우는 교재.','https://www.yes24.com/product/goods/124623632')},
+  'book-goldland':{title:'모험! 골드랜드 with 엔트리',html:bookHTML('모험골드랜드_표지.jpeg','다산스마트에듀','모험! 골드랜드 with 엔트리','저자: 다산스마트에듀 SW교육센터','2023.09','기획·집필·편집','이야기를 따라가며 블록 코딩을 단계별로 배우는 초보자용 코딩 입문서.','https://www.yes24.com/product/goods/122155326')}
+};
+function bookHTML(cover,pub,title,author,date,role,desc,link){
+  return `<div class="modal-book-header">
+    <div class="modal-book-cover"><img src="책_표지/${cover}" alt="${title}" data-pub="${pub}" data-title="${title}" onerror="coverFallback(this)"></div>
+    <div class="modal-book-meta">
+      <div class="mb-publisher">${pub}</div>
+      <h4>${title}</h4>
+      <div class="mb-author">${author}</div>
+      <div class="mb-date">${date}</div>
+      <div class="mb-role">담당 · ${role}</div>
+      <p class="mb-desc">${desc}</p>
+      <div class="links"><a class="btn sm" href="${link}" target="_blank" rel="noopener">yes24에서 보기 →</a></div>
+    </div>
+  </div>`;
+}
+function openModal(id){
+  const c=contents[id];if(!c)return;
+  document.getElementById('modal-title').textContent=c.title;
+  document.getElementById('modal-body').innerHTML=c.html;
+  document.getElementById('modal-bg').classList.add('open');
+  const mh=document.querySelector('.modal-head');
+  if(id==='m-resume'){mh.querySelector('h3').style.display='none';mh.style.borderBottom='none';mh.style.padding='12px clamp(22px,4vw,32px)'}
+  else{mh.querySelector('h3').style.display='';mh.style.borderBottom='';mh.style.padding=''}
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal-bg').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* ── reveal ── */
+const prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+let io=null;
+if(!prefersReduced){
+  io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*50)+'ms';io.observe(el)});
+}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'))}
+
+/* ── 이력서 인쇄 ── */
+function printResume(){
+  document.body.classList.add('printing-resume');
+  setTimeout(()=>{
+    window.print();
+    document.body.classList.remove('printing-resume');
+  },100);
+}
+
+/* ── floating CTA ── */
+const fab=document.getElementById('floating-cta');
+window.addEventListener('scroll',()=>{fab.classList.toggle('visible',window.scrollY>520)},{passive:true});
+</script>
+
+</body>
+</html>
