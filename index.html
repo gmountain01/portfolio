@@ -214,6 +214,25 @@ section + section{padding-top:0}
 .placeholder-badge{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--ink-faint);background:var(--bg);border:1px solid var(--line-2);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
 .sub-h{font-weight:700;font-size:18px;margin:clamp(30px,4vw,42px) 0 16px;letter-spacing:-.015em}
 
+/* ───────────── SIDE PROJECT SHOWCASE ───────────── */
+.showcase{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.2s}
+.showcase:hover{border-color:var(--line-2);box-shadow:0 12px 30px rgba(0,0,0,.05)}
+.showcase-top{display:flex;align-items:flex-start;gap:clamp(24px,3vw,36px);padding:clamp(24px,3vw,34px)}
+.showcase-info{flex:1;min-width:0}
+.showcase-info .type{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--mark);margin-bottom:10px}
+.showcase-info h4{font-weight:700;font-size:clamp(20px,2.4vw,24px);margin-bottom:10px;letter-spacing:-.02em}
+.showcase-info p{font-size:14.5px;color:var(--ink-soft);line-height:1.68;max-width:52ch}
+.showcase-cta{flex-shrink:0;align-self:center}
+.showcase-features{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line)}
+.showcase-feat{padding:clamp(18px,2.4vw,26px) clamp(16px,2vw,22px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;transition:.18s}
+.showcase-feat:last-child{border-right:none}
+.showcase-feat:hover{background:var(--accent-soft)}
+.showcase-feat .feat-icon{font-size:20px;line-height:1}
+.showcase-feat .feat-label{font-weight:700;font-size:13.5px;color:var(--ink);letter-spacing:-.01em;line-height:1.3}
+.showcase-feat .feat-desc{font-size:12px;color:var(--ink-faint);line-height:1.5}
+@media(max-width:860px){.showcase-features{grid-template-columns:repeat(3,1fr)}.showcase-feat:nth-child(3){border-right:none}.showcase-feat:nth-child(n+4){border-top:1px solid var(--line)}.showcase-feat:nth-child(4){border-right:1px solid var(--line)}}
+@media(max-width:520px){.showcase-top{flex-direction:column;gap:16px}.showcase-cta{align-self:flex-start}.showcase-features{grid-template-columns:1fr 1fr}.showcase-feat:nth-child(odd){border-right:1px solid var(--line)}.showcase-feat:nth-child(even){border-right:none}.showcase-feat:nth-child(n+3){border-top:1px solid var(--line)}.showcase-feat:last-child{grid-column:1/-1;border-right:none}}
+
 /* ───────────── SKILLS ───────────── */
 .skill-group{margin-bottom:22px}
 .skill-group:last-child{margin-bottom:0}
@@ -427,12 +446,12 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
       <div class="about-card reveal">
         <span class="ic mono">/ 02</span>
         <h3>AI 도구 실무 활용</h3>
-        <p>Cursor·Claude Code 등 다양한 AI 도구를 일상 업무에 활용합니다. 경쟁 도서 분석 도구, 원고 포맷팅 자동화 도구를 직접 만들어 쓰고, 자료 조사·원고 검토·데이터 정리까지 AI를 실무 워크플로우에 녹여 생산성을 높입니다. 해외의 새로운 AI 도구를 적극적으로 탐색하고 실무에 빠르게 적용하는 것을 좋아합니다.</p>
+        <p>Cursor·Claude Code 등 다양한 AI 도구를 일상 업무에 활용합니다. 시장조사·아이템 분석·원고 자동화·교정 보조까지 출판 실무 도구(<a href="#materials" style="color:var(--accent);font-weight:600;text-decoration:none">리리가 도와줌</a>)를 직접 만들어 쓰고, 자료 조사·원고 검토·데이터 정리까지 AI를 실무 워크플로우에 녹여 생산성을 높입니다.</p>
       </div>
       <div class="about-card reveal">
         <span class="ic mono">/ 03</span>
         <h3>기획부터 제작까지 전 과정</h3>
-        <p>커리큘럼·콘텐츠 기획부터 교안·강의자료·실습 제작, 교재 집필·편집, 일정 관리까지 콘텐츠 제작 전 과정을 담당합니다. 네이버 엔트리·플레이랩스에서 SW교육 콘텐츠를 설계했고, 다산북스에서는 아동 SW교육 도서 4권을 기획·집필·편집까지 단독 수행했으며, 한빛미디어에서 AI·IT 도서 5권을 만들었습니다.</p>
+        <p>커리큘럼·콘텐츠 기획부터 교안·강의자료·실습 제작, 교재 집필·편집, 일정 관리까지 콘텐츠 제작 전 과정을 담당합니다. 다산북스에서 아동 SW교육 도서 4권 중 2권을 전 과정 단독 수행했고, 한빛미디어에서는 입사 첫해에 AI·IT 도서 5권을 출간했습니다.</p>
       </div>
       <div class="about-card reveal">
         <span class="ic mono">/ 04</span>
@@ -454,7 +473,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         <div class="role">한빛미디어 <span class="badge">재직 중</span><span class="pos">콘텐츠1팀 · 기획편집자</span></div>
         <ul>
           <li>성인 AI·IT 전문 콘텐츠 기획·개발 전 과정 담당</li>
-          <li>입사 11개월간 도서 5권 기획·편집, 2026년 6월 1권 추가 예정</li>
+          <li>입사 첫해 도서 5권 출간 — 6권째 진행 중</li>
           <li>Claude Code 기반 콘텐츠 분석·자동화 도구 직접 개발</li>
         </ul>
       </div>
@@ -464,7 +483,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         <div class="role">다산북스<span class="pos">다산스마트에듀 · 매니저</span></div>
         <ul>
           <li>아동 SW교육 콘텐츠 및 교재 기획·개발</li>
-          <li>도서 4권 출간 — 2권 전 과정 단독, 2권 기획·집필·편집 리딩</li>
+          <li>도서 4권 출간 — 2권은 기획·집필·편집 전 과정 단독 수행</li>
           <li>초·중·고 학교 SW교육 프로그램(클라우드스쿨) 교육 자료 20+ 과정 기획·제작</li>
           <li>개발 지식 기반 코딩 교육 내용 직접 집필·기술 검수</li>
         </ul>
@@ -559,13 +578,43 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
     </div>
 
     <h3 class="sub-h reveal">사이드 프로젝트</h3>
-    <div class="work-grid">
-      <div class="card reveal">
-        <div class="type mono">사이드 프로젝트 · 웹</div>
-        <h4>리리가 도와줌</h4>
-        <p>Claude Code로 직접 만든 업무 자동화 사이트. 출판 실무를 돕는 도구를 코드로 구현했습니다.</p>
-        <div class="meta">웹사이트 · Claude Code</div>
-        <div class="card-actions"><a class="btn sm" href="https://gmountain01.github.io/book-radar/" target="_blank" rel="noopener">사이트 방문 →</a></div>
+    <div class="showcase reveal">
+      <div class="showcase-top">
+        <div class="showcase-info">
+          <div class="type mono">사이드 프로젝트 · 웹 · Claude Code</div>
+          <h4>리리가 도와줌</h4>
+          <p>기획편집자의 반복 업무를 코드로 해결하는 출판 실무 자동화 도구. Claude Code로 직접 설계·개발했습니다.</p>
+        </div>
+        <div class="showcase-cta">
+          <a class="btn sm" href="https://gmountain01.github.io/book-radar/" target="_blank" rel="noopener">사이트 방문 →</a>
+        </div>
+      </div>
+      <div class="showcase-features">
+        <div class="showcase-feat">
+          <span class="feat-icon">📊</span>
+          <span class="feat-label">시장조사</span>
+          <span class="feat-desc">경쟁 도서 메타데이터 수집·비교 분석</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon">🔍</span>
+          <span class="feat-label">아이템 분석</span>
+          <span class="feat-desc">신간 기획을 위한 아이템 발굴·트렌드 조사</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon">🎬</span>
+          <span class="feat-label">유튜버 조사</span>
+          <span class="feat-desc">IT·교육 채널 탐색 및 저자 후보 리서치</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon">✍️</span>
+          <span class="feat-label">원고 자동화</span>
+          <span class="feat-desc">원고 초안 자동 작성·포맷팅</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon">✅</span>
+          <span class="feat-label">교정·교열</span>
+          <span class="feat-desc">맞춤법·문맥 검토 보조</span>
+        </div>
       </div>
     </div>
   </div>
