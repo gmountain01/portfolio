@@ -8,7 +8,16 @@
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Serif+KR:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="AI·SW 교육 콘텐츠 기획자 조아리의 포트폴리오. 도서 10권 기획·집필·편집, 교육 과정 설계, AI 활용 교육 전문.">
+<meta property="og:title" content="조아리 — AI·SW 교육 콘텐츠 기획자">
+<meta property="og:description" content="AI·SW 교육 콘텐츠 기획자 조아리의 포트폴리오. 도서 10권 기획·집필·편집, 교육 과정 설계, AI 활용 교육 전문.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gmountain01.github.io/portfolio/">
+<meta property="og:image" content="https://gmountain01.github.io/portfolio/profile.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nOCcgZmlsbD0nIzI2NGE2ZScvPjx0ZXh0IHg9JzE2JyB5PScyMicgZm9udC1zaXplPScxOCcgZm9udC1mYW1pbHk9J3NlcmlmJyBmb250LXdlaWdodD0nYm9sZCcgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nI2ZmZic+QTwvdGV4dD48L3N2Zz4=">
 <style>
 :root{
   /* palette */
@@ -17,17 +26,17 @@
   --surface-2:#f5f3ec;
   --ink:#1b1a16;
   --ink-soft:#56544c;
-  --ink-faint:#8f8d82;
+  --ink-faint:#75736a;
   --line:#e9e6dd;
   --line-2:#dcd8cc;
-  --mark:#9a7b4f;
+  --mark:#8a6e47;
   /* accent (overridden by [data-accent]) */
   --accent:#1f5c4d;
   --accent-ink:#163f34;
   --accent-soft:#e9f0ec;
   --accent-rgb:31,92,77;
   /* type */
-  --serif:'Newsreader',Georgia,serif;
+  --serif:'Newsreader','Noto Serif KR',serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --sans:'Pretendard',-apple-system,system-ui,sans-serif;
   /* rhythm */
@@ -97,7 +106,7 @@ header{padding:clamp(52px,9vw,104px) 0 clamp(40px,6vw,68px)}
 .avail i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
 .hero-title{font-weight:800;font-size:clamp(40px,8.2vw,82px);line-height:1.04;letter-spacing:-.035em;margin-bottom:clamp(26px,4vw,40px);text-wrap:balance}
-.hero-title em{font-style:normal;color:var(--accent);position:relative}
+.hero-title em{font-family:var(--serif);font-weight:700;color:var(--accent);position:relative}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,5vw,56px);align-items:end}
 .lead{font-size:clamp(16px,1.6vw,19px);color:var(--ink-soft);line-height:1.68;max-width:46ch}
 .lead b{color:var(--ink);font-weight:600}
@@ -133,15 +142,15 @@ section{padding:var(--sec-pad) 0}
 section + section{padding-top:0}
 .sec-head{display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);margin-bottom:clamp(30px,4vw,48px)}
 .sec-num{font-family:var(--mono);color:var(--mark);font-size:13px;font-weight:500;letter-spacing:.05em;flex-shrink:0}
-.sec-title{font-weight:800;font-size:clamp(24px,3.6vw,38px);letter-spacing:-.03em;line-height:1.1;flex-shrink:0}
+.sec-title{font-family:var(--serif);font-weight:800;font-size:clamp(24px,3.6vw,38px);letter-spacing:-.03em;line-height:1.1;flex-shrink:0}
 .sec-line{flex:1;height:1px;background:var(--line-2);transform:translateY(-6px)}
 .sec-intro{color:var(--ink-soft);font-size:14.5px;max-width:60ch;margin:-22px 0 30px}
 
 /* ───────────── STRENGTHS ───────────── */
 .about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 @media(max-width:680px){.about-grid{grid-template-columns:1fr}}
-.about-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,3vw,30px);transition:.2s;position:relative;overflow:hidden}
-.about-card:hover{border-color:var(--line-2);box-shadow:0 10px 30px rgba(0,0,0,.04)}
+.about-card{background:var(--surface-2);border-radius:16px;padding:clamp(22px,3vw,30px);transition:.2s;position:relative;overflow:hidden}
+.about-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
 .about-card .ic{font-family:var(--mono);font-size:12px;color:var(--mark);font-weight:500;margin-bottom:14px;display:block}
 .about-card h3{font-size:17px;font-weight:700;margin-bottom:9px;color:var(--ink);letter-spacing:-.01em}
 .about-card p{font-size:14px;color:var(--ink-soft);line-height:1.65}
@@ -201,7 +210,7 @@ section + section{padding-top:0}
 /* ───────────── MATERIALS CARDS ───────────── */
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:680px){.work-grid{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,2.6vw,28px);transition:.2s;display:flex;flex-direction:column;position:relative}
+.card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:16px;padding:clamp(20px,2.6vw,28px);transition:.2s;display:flex;flex-direction:column;position:relative}
 .card[onclick]{cursor:pointer}
 .card:hover{border-color:var(--line-2);box-shadow:0 12px 30px rgba(0,0,0,.05);transform:translateY(-3px)}
 .card .type{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--mark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
@@ -227,7 +236,7 @@ section + section{padding-top:0}
 .showcase-feat{padding:clamp(18px,2.4vw,26px) clamp(16px,2vw,22px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;transition:.18s}
 .showcase-feat:last-child{border-right:none}
 .showcase-feat:hover{background:var(--accent-soft)}
-.showcase-feat .feat-icon{font-size:20px;line-height:1}
+.showcase-feat .feat-icon{display:flex;align-items:center;color:var(--mark)}
 .showcase-feat .feat-label{font-weight:700;font-size:13.5px;color:var(--ink);letter-spacing:-.01em;line-height:1.3}
 .showcase-feat .feat-desc{font-size:12px;color:var(--ink-faint);line-height:1.5}
 @media(max-width:860px){.showcase-features{grid-template-columns:repeat(3,1fr)}.showcase-feat:nth-child(3){border-right:none}.showcase-feat:nth-child(n+4){border-top:1px solid var(--line)}.showcase-feat:nth-child(4){border-right:1px solid var(--line)}}
@@ -245,6 +254,8 @@ section + section{padding-top:0}
 /* ───────────── EDU / CERT ───────────── */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:680px){.two{grid-template-columns:1fr}}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.three{grid-template-columns:1fr}}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,3vw,30px)}
 .panel h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mark);margin-bottom:20px;text-transform:uppercase;font-weight:500}
 .edu-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
@@ -263,7 +274,7 @@ section + section{padding-top:0}
 .contact{text-align:center;padding:var(--sec-pad) 0}
 .contact .eyebrow{margin-bottom:18px;display:block}
 .contact h2{font-weight:800;font-size:clamp(30px,5.2vw,52px);letter-spacing:-.035em;margin-bottom:14px;line-height:1.08;text-wrap:balance}
-.contact h2 em{font-style:normal;color:var(--accent)}
+.contact h2 em{font-family:var(--serif);font-style:italic;color:var(--accent)}
 .contact p{color:var(--ink-soft);margin-bottom:32px;font-size:16px}
 .contacts{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 .cbtn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--surface);border:1px solid var(--line-2);border-radius:100px;padding:14px 24px;color:var(--ink);font-family:var(--mono);font-size:14px;transition:.2s;font-weight:400}
@@ -312,6 +323,9 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .modal-book-meta .mb-role{display:inline-flex;font-size:12px;color:var(--accent-ink);font-weight:600;background:var(--accent-soft);border-radius:7px;padding:4px 10px;margin-bottom:14px}
 .modal-book-meta .mb-desc{font-size:14px;color:var(--ink-soft);line-height:1.68;margin-bottom:16px}
 @media(max-width:520px){.modal-book-header{flex-direction:column;align-items:center;text-align:center}.modal-book-cover{width:130px}.modal-book-meta .mb-role{margin-left:auto;margin-right:auto}}
+.book-role{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}
+.book-role-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mark);display:block;margin-bottom:8px}
+.book-role-body{font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0}
 
 /* profile photo responsive */
 @media(max-width:600px){
@@ -327,6 +341,44 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .resume-section li:last-child{border-bottom:none}
 .resume-section .rs-left{font-weight:600;color:var(--ink)}
 .resume-section .rs-right{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);white-space:nowrap}
+
+/* ─────────────── CASE STUDY ─────────────── */
+.case-list{display:flex;flex-direction:column;gap:clamp(20px,3vw,28px)}
+.case{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:16px;overflow:hidden}
+.case-head{padding:clamp(24px,3.4vw,36px)}
+.case-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mark);font-weight:500;display:block;margin-bottom:12px}
+.case-title{font-weight:800;font-size:clamp(18px,2.2vw,24px);letter-spacing:-.02em;line-height:1.2;margin-bottom:6px;color:var(--ink)}
+.case-name{font-family:var(--serif);font-size:clamp(14px,1.4vw,16px);color:var(--accent);font-weight:700;margin:0}
+.case-steps{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.case-step{padding:clamp(18px,2.4vw,26px)}
+.case-step:nth-child(odd){border-right:1px solid var(--line)}
+.case-step:nth-child(1),.case-step:nth-child(2){border-bottom:1px solid var(--line)}
+.step-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mark);font-weight:500;display:block;margin-bottom:10px}
+.step-body{font-size:14px;color:var(--ink-soft);line-height:1.68}
+.step-body strong{color:var(--ink);font-weight:600}
+@media(max-width:620px){
+  .case-steps{grid-template-columns:1fr}
+  .case-step{border-right:none!important}
+  .case-step:nth-child(1),.case-step:nth-child(2),.case-step:nth-child(3){border-bottom:1px solid var(--line)}
+  .case-step:nth-child(4){border-bottom:none}
+}
+.case-product{background:var(--surface-2);border-top:1px solid var(--line);padding:clamp(18px,2.4vw,26px)}
+.case-product-hd{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.cp-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mark);display:block;margin-bottom:6px}
+.cp-title{font-weight:700;font-size:15px;letter-spacing:-.01em;margin-bottom:4px}
+.cp-desc{font-size:13px;color:var(--ink-soft);line-height:1.5}
+/* ─── 스크린샷 갤러리 ─── */
+.shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,20px);padding:clamp(18px,2.4vw,26px);border-top:1px solid var(--line)}
+.shot-item{margin:0;cursor:pointer;transition:.2s}
+.shot-item:hover .shot-frame{border-color:var(--accent);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.shot-item:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:14px}
+.shot-frame{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-2);position:relative;aspect-ratio:16/10;transition:.2s}
+.shot-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.shot-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:absolute;inset:0;font-size:12px;color:var(--ink-faint);font-family:var(--mono);text-align:center;padding:20px;line-height:1.5}
+.shot-cap{font-size:11.5px;color:var(--ink-faint);font-family:var(--mono);margin-top:8px;display:block;text-align:center;letter-spacing:.03em}
+@media(max-width:520px){.shot-grid{grid-template-columns:1fr}}
+/* ─── 샷 모달 이미지 ─── */
+.shot-modal-img{width:100%;height:auto;border-radius:8px;display:block}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
@@ -379,12 +431,13 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
       <span class="nm">조아리</span>
       <span class="rl mono">Cho Ari · Editor</span>
     </a>
-    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="메뉴 열기">
+    <button class="hamburger" onclick="const n=document.querySelector('.nav-links');n.classList.toggle('open');this.setAttribute('aria-expanded',String(n.classList.contains('open')))" aria-expanded="false" aria-label="메뉴 열기">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
     </button>
     <ul class="nav-links">
       <li><a href="#about" onclick="closeNav()">소개</a></li>
       <li><a href="#strengths" onclick="closeNav()">역량</a></li>
+      <li><a href="#cases" onclick="closeNav()">케이스</a></li>
       <li><a href="#career" onclick="closeNav()">경력</a></li>
       <li><a href="#materials" onclick="closeNav()">교육·콘텐츠</a></li>
       <li><a href="#publications" onclick="closeNav()">출판</a></li>
@@ -424,7 +477,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
   <div class="wrap">
     <div class="sec-head reveal"><span class="sec-num">00</span><h2 class="sec-title">소개</h2><span class="sec-line"></span></div>
     <div class="about-intro reveal" style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,4vw,40px);line-height:1.85;font-size:clamp(14.5px,1.4vw,16px);color:var(--ink-soft);display:flex;gap:clamp(24px,4vw,36px);align-items:flex-start">
-      <img src="사진.jpg" alt="조아리 프로필 사진" style="width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;border:3px solid var(--line)">
+      <img src="profile.jpg" alt="조아리 프로필 사진" style="width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;border:3px solid var(--line)">
       <div>
       <p>12년간 IT/SW·AI 교육 콘텐츠를 기획·개발해온 콘텐츠 기획자입니다. 교육 현장에서 커리어를 시작해 컴퓨터공학 전공과 SW 개발 경험을 토대로 콘텐츠의 기술적 정확성을 직접 검증할 수 있으며, 네이버 엔트리·플레이랩스에서 SW교육 콘텐츠를, 다산북스·한빛미디어에서 교육 도서와 강의 자료를 기획·집필·제작해 왔습니다.</p>
       <p style="margin-top:14px">특히 생성형 AI를 콘텐츠 제작 전반에 적극 활용하고, Claude Code를 이용해 업무용 도구를 직접 개발·운영하며, 커리큘럼 설계부터 강의·교재·실습 자료 제작까지 한 흐름으로 수행할 수 있습니다. <b style="color:var(--accent)">코드를 이해하고 AI를 도구로 쓰는 콘텐츠 기획자</b>로서 IT 전문성과 학습 효과를 동시에 끌어올릴 수 있으며, 현재 연세대학교 교육대학원 AI융합교육 석사과정을 통해 학습과학·교수설계 이론까지 함께 다지고 있습니다.</p>
@@ -462,10 +515,134 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
   </div>
 </section>
 
-<!-- ════════ 2. 경력 ════════ -->
+<!-- ════════ 02. 케이스 스터디 ════════ -->
+<section id="cases">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">케이스 스터디</h2><span class="sec-line"></span></div>
+    <p class="sec-intro reveal">문제를 어떻게 정의하고 풀었는지 보여주는 두 가지 사례입니다.</p>
+    <div class="case-list">
+
+      <!-- Case A -->
+      <div class="case reveal">
+        <div class="case-head">
+          <span class="case-eyebrow">Case A · 사이드 프로젝트 · Claude Code</span>
+          <h3 class="case-title">편집자가 직접 만든 출판 실무 도구</h3>
+          <p class="case-name">리리가 도와줌</p>
+        </div>
+        <div class="case-steps">
+          <div class="case-step">
+            <span class="step-label">배경</span>
+            <div class="step-body">신간을 기획하려면 경쟁 도서와 시장 흐름을 알아야 합니다. 서점 사이트를 검색하고 결과를 엑셀에 옮기는 수작업이 기획편집자의 기본 루틴이었습니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">문제</span>
+            <div class="step-body">조사 결과가 어디에도 쌓이지 않았습니다. 기획 건마다 같은 조사를 반복했고, 지난 분석과 비교할 수도 없었습니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">접근</span>
+            <div class="step-body">Claude Code로 직접 설계·개발했습니다. 베스트셀러 데이터 약 <strong>2만 9천 건</strong>을 누적 수집하고, <strong>55개 IT 카테고리</strong>를 분류해 <strong>22개 분석 패널</strong>로 구성한 단일 HTML 도구를 만들었습니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">결과</span>
+            <div class="step-body">시장조사·아이템 분석·저자 리서치를 도구 하나에서 처리합니다. 반나절 걸리던 경쟁 도서 조사가 몇 분 안에 끝나고, 데이터가 쌓일수록 분석이 정교해집니다.</div>
+          </div>
+        </div>
+        <div class="case-product">
+          <div class="case-product-hd">
+            <div>
+              <span class="cp-label">사이드 프로젝트 · 웹 · Claude Code</span>
+              <div class="cp-title">리리가 도와줌</div>
+              <div class="cp-desc">기획편집자의 반복 업무를 코드로 해결하는 출판 실무 자동화 도구.</div>
+            </div>
+            <a class="btn sm" href="https://gmountain01.github.io/book-radar/" target="_blank" rel="noopener noreferrer">사이트 방문 →</a>
+          </div>
+          <div class="shot-grid">
+            <figure class="shot-item"
+                    onclick="openShot('shots/ririga-dashboard.jpg','대시보드 — 22개 분석 패널')"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openShot('shots/ririga-dashboard.jpg','대시보드 — 22개 분석 패널')}"
+                    role="button" tabindex="0" aria-label="대시보드 스크린샷 확대">
+              <div class="shot-frame">
+                <img src="shots/ririga-dashboard.jpg" alt="리리가 도와줌 대시보드" loading="lazy" decoding="async" width="600" height="375"
+                     onerror="shotFallback(this,'대시보드 화면')">
+              </div>
+              <figcaption class="shot-cap">대시보드 — 22개 분석 패널</figcaption>
+            </figure>
+            <figure class="shot-item"
+                    onclick="openShot('shots/ririga-analysis.jpg','도서 분석 패널')"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openShot('shots/ririga-analysis.jpg','도서 분석 패널')}"
+                    role="button" tabindex="0" aria-label="분석 패널 스크린샷 확대">
+              <div class="shot-frame">
+                <img src="shots/ririga-analysis.jpg" alt="리리가 도와줌 분석 패널" loading="lazy" decoding="async" width="600" height="375"
+                     onerror="shotFallback(this,'분석 패널 화면')">
+              </div>
+              <figcaption class="shot-cap">도서 분석 패널</figcaption>
+            </figure>
+          </div>
+          <div class="showcase-features">
+        <div class="showcase-feat">
+          <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="10" width="4" height="11" rx="1"/><rect x="10" y="5" width="4" height="16" rx="1"/><rect x="18" y="13" width="4" height="8" rx="1"/><path d="M2 22h20"/></svg></span>
+          <span class="feat-label">시장조사</span>
+          <span class="feat-desc">경쟁 도서 메타데이터 수집·비교 분석</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+          <span class="feat-label">아이템 분석</span>
+          <span class="feat-desc">신간 기획을 위한 아이템 발굴·트렌드 조사</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+          <span class="feat-label">유튜버 조사</span>
+          <span class="feat-desc">IT·교육 채널 탐색 및 저자 후보 리서치</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          <span class="feat-label">원고 자동화</span>
+          <span class="feat-desc">원고 초안 자동 작성·포맷팅</span>
+        </div>
+        <div class="showcase-feat">
+          <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <span class="feat-label">교정·교열</span>
+          <span class="feat-desc">맞춤법·문맥 검토 보조</span>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <!-- Case B -->
+      <div class="case reveal">
+        <div class="case-head">
+          <span class="case-eyebrow">Case B · 기획·집필·편집 전 과정</span>
+          <h3 class="case-title">기획부터 편집까지 전 과정 단독 수행</h3>
+          <p class="case-name">골드랜드 시리즈</p>
+        </div>
+        <div class="case-steps">
+          <div class="case-step">
+            <span class="step-label">배경</span>
+            <div class="step-body">아동 SW교육 도서는 흥미로운 스토리, 코딩의 정확성, 교육과정 연계라는 세 가지 조건을 동시에 만족해야 합니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">문제</span>
+            <div class="step-body">기획·집필·편집이 분업되면 스토리, 코드, 교육과정 연계가 단계마다 조금씩 어긋나기 쉽습니다. 아이들이 읽는 책일수록 이 틈이 학습 경험을 무너뜨립니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">접근</span>
+            <div class="step-body">모험 스토리 기반 <strong>16차시 커리큘럼</strong>을 직접 설계하고, 집필·코드 전수 검증·편집·조판까지 단독으로 수행했습니다. 교사용 교수안 <strong>56p</strong>, 차시별 PPT·실습파일·YouTube 영상까지 제작했습니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">결과</span>
+            <div class="step-body">시리즈 <strong>총 3권 출간</strong>(모험! 골드랜드, 차원의 골드랜드 1·2). 도서·수업자료·영상이 연결된 완결형 교육 패키지로 완성했습니다.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 03. 경력 ════════ -->
 <section id="career">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">경력</h2><span class="sec-line"></span></div>
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">경력</h2><span class="sec-line"></span></div>
     <div class="tl">
 
       <div class="job now reveal">
@@ -539,10 +716,10 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
   </div>
 </section>
 
-<!-- ════════ 03. 강의·교육 콘텐츠 ════════ -->
+<!-- ════════ 04. 강의·교육 콘텐츠 ════════ -->
 <section id="materials">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">강의·교육 콘텐츠</h2><span class="sec-line"></span></div>
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2 class="sec-title">강의·교육 콘텐츠</h2><span class="sec-line"></span></div>
     <p class="sec-intro reveal">직접 기획·개발한 SW·AI 교육 콘텐츠입니다. 커리큘럼 설계부터 강의안·실습·동영상까지 한 흐름으로 제작했습니다. 카드를 클릭하면 상세 내용을 볼 수 있습니다.</p>
 
     <div class="work-grid">
@@ -558,7 +735,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         <h4>런잇나우 스크래치 프로젝트</h4>
         <p>스크래치 기반 16차시 프로젝트형 코딩 교육. 순차→반복→조건→변수→리스트→게임 제작까지 단계별 학습.</p>
         <div class="meta">16차시 · 강의안 · 답안지 · 동영상</div>
-        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button> <a class="btn sm" href="https://event.coderland.io/" target="_blank" rel="noopener" onclick="event.stopPropagation()">코더랜드 →</a></div>
+        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button> <a class="btn sm" href="https://event.coderland.io/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">코더랜드 →</a></div>
       </div>
       <div class="card reveal" onclick="openModal('m-ai-ssok')">
         <div class="type mono">도서 연계 교사용 · 14차시</div>
@@ -575,54 +752,13 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button></div>
       </div>
     </div>
-
-    <h3 class="sub-h reveal">사이드 프로젝트</h3>
-    <div class="showcase reveal">
-      <div class="showcase-top">
-        <div class="showcase-info">
-          <div class="type mono">사이드 프로젝트 · 웹 · Claude Code</div>
-          <h4>리리가 도와줌</h4>
-          <p>기획편집자의 반복 업무를 코드로 해결하는 출판 실무 자동화 도구. Claude Code로 직접 설계·개발해 업무 효율 약 40% 향상.</p>
-        </div>
-        <div class="showcase-cta">
-          <a class="btn sm" href="https://gmountain01.github.io/book-radar/" target="_blank" rel="noopener">사이트 방문 →</a>
-        </div>
-      </div>
-      <div class="showcase-features">
-        <div class="showcase-feat">
-          <span class="feat-icon">📊</span>
-          <span class="feat-label">시장조사</span>
-          <span class="feat-desc">경쟁 도서 메타데이터 수집·비교 분석</span>
-        </div>
-        <div class="showcase-feat">
-          <span class="feat-icon">🔍</span>
-          <span class="feat-label">아이템 분석</span>
-          <span class="feat-desc">신간 기획을 위한 아이템 발굴·트렌드 조사</span>
-        </div>
-        <div class="showcase-feat">
-          <span class="feat-icon">🎬</span>
-          <span class="feat-label">유튜버 조사</span>
-          <span class="feat-desc">IT·교육 채널 탐색 및 저자 후보 리서치</span>
-        </div>
-        <div class="showcase-feat">
-          <span class="feat-icon">✍️</span>
-          <span class="feat-label">원고 자동화</span>
-          <span class="feat-desc">원고 초안 자동 작성·포맷팅</span>
-        </div>
-        <div class="showcase-feat">
-          <span class="feat-icon">✅</span>
-          <span class="feat-label">교정·교열</span>
-          <span class="feat-desc">맞춤법·문맥 검토 보조</span>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ════════ 04. 출판 작업물 (교육 콘텐츠를 책으로) ════════ -->
+<!-- ════════ 05. 출판 작업물 (교육 콘텐츠를 책으로) ════════ -->
 <section id="publications">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">04</span><h2 class="sec-title">출판 작업물</h2><span class="sec-line"></span></div>
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2 class="sec-title">출판 작업물</h2><span class="sec-line"></span></div>
     <p class="sec-intro reveal">기획·집필·편집에 참여한 교육 도서 10권. 콘텐츠를 책이라는 형태로도 구현한 결과물입니다. 카드를 클릭하면 상세 정보를 볼 수 있습니다.</p>
 
     <div class="book-tabs reveal">
@@ -633,53 +769,53 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
 
     <div class="book-grid">
       <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-writing')">
-        <div class="book-cover-wrap"><span class="book-year">2026.06</span><img src="책_표지/AI도 모르는 글쓰기.png" alt="AI도 모르는 글쓰기" data-pub="한빛미디어" data-title="AI도 모르는 글쓰기" style="object-position:top" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2026.06</span><img src="covers/ai-writing.png" alt="AI도 모르는 글쓰기" data-pub="한빛미디어" data-title="AI도 모르는 글쓰기" style="object-position:top" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">AI도 모르는 글쓰기</div><div class="book-role">편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-multiagent')">
-        <div class="book-cover-wrap"><span class="book-year">2026.06</span><img src="책_표지/이것이 멀티에이전트다_표지.jpeg" alt="이것이 멀티 에이전트다" data-pub="한빛미디어" data-title="이것이 멀티 에이전트다" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2026.05</span><img src="covers/multi-agent.jpeg" alt="이것이 멀티 에이전트다" data-pub="한빛미디어" data-title="이것이 멀티 에이전트다" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">이것이 멀티 에이전트다</div><div class="book-role">기획편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-spring-rev')">
-        <div class="book-cover-wrap"><span class="book-year">2026.03</span><img src="책_표지/spring AI 개정판 표지.jpeg" alt="이것이 Spring AI다 개정판" data-pub="한빛미디어" data-title="이것이 Spring AI다 (개정판)" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2026.03</span><img src="covers/spring-ai-2nd.jpeg" alt="이것이 Spring AI다 개정판" data-pub="한빛미디어" data-title="이것이 Spring AI다 (개정판)" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">이것이 Spring AI다 (개정판)</div><div class="book-role">기획편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-gemini')">
-        <div class="book-cover-wrap"><span class="book-year">2026.02</span><img src="책_표지/5분 제미나이_표지.jpeg" alt="5분 제미나이" data-pub="한빛미디어" data-title="5분 제미나이" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2026.02</span><img src="covers/gemini-5min.jpeg" alt="5분 제미나이" data-pub="한빛미디어" data-title="5분 제미나이" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">5분 제미나이</div><div class="book-role">기획편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-dify')">
-        <div class="book-cover-wrap"><span class="book-year">2025.12</span><img src="책_표지/Dify_표지.jpeg" alt="Dify AI, 코드 없는 미래" data-pub="한빛미디어" data-title="Dify AI, 코드 없는 미래" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2025.12</span><img src="covers/dify.jpeg" alt="Dify AI, 코드 없는 미래" data-pub="한빛미디어" data-title="Dify AI, 코드 없는 미래" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">Dify AI, 코드 없는 미래</div><div class="book-role">기획편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="hanbit" onclick="openModal('book-spring')">
-        <div class="book-cover-wrap"><span class="book-year">2025.08</span><img src="책_표지/spring AI 표지.jpeg" alt="이것이 Spring AI다" data-pub="한빛미디어" data-title="이것이 Spring AI다" onerror="coverFallback(this)"></div>
-        <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">이것이 Spring AI다</div><div class="book-role">기획편집</div></div>
+        <div class="book-cover-wrap"><span class="book-year">2025.08</span><img src="covers/spring-ai.jpeg" alt="이것이 Spring AI다" data-pub="한빛미디어" data-title="이것이 Spring AI다" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
+        <div class="book-info"><div class="book-publisher">한빛미디어</div><div class="book-title">이것이 Spring AI다</div><div class="book-role">편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-gold2')">
-        <div class="book-cover-wrap"><span class="book-year">2025.03</span><img src="책_표지/차원의 골드랜드2_표지.jpeg" alt="차원의 골드랜드 2" data-pub="다산스마트에듀" data-title="차원의 골드랜드 2" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2025.03</span><img src="covers/goldland-2.jpeg" alt="차원의 골드랜드 2" data-pub="다산스마트에듀" data-title="차원의 골드랜드 2" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">차원의 골드랜드 2</div><div class="book-role">기획·집필·편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-gold1')">
-        <div class="book-cover-wrap"><span class="book-year">2025.01</span><img src="책_표지/차원의 골드랜드1_표지.jpeg" alt="차원의 골드랜드 1" data-pub="다산스마트에듀" data-title="차원의 골드랜드 1" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2025.01</span><img src="covers/goldland-1.jpeg" alt="차원의 골드랜드 1" data-pub="다산스마트에듀" data-title="차원의 골드랜드 1" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">차원의 골드랜드 1</div><div class="book-role">기획·집필·편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-ai-ssok')">
-        <div class="book-cover-wrap"><span class="book-year">2024.01</span><img src="책_표지/인공지능쏙쏙_표지.jpeg" alt="인공지능 쏙쏙" data-pub="다산스마트에듀" data-title="인공지능 쏙쏙 with 엔트리" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2024.01</span><img src="covers/ai-ssokssok.jpeg" alt="인공지능 쏙쏙" data-pub="다산스마트에듀" data-title="인공지능 쏙쏙 with 엔트리" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">인공지능 쏙쏙 with 엔트리</div><div class="book-role">기획·집필·편집</div></div>
       </div>
       <div class="book-card reveal" data-cat="dasan" onclick="openModal('book-goldland')">
-        <div class="book-cover-wrap"><span class="book-year">2023.09</span><img src="책_표지/모험골드랜드_표지.jpeg" alt="모험! 골드랜드" data-pub="다산스마트에듀" data-title="모험! 골드랜드 with 엔트리" onerror="coverFallback(this)"></div>
+        <div class="book-cover-wrap"><span class="book-year">2023.09</span><img src="covers/goldland.jpeg" alt="모험! 골드랜드" data-pub="다산스마트에듀" data-title="모험! 골드랜드 with 엔트리" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
         <div class="book-info"><div class="book-publisher">다산스마트에듀</div><div class="book-title">모험! 골드랜드 with 엔트리</div><div class="book-role">기획·집필·편집</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ 5. 기술 역량 ════════ -->
+<!-- ════════ 06. 기술 역량 ════════ -->
 <section id="skills">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">05</span><h2 class="sec-title">기술 역량</h2><span class="sec-line"></span></div>
+    <div class="sec-head reveal"><span class="sec-num">06</span><h2 class="sec-title">기술 역량</h2><span class="sec-line"></span></div>
     <div class="skill-group reveal">
       <div class="skill-group-title">콘텐츠·교육</div>
       <div class="skills">
@@ -713,11 +849,11 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
   </div>
 </section>
 
-<!-- ════════ 6. 학력·자격 ════════ -->
+<!-- ════════ 07. 학력·자격 ════════ -->
 <section id="education">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">06</span><h2 class="sec-title">학력·자격</h2><span class="sec-line"></span></div>
-    <div class="two">
+    <div class="sec-head reveal"><span class="sec-num">07</span><h2 class="sec-title">학력·자격</h2><span class="sec-line"></span></div>
+    <div class="three">
       <div class="panel reveal">
         <h3>Education</h3>
         <div class="edu-item">
@@ -737,6 +873,18 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
           <div class="t">한국기술교육대학교</div>
           <div class="m">2006.02 — 2013.02 · 컴퓨터공학부 · 졸업</div>
           <div class="d">웹 플랫폼 개발(PHP·MySQL) / 안드로이드 유아용 앱 졸업작품</div>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <h3>Talks</h3>
+        <div class="edu-item">
+          <div class="t">제24회 해외 한국어교육자 국제학술대회</div>
+          <div class="m">2026.06 · 강연</div>
+          <div class="d">AI 도구 활용 한국어 수업 설계</div>
+        </div>
+        <div class="edu-item">
+          <div class="t">SW선도대학 캠프·초중등 SW교육 강의 다수</div>
+          <div class="m">2016–2020 · 엔트리·플레이랩스 재직 시</div>
         </div>
       </div>
       <div class="panel reveal">
@@ -762,9 +910,9 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
         are486@naver.com
       </a>
-      <a class="cbtn" href="tel:01085858017">
+      <a class="cbtn" id="phone-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        010-8585-8017
+        <span id="phone-display"></span>
       </a>
     </div>
   </div>
@@ -776,7 +924,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
 
 <!-- ════════ 모달 ════════ -->
 <div class="modal-bg" id="modal-bg" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-head"><h3 id="modal-title">자료</h3><button class="modal-close" onclick="closeModal()" aria-label="닫기">×</button></div>
     <div class="modal-body" id="modal-body"></div>
   </div>
@@ -787,7 +935,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
 
 <script>
 /* ── nav ── */
-function closeNav(){document.querySelector('.nav-links').classList.remove('open')}
+function closeNav(){const n=document.querySelector('.nav-links');n.classList.remove('open');const h=document.querySelector('.hamburger');if(h)h.setAttribute('aria-expanded','false')}
 
 /* ── 경력 토글 ── */
 function toggleCareer(){
@@ -821,15 +969,41 @@ function coverFallback(img){
   wrap.appendChild(fb);
 }
 
+/* ── 스크린샷 폴백 / 확대 ── */
+function shotFallback(img,label){
+  const frame=img.closest('.shot-frame');
+  if(!frame||frame.querySelector('.shot-placeholder'))return;
+  img.style.display='none';
+  const ph=document.createElement('div');
+  ph.className='shot-placeholder';
+  ph.textContent=label;
+  frame.appendChild(ph);
+}
+function openShot(src,caption){
+  const bg=document.getElementById('modal-bg');
+  const mh=document.querySelector('.modal-head');
+  document.getElementById('modal-title').textContent=caption;
+  document.getElementById('modal-body').innerHTML=
+    '<img src="'+src+'" alt="'+caption+'" class="shot-modal-img">';
+  mh.querySelector('h3').style.display='';
+  mh.style.borderBottom='';
+  mh.style.padding='';
+  bg.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
 /* ── 모달 ── */
 const contents={
   'm-resume':{title:'이력서',html:`
+    <div style="display:flex;justify-content:flex-end;margin-bottom:14px">
+      <a id="resume-pdf-btn" class="btn sm" href="resume.pdf" download="조아리_이력서.pdf">↓ PDF 다운로드</a>
+    </div>
     <div style="display:flex;gap:20px;align-items:center;margin-bottom:20px">
-      <img src="사진.jpg" alt="조아리" style="width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:center 20%;border:2px solid var(--line);flex-shrink:0">
+      <img src="profile.jpg" alt="조아리" style="width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:center 20%;border:2px solid var(--line);flex-shrink:0">
       <div>
         <div style="font-size:22px;font-weight:800;letter-spacing:-.02em">조아리</div>
         <div style="font-size:14px;color:var(--accent);font-weight:600;margin-top:4px">AI·SW 교육 콘텐츠 기획자</div>
-        <div style="font-size:12.5px;color:var(--ink-faint);margin-top:6px;font-family:var(--mono)"><a href="mailto:are486@naver.com">are486@naver.com</a> · <a href="tel:01085858017">010-8585-8017</a></div>
+        <div style="font-size:12.5px;color:var(--ink-faint);margin-top:6px;font-family:var(--mono)"><a href="mailto:are486@naver.com">are486@naver.com</a> · <a id="resume-phone-link"><span id="resume-phone-display"></span></a></div>
       </div>
     </div>
     <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:6px">12년간 IT/SW·AI 교육 콘텐츠를 기획·개발해온 콘텐츠 기획자. 컴퓨터공학 전공, SW 개발 경험 보유. 도서 10권 기획·집필·편집. 코드를 이해하고 AI를 도구로 쓰는 기획자.</p>
@@ -865,7 +1039,8 @@ const contents={
     <div class="resume-section">
       <h4>출판</h4>
       <ul>
-        <li><span class="rs-left">이것이 멀티 에이전트다 · 한빛미디어</span><span class="rs-right">2026.06</span></li>
+        <li><span class="rs-left">AI도 모르는 글쓰기 · 한빛미디어</span><span class="rs-right">2026.06</span></li>
+        <li><span class="rs-left">이것이 멀티 에이전트다 · 한빛미디어</span><span class="rs-right">2026.05</span></li>
         <li><span class="rs-left">이것이 Spring AI다 (개정판) · 한빛미디어</span><span class="rs-right">2026.03</span></li>
         <li><span class="rs-left">5분 제미나이 · 한빛미디어</span><span class="rs-right">2026.02</span></li>
         <li><span class="rs-left">Dify AI, 코드 없는 미래 · 한빛미디어</span><span class="rs-right">2025.12</span></li>
@@ -903,9 +1078,9 @@ const contents={
     <p>엔트리 인공지능(AI블록 활용) · 교과서 연계 실습 · 포토샵 2021(8차시)</p>
     <h4>샘플 자료 보기</h4>
     <div class="links">
-      <a class="btn ghost sm" href="samples/처음코딩엔트리_1차시.pdf" target="_blank" rel="noopener">처음 코딩 엔트리 1차시 PDF</a>
-      <a class="btn ghost sm" href="samples/OA한글_1강.pdf" target="_blank" rel="noopener">OA 한글 1강 PDF</a>
-      <a class="btn ghost sm" href="samples/C언어기초_7차시.pdf" target="_blank" rel="noopener">C언어 기초 7차시 PDF</a>
+      <a class="btn ghost sm" href="samples/entry-coding-lesson1.pdf" target="_blank" rel="noopener noreferrer">처음 코딩 엔트리 1차시 PDF</a>
+      <a class="btn ghost sm" href="samples/oa-hangul-lesson1.pdf" target="_blank" rel="noopener noreferrer">OA 한글 1강 PDF</a>
+      <a class="btn ghost sm" href="samples/c-basic-lesson7.pdf" target="_blank" rel="noopener noreferrer">C언어 기초 7차시 PDF</a>
     </div>`},
   'm-scratch':{title:'런잇나우 스크래치 프로젝트',html:`
     <p>스크래치 기반 <b>16차시 프로젝트형</b> 코딩 교육. 강의안·답안지·실습파일·동영상 풀 패키지.</p>
@@ -931,7 +1106,7 @@ const contents={
     <h4>자료 구성</h4>
     <p>강의안 전체 통합본 PDF + 차시별 PPT · 답안지 · 차시별 동영상</p>
     <h4>샘플 자료 보기</h4>
-    <div class="links"><a class="btn ghost sm" href="samples/스크래치_전체강의안.pdf" target="_blank" rel="noopener">전체 강의안 PDF</a></div>`},
+    <div class="links"><a class="btn ghost sm" href="samples/scratch-full-plan.pdf" target="_blank" rel="noopener noreferrer">전체 강의안 PDF</a></div>`},
   'm-ai-ssok':{title:'인공지능 쏙쏙 교사용 자료',html:`
     <p>도서 『인공지능 쏙쏙 with 엔트리』 연계 교사용 수업 자료. 대상: 초5~중2 / 차시당 80분(이론 30분 + 실습 50분)</p>
     <h4>14차시 커리큘럼</h4>
@@ -955,11 +1130,11 @@ const contents={
     <h4>교수 설계 특징</h4>
     <p><b>이론 → 프로젝트 일지 → 실습</b> 3단계 구조. 매 차시 실생활 문제를 AI로 해결하는 프로젝트 일지 포함.</p>
     <h4>실습 동영상 (YouTube)</h4>
-    <p class="yt-links"><a href="https://youtu.be/mVtbeQIopQs" target="_blank" rel="noopener">01차시</a> · <a href="https://youtu.be/ralU6PXuSgU" target="_blank" rel="noopener">02차시</a> · <a href="https://youtu.be/c6lb5tDXZ7k" target="_blank" rel="noopener">03차시</a> · <a href="https://youtu.be/r7SQbmJzkmE" target="_blank" rel="noopener">04차시</a> · <a href="https://youtu.be/_NeCeH1ykaw" target="_blank" rel="noopener">05차시</a> · <a href="https://youtu.be/E4DCMmFRyWA" target="_blank" rel="noopener">06차시</a> · <a href="https://youtu.be/Q_A-kJEN0rc" target="_blank" rel="noopener">07차시</a> · <a href="https://youtu.be/P9GplKSZoI0" target="_blank" rel="noopener">08차시</a> · <a href="https://youtu.be/XhK8MMTGc4s" target="_blank" rel="noopener">09차시</a> · <a href="https://youtu.be/ouy_csHpA9o" target="_blank" rel="noopener">10차시</a> · <a href="https://youtu.be/bvjBWpVU5qY" target="_blank" rel="noopener">13차시</a> · <a href="https://youtu.be/7NGAKuxZtqs" target="_blank" rel="noopener">14차시</a></p>
+    <p class="yt-links"><a href="https://youtu.be/mVtbeQIopQs" target="_blank" rel="noopener noreferrer">01차시</a> · <a href="https://youtu.be/ralU6PXuSgU" target="_blank" rel="noopener noreferrer">02차시</a> · <a href="https://youtu.be/c6lb5tDXZ7k" target="_blank" rel="noopener noreferrer">03차시</a> · <a href="https://youtu.be/r7SQbmJzkmE" target="_blank" rel="noopener noreferrer">04차시</a> · <a href="https://youtu.be/_NeCeH1ykaw" target="_blank" rel="noopener noreferrer">05차시</a> · <a href="https://youtu.be/E4DCMmFRyWA" target="_blank" rel="noopener noreferrer">06차시</a> · <a href="https://youtu.be/Q_A-kJEN0rc" target="_blank" rel="noopener noreferrer">07차시</a> · <a href="https://youtu.be/P9GplKSZoI0" target="_blank" rel="noopener noreferrer">08차시</a> · <a href="https://youtu.be/XhK8MMTGc4s" target="_blank" rel="noopener noreferrer">09차시</a> · <a href="https://youtu.be/ouy_csHpA9o" target="_blank" rel="noopener noreferrer">10차시</a> · <a href="https://youtu.be/bvjBWpVU5qY" target="_blank" rel="noopener noreferrer">13차시</a> · <a href="https://youtu.be/7NGAKuxZtqs" target="_blank" rel="noopener noreferrer">14차시</a></p>
     <h4>샘플 자료 보기</h4>
     <div class="links">
-      <a class="btn ghost sm" href="samples/인공지능쏙쏙_수업안.pdf" target="_blank" rel="noopener">전체 수업안 PDF (67p)</a>
-      <a class="btn ghost sm" href="samples/인공지능쏙쏙_1챕터.pdf" target="_blank" rel="noopener">1챕터 강의 PDF 샘플</a>
+      <a class="btn ghost sm" href="samples/ai-ssokssok-plan.pdf" target="_blank" rel="noopener noreferrer">전체 수업안 PDF (67p)</a>
+      <a class="btn ghost sm" href="samples/ai-ssokssok-chapter1.pdf" target="_blank" rel="noopener noreferrer">1챕터 강의 PDF 샘플</a>
     </div>`},
   'm-goldland':{title:'모험 골드랜드 교사용 자료',html:`
     <p>도서 『모험! 골드랜드 with 엔트리』 연계 교사용 수업 자료. 교수안 56페이지.</p>
@@ -986,20 +1161,20 @@ const contents={
     <h4>교수 설계 특징</h4>
     <p>모험 이야기를 따라가며 각 장소 미션이 곧 코딩 프로젝트. <b>기본 활동 + 추가 활동</b> 2단계. 개념 나선형 심화: 순차→반복→이벤트→좌표→선택→변수→복제→종합.</p>
     <h4>실습 동영상 (YouTube)</h4>
-    <p class="yt-links"><a href="https://youtu.be/CH4kKlUG1xA" target="_blank" rel="noopener">01차시</a> · <a href="https://youtu.be/9toG1IXdWRw" target="_blank" rel="noopener">02차시</a> · <a href="https://youtu.be/ocJo4WJyckk" target="_blank" rel="noopener">03차시</a> · <a href="https://youtu.be/0-xdDELaLAQ" target="_blank" rel="noopener">04차시</a> · <a href="https://youtu.be/99uW6mPkEbo" target="_blank" rel="noopener">05차시</a> · <a href="https://youtu.be/7IsqsYVvwBM" target="_blank" rel="noopener">06차시</a> · <a href="https://youtu.be/8D7btygLgmk" target="_blank" rel="noopener">07차시</a> · <a href="https://youtu.be/d0NbJYD4Ui0" target="_blank" rel="noopener">08차시</a> · <a href="https://youtu.be/JbNWWv2L3-M" target="_blank" rel="noopener">09차시</a> · <a href="https://youtu.be/hyVOBifRCuE" target="_blank" rel="noopener">10차시</a> · <a href="https://youtu.be/v7F14M1wUPU" target="_blank" rel="noopener">11차시</a> · <a href="https://youtu.be/iZi03nCUQCA" target="_blank" rel="noopener">12차시</a> · <a href="https://youtu.be/AYfmPWA3mY8" target="_blank" rel="noopener">13차시</a> · <a href="https://youtu.be/857JASsmoTw" target="_blank" rel="noopener">14차시</a> · <a href="https://youtu.be/NL-gTAsIDiE" target="_blank" rel="noopener">15차시</a> · <a href="https://youtu.be/lcCfOAtgrSE" target="_blank" rel="noopener">16차시</a></p>
+    <p class="yt-links"><a href="https://youtu.be/CH4kKlUG1xA" target="_blank" rel="noopener noreferrer">01차시</a> · <a href="https://youtu.be/9toG1IXdWRw" target="_blank" rel="noopener noreferrer">02차시</a> · <a href="https://youtu.be/ocJo4WJyckk" target="_blank" rel="noopener noreferrer">03차시</a> · <a href="https://youtu.be/0-xdDELaLAQ" target="_blank" rel="noopener noreferrer">04차시</a> · <a href="https://youtu.be/99uW6mPkEbo" target="_blank" rel="noopener noreferrer">05차시</a> · <a href="https://youtu.be/7IsqsYVvwBM" target="_blank" rel="noopener noreferrer">06차시</a> · <a href="https://youtu.be/8D7btygLgmk" target="_blank" rel="noopener noreferrer">07차시</a> · <a href="https://youtu.be/d0NbJYD4Ui0" target="_blank" rel="noopener noreferrer">08차시</a> · <a href="https://youtu.be/JbNWWv2L3-M" target="_blank" rel="noopener noreferrer">09차시</a> · <a href="https://youtu.be/hyVOBifRCuE" target="_blank" rel="noopener noreferrer">10차시</a> · <a href="https://youtu.be/v7F14M1wUPU" target="_blank" rel="noopener noreferrer">11차시</a> · <a href="https://youtu.be/iZi03nCUQCA" target="_blank" rel="noopener noreferrer">12차시</a> · <a href="https://youtu.be/AYfmPWA3mY8" target="_blank" rel="noopener noreferrer">13차시</a> · <a href="https://youtu.be/857JASsmoTw" target="_blank" rel="noopener noreferrer">14차시</a> · <a href="https://youtu.be/NL-gTAsIDiE" target="_blank" rel="noopener noreferrer">15차시</a> · <a href="https://youtu.be/lcCfOAtgrSE" target="_blank" rel="noopener noreferrer">16차시</a></p>
     <h4>샘플 자료 보기</h4>
     <div class="links">
-      <a class="btn ghost sm" href="samples/모험골드랜드_교수안.pdf" target="_blank" rel="noopener">전체 교수안 PDF (56p)</a>
-      <a class="btn ghost sm" href="samples/모험골드랜드_1차시.pdf" target="_blank" rel="noopener">1차시 강의 PDF 샘플</a>
+      <a class="btn ghost sm" href="samples/goldland-plan.pdf" target="_blank" rel="noopener noreferrer">전체 교수안 PDF (56p)</a>
+      <a class="btn ghost sm" href="samples/goldland-lesson1.pdf" target="_blank" rel="noopener noreferrer">1차시 강의 PDF 샘플</a>
     </div>`},
-  'book-writing':{title:'AI도 모르는 글쓰기',html:bookHTML('AI도 모르는 글쓰기.png','한빛미디어','AI도 모르는 글쓰기','저자: 정나래','2026.06','편집','AI가 만든 초안을 실무에서 통하는 완성도 높은 문서로 다듬는 법을 단계별로 안내하는 AI 협업 글쓰기 실전서.','https://www.yes24.com/product/goods/192630667')},
-  'book-multiagent':{title:'이것이 멀티 에이전트다',html:bookHTML('이것이 멀티에이전트다_표지.jpeg','한빛미디어','이것이 멀티 에이전트다','저자: 서지영','2026.06','기획편집','싱글 에이전트부터 멀티 에이전트까지 MCP와 A2A를 활용한 협업형 AI 시스템 설계·구현 실전 가이드.','https://www.yes24.com/product/goods/190213684')},
-  'book-spring-rev':{title:'이것이 Spring AI다 (개정판)',html:bookHTML('spring AI 개정판 표지.jpeg','한빛미디어','이것이 Spring AI다 (개정판)','저자: 신용권','2026.03','기획편집','RAG, Tool Calling, MCP Server, 멀티 에이전트까지 단계별 실습으로 배우는 Spring 기반 LLM AI 에이전트 개발 입문서.','https://www.yes24.com/product/goods/181177659')},
-  'book-gemini':{title:'5분 제미나이',html:bookHTML('5분 제미나이_표지.jpeg','한빛미디어','5분 제미나이','저자: 오종현','2026.02','기획편집','Google Gemini를 활용한 업무 효율·콘텐츠 제작·일상 혁신 150가지 실전 프롬프트 가이드.','https://www.yes24.com/product/goods/180162710')},
-  'book-dify':{title:'Dify AI, 코드 없는 미래',html:bookHTML('Dify_표지.jpeg','한빛미디어','Dify AI, 코드 없는 미래','저자: 김정욱','2025.12','기획편집','드래그 앤 드롭만으로 상담봇, 문서 검색 AI, 업무 자동화 시스템을 만드는 노코드 AI 플랫폼 Dify 실전 가이드.','https://www.yes24.com/product/goods/167437364')},
-  'book-spring':{title:'이것이 Spring AI다',html:bookHTML('spring AI 표지.jpeg','한빛미디어','이것이 Spring AI다','저자: 신용권','2025.08','기획편집','생성형 AI 시대의 Java 개발자를 위한 실전 가이드. Spring AI 기초부터 텍스트 대화, 음성 처리, 이미지 생성, RAG, MCP Server 구축까지 체계적으로 학습.','https://www.yes24.com/product/goods/151976296')},
+  'book-writing':{title:'AI도 모르는 글쓰기',html:bookHTML('ai-writing.png','한빛미디어','AI도 모르는 글쓰기','저자: 정나래','2026.06','편집','AI가 만든 초안을 실무에서 통하는 완성도 높은 문서로 다듬는 법을 단계별로 안내하는 AI 협업 글쓰기 실전서.','https://www.yes24.com/product/goods/192630667','글쓰기를 다루는 책인 만큼 본문 문장이 곧 시범이 된다는 기준으로, 문장과 목차 구조를 저자와 함께 다듬었습니다.')},
+  'book-multiagent':{title:'이것이 멀티 에이전트다',html:bookHTML('multi-agent.jpeg','한빛미디어','이것이 멀티 에이전트다','저자: 서지영','2026.05','기획편집','싱글 에이전트부터 멀티 에이전트까지 MCP와 A2A를 활용한 협업형 AI 시스템 설계·구현 실전 가이드.','https://www.yes24.com/product/goods/190213684','멀티 에이전트라는 복잡한 주제를 독자가 따라올 수 있는 학습 순서로 다듬으며 편집을 담당했습니다.')},
+  'book-spring-rev':{title:'이것이 Spring AI다 (개정판)',html:bookHTML('spring-ai-2nd.jpeg','한빛미디어','이것이 Spring AI다 (개정판)','저자: 신용권','2026.03','기획편집','RAG, Tool Calling, MCP Server, 멀티 에이전트까지 단계별 실습으로 배우는 Spring 기반 LLM AI 에이전트 개발 입문서.','https://www.yes24.com/product/goods/181177659','프레임워크 버전 변화에 따른 개정 원고를 편집하며, 변경된 예제 코드가 실제로 동작하는지 확인을 챙겼습니다.')},
+  'book-gemini':{title:'5분 제미나이',html:bookHTML('gemini-5min.jpeg','한빛미디어','5분 제미나이','저자: 오종현','2026.02','기획편집','Google Gemini를 활용한 업무 효율·콘텐츠 제작·일상 혁신 150가지 실전 프롬프트 가이드.','https://www.yes24.com/product/goods/180162710','빠르게 바뀌는 제미나이 기능을 출간 시점 기준으로 재확인하며, 입문자가 5분 단위로 따라올 수 있는 호흡으로 편집했습니다.')},
+  'book-dify':{title:'Dify AI, 코드 없는 미래',html:bookHTML('dify.jpeg','한빛미디어','Dify AI, 코드 없는 미래','저자: 김정욱','2025.12','기획편집','드래그 앤 드롭만으로 상담봇, 문서 검색 AI, 업무 자동화 시스템을 만드는 노코드 AI 플랫폼 Dify 실전 가이드.','https://www.yes24.com/product/goods/167437364','노코드 AI 빌더라는 낯선 주제를 비개발자 눈높이의 실습 흐름으로 재구성해 기획·편집했습니다.')},
+  'book-spring':{title:'이것이 Spring AI다',html:bookHTML('spring-ai.jpeg','한빛미디어','이것이 Spring AI다','저자: 신용권','2025.08','편집','생성형 AI 시대의 Java 개발자를 위한 실전 가이드. Spring AI 기초부터 텍스트 대화, 음성 처리, 이미지 생성, RAG, MCP Server 구축까지 체계적으로 학습.','https://www.yes24.com/product/goods/151976296','국내 참고 자료가 드물던 Spring AI 원고의 편집을 담당했습니다.')},
   'book-gold2':{title:'차원의 골드랜드 2',html:`<div class="modal-book-header">
-    <div class="modal-book-cover"><img src="책_표지/차원의 골드랜드2_표지.jpeg" alt="차원의 골드랜드 2" data-pub="다산스마트에듀" data-title="차원의 골드랜드 2" onerror="coverFallback(this)"></div>
+    <div class="modal-book-cover"><img src="covers/goldland-2.jpeg" alt="차원의 골드랜드 2" data-pub="다산스마트에듀" data-title="차원의 골드랜드 2" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
     <div class="modal-book-meta">
       <div class="mb-publisher">다산스마트에듀</div>
       <h4>차원의 골드랜드 2 : 우리는 동전 벌레 헌터</h4>
@@ -1008,14 +1183,15 @@ const contents={
       <div class="mb-role">담당 · 기획·집필·편집</div>
       <p class="mb-desc">판타지 모험 이야기를 읽으며 엔트리 블록 코딩으로 RPG 게임을 직접 만드는 코딩 학습서.</p>
       <div class="links">
-        <a class="btn sm" href="https://www.yes24.com/product/goods/143303383" target="_blank" rel="noopener">yes24에서 보기 →</a>
-        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tUqBdLkcIl8" target="_blank" rel="noopener">소개 영상</a>
-        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=ZDGQzlE4ZMk" target="_blank" rel="noopener">게임 튜토리얼</a>
+        <a class="btn sm" href="https://www.yes24.com/product/goods/143303383" target="_blank" rel="noopener noreferrer">yes24에서 보기 →</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tUqBdLkcIl8" target="_blank" rel="noopener noreferrer">소개 영상</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=ZDGQzlE4ZMk" target="_blank" rel="noopener noreferrer">게임 튜토리얼</a>
       </div>
     </div>
-  </div>`},
+  </div>
+  <div class="book-role"><span class="book-role-label">My Role</span><p class="book-role-body">시리즈 완결편으로, 전권과 이어지는 학습 흐름을 설계하고 집필·코드 검증·편집을 수행했습니다.</p></div>`},
   'book-gold1':{title:'차원의 골드랜드 1',html:`<div class="modal-book-header">
-    <div class="modal-book-cover"><img src="책_표지/차원의 골드랜드1_표지.jpeg" alt="차원의 골드랜드 1" data-pub="다산스마트에듀" data-title="차원의 골드랜드 1" onerror="coverFallback(this)"></div>
+    <div class="modal-book-cover"><img src="covers/goldland-1.jpeg" alt="차원의 골드랜드 1" data-pub="다산스마트에듀" data-title="차원의 골드랜드 1" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
     <div class="modal-book-meta">
       <div class="mb-publisher">다산스마트에듀</div>
       <h4>차원의 골드랜드 1 : 차원의 문을 건너다</h4>
@@ -1024,18 +1200,20 @@ const contents={
       <div class="mb-role">담당 · 기획·집필·편집</div>
       <p class="mb-desc">판타지 스토리를 읽으며 엔트리 코딩으로 나만의 RPG 게임을 만드는 창의적 학습서.</p>
       <div class="links">
-        <a class="btn sm" href="https://www.yes24.com/product/goods/141794406" target="_blank" rel="noopener">yes24에서 보기 →</a>
-        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tUqBdLkcIl8" target="_blank" rel="noopener">소개 영상</a>
-        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tijvY4Dw87Y" target="_blank" rel="noopener">게임 튜토리얼</a>
+        <a class="btn sm" href="https://www.yes24.com/product/goods/141794406" target="_blank" rel="noopener noreferrer">yes24에서 보기 →</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tUqBdLkcIl8" target="_blank" rel="noopener noreferrer">소개 영상</a>
+        <a class="btn ghost sm" href="https://www.youtube.com/watch?v=tijvY4Dw87Y" target="_blank" rel="noopener noreferrer">게임 튜토리얼</a>
       </div>
     </div>
-  </div>`},
-  'book-ai-ssok':{title:'인공지능 쏙쏙 with 엔트리',html:bookHTML('인공지능쏙쏙_표지.jpeg','다산스마트에듀','인공지능 쏙쏙 with 엔트리','저자: 다산스마트에듀 SW교육센터','2024.01','기획·집필·편집','초·중학생 대상 엔트리 블록 코딩으로 인공지능·머신러닝·딥러닝을 다양한 프로젝트로 배우는 교재.','https://www.yes24.com/product/goods/124623632')},
-  'book-goldland':{title:'모험! 골드랜드 with 엔트리',html:bookHTML('모험골드랜드_표지.jpeg','다산스마트에듀','모험! 골드랜드 with 엔트리','저자: 다산스마트에듀 SW교육센터','2023.09','기획·집필·편집','이야기를 따라가며 블록 코딩을 단계별로 배우는 초보자용 코딩 입문서.','https://www.yes24.com/product/goods/122155326')}
+  </div>
+  <div class="book-role"><span class="book-role-label">My Role</span><p class="book-role-body">모험 스토리와 16차시 커리큘럼을 설계하고 집필부터 편집·조판까지 전 과정을 수행했습니다.</p></div>`},
+  'book-ai-ssok':{title:'인공지능 쏙쏙 with 엔트리',html:bookHTML('ai-ssokssok.jpeg','다산스마트에듀','인공지능 쏙쏙 with 엔트리','저자: 다산스마트에듀 SW교육센터','2024.01','기획·집필·편집','초·중학생 대상 엔트리 블록 코딩으로 인공지능·머신러닝·딥러닝을 다양한 프로젝트로 배우는 교재.','https://www.yes24.com/product/goods/124623632','엔트리 AI 블록 기반 실습을 아동 눈높이로 설계하고 기획·집필·편집을 수행했습니다.')},
+  'book-goldland':{title:'모험! 골드랜드 with 엔트리',html:bookHTML('goldland.jpeg','다산스마트에듀','모험! 골드랜드 with 엔트리','저자: 다산스마트에듀 SW교육센터','2023.09','기획·집필·편집','이야기를 따라가며 블록 코딩을 단계별로 배우는 초보자용 코딩 입문서.','https://www.yes24.com/product/goods/122155326','기획·집필·코드 전수 검증·편집·조판, 교사용 교수안과 영상 자료까지 전 과정을 단독 수행했습니다.')}
 };
-function bookHTML(cover,pub,title,author,date,role,desc,link){
+function bookHTML(cover,pub,title,author,date,role,desc,link,myRole){
+  const roleBlock=myRole?`<div class="book-role"><span class="book-role-label">My Role</span><p class="book-role-body">${myRole}</p></div>`:'';
   return `<div class="modal-book-header">
-    <div class="modal-book-cover"><img src="책_표지/${cover}" alt="${title}" data-pub="${pub}" data-title="${title}" onerror="coverFallback(this)"></div>
+    <div class="modal-book-cover"><img src="covers/${cover}" alt="${title}" data-pub="${pub}" data-title="${title}" loading="lazy" decoding="async" width="240" height="320" onerror="coverFallback(this)"></div>
     <div class="modal-book-meta">
       <div class="mb-publisher">${pub}</div>
       <h4>${title}</h4>
@@ -1043,17 +1221,18 @@ function bookHTML(cover,pub,title,author,date,role,desc,link){
       <div class="mb-date">${date}</div>
       <div class="mb-role">담당 · ${role}</div>
       <p class="mb-desc">${desc}</p>
-      <div class="links"><a class="btn sm" href="${link}" target="_blank" rel="noopener">yes24에서 보기 →</a></div>
+      <div class="links"><a class="btn sm" href="${link}" target="_blank" rel="noopener noreferrer">yes24에서 보기 →</a></div>
     </div>
-  </div>`;
+  </div>${roleBlock}`;
 }
+function hidePdfBtn(){const b=document.getElementById('resume-pdf-btn');if(b)b.style.display='none'}
 function openModal(id){
   const c=contents[id];if(!c)return;
   document.getElementById('modal-title').textContent=c.title;
   document.getElementById('modal-body').innerHTML=c.html;
   document.getElementById('modal-bg').classList.add('open');
   const mh=document.querySelector('.modal-head');
-  if(id==='m-resume'){mh.querySelector('h3').style.display='none';mh.style.borderBottom='none';mh.style.padding='12px clamp(22px,4vw,32px)'}
+  if(id==='m-resume'){mh.querySelector('h3').style.display='none';mh.style.borderBottom='none';mh.style.padding='12px clamp(22px,4vw,32px)';fillResumePhone();fetch('resume.pdf',{method:'HEAD'}).then(r=>{if(!r.ok)hidePdfBtn()}).catch(hidePdfBtn)}
   else{mh.querySelector('h3').style.display='';mh.style.borderBottom='';mh.style.padding=''}
   document.body.style.overflow='hidden';
 }
@@ -1080,6 +1259,20 @@ function printResume(){
 /* ── floating CTA ── */
 const fab=document.getElementById('floating-cta');
 window.addEventListener('scroll',()=>{fab.classList.toggle('visible',window.scrollY>520)},{passive:true});
+
+/* ── 전화번호 조립 (스팸봇 수집 방지) ── */
+(function(){
+  const p=['010','8585','8017'];
+  const t='tel:'+p.join(''), d=p.join('-');
+  const el=document.getElementById('phone-link');
+  const tx=document.getElementById('phone-display');
+  if(el&&tx){el.href=t;tx.textContent=d}
+})();
+function fillResumePhone(){
+  const el=document.getElementById('resume-phone-link');
+  const tx=document.getElementById('resume-phone-display');
+  if(el&&tx){const p=['010','8585','8017'];el.href='tel:'+p.join('');tx.textContent=p.join('-')}
+}
 </script>
 
 </body>
