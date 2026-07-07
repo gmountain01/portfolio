@@ -86,8 +86,10 @@ nav .row{max-width:var(--maxw);margin:0 auto;padding:14px var(--gutter);display:
 @media(max-width:420px){.brand .rl{display:none}}
 .brand .rl{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.05em}
 .nav-links{display:flex;gap:4px;list-style:none;align-items:center}
-.nav-links a{display:block;color:var(--ink-soft);text-decoration:none;font-size:13.5px;font-weight:500;padding:7px 12px;border-radius:7px;transition:.16s}
+.nav-links a{display:block;color:var(--ink-soft);text-decoration:none;font-size:13.5px;font-weight:500;padding:7px 12px;border-radius:7px;transition:color .16s;position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:2px;left:12px;right:12px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(0.33,1,0.68,1)}
 .nav-links a:hover{color:var(--accent);background:var(--accent-soft)}
+.nav-links a:hover::after{transform:scaleX(1)}
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--ink);border-radius:8px}
 .hamburger:hover{background:var(--surface-2)}
 .hamburger svg{width:22px;height:22px;display:block}
@@ -99,13 +101,27 @@ nav .row{max-width:var(--maxw);margin:0 auto;padding:14px var(--gutter);display:
 }
 
 /* ───────────── HERO ───────────── */
-header{padding:clamp(52px,9vw,104px) 0 clamp(40px,6vw,68px)}
+header{
+  padding:clamp(52px,9vw,104px) 0 clamp(40px,6vw,68px);
+  position:relative;overflow:hidden;
+}
+/* Subtle paper texture */
+header::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 600px 400px at 75% 25%, rgba(var(--accent-rgb),0.04), transparent),
+    radial-gradient(ellipse 500px 500px at 25% 75%, rgba(138,110,71,0.03), transparent);
+}
+header .wrap{position:relative;z-index:1}
+
 .hero-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(26px,4vw,42px)}
+.hero-date{margin-left:auto;font-size:11.5px;color:var(--ink-faint);letter-spacing:.06em}
+@media(max-width:520px){.hero-date{display:none}}
 .hero-top .eyebrow{white-space:nowrap}
 .avail{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line-2);border-radius:100px;padding:6px 14px 6px 12px}
 .avail i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
-.hero-title{font-weight:800;font-size:clamp(40px,8.2vw,82px);line-height:1.04;letter-spacing:-.035em;margin-bottom:clamp(26px,4vw,40px);text-wrap:balance}
+.hero-title{font-weight:800;font-size:clamp(44px,9vw,88px);line-height:1.04;letter-spacing:-.035em;margin-bottom:clamp(26px,4vw,40px);text-wrap:balance}
 .hero-title em{font-family:var(--serif);font-weight:700;color:var(--accent);position:relative}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,5vw,56px);align-items:end}
 .lead{font-size:clamp(16px,1.6vw,19px);color:var(--ink-soft);line-height:1.68;max-width:46ch}
@@ -122,6 +138,14 @@ header{padding:clamp(52px,9vw,104px) 0 clamp(40px,6vw,68px)}
 [data-hero="centered"] .lead{max-width:54ch;margin:0 auto}
 [data-hero="centered"] .hero-cta{justify-self:center}
 [data-hero="centered"] .metrics{margin-left:auto;margin-right:auto}
+
+/* Hero sequential animation */
+.hero-anim .hero-top{opacity:0;transform:translateY(12px);animation:heroFadeUp 500ms ease-out forwards}
+.hero-anim .hero-title{opacity:0;clip-path:inset(100% 0 0 0);animation:heroTitleReveal 700ms cubic-bezier(0.16,1,0.3,1) 200ms forwards}
+.hero-anim .lead,.hero-anim .hero-cta{opacity:0;transform:translateY(16px);animation:heroFadeUp 600ms ease-out 500ms forwards}
+.hero-anim .metrics{opacity:0;transform:translateY(16px);animation:heroFadeUp 600ms ease-out 700ms forwards}
+@keyframes heroFadeUp{to{opacity:1;transform:none}}
+@keyframes heroTitleReveal{to{opacity:1;clip-path:inset(0 0 0 0)}}
 
 /* metrics strip */
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(40px,6vw,64px);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
@@ -157,7 +181,7 @@ section + section{padding-top:0}
 
 /* ───────────── TIMELINE ───────────── */
 .tl{position:relative;padding-left:30px}
-.tl::before{content:"";position:absolute;left:5px;top:10px;bottom:10px;width:1.5px;background:linear-gradient(var(--line-2),var(--line-2)) ,var(--line-2);background:var(--line-2)}
+.tl::before{content:"";position:absolute;left:5px;top:10px;bottom:10px;width:1.5px;background:var(--line-2)}
 .job{position:relative;margin-bottom:clamp(24px,3vw,34px)}
 .job:last-child{margin-bottom:0}
 .job::before{content:"";position:absolute;left:-30px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--line-2);transition:.2s}
@@ -186,7 +210,7 @@ section + section{padding-top:0}
 .book-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,18px)}
 @media(max-width:960px){.book-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.book-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
-.book-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.24s ease;display:flex;flex-direction:column}
+.book-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.24s ease;display:flex;flex-direction:column;position:relative}
 .book-card:hover{border-color:var(--line-2);box-shadow:0 14px 34px rgba(var(--accent-rgb),.1);transform:translateY(-4px)}
 .book-card.hidden{display:none}
 .book-cover-wrap{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--surface-2)}
@@ -212,12 +236,22 @@ section + section{padding-top:0}
 @media(max-width:680px){.work-grid{grid-template-columns:1fr}}
 .card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:16px;padding:clamp(20px,2.6vw,28px);transition:.2s;display:flex;flex-direction:column;position:relative}
 .card[onclick]{cursor:pointer}
-.card:hover{border-color:var(--line-2);box-shadow:0 12px 30px rgba(0,0,0,.05);transform:translateY(-3px)}
+.card:hover{border-color:var(--accent);box-shadow:0 12px 30px rgba(var(--accent-rgb),.12);transform:translateY(-4px)}
 .card .type{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--mark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .card h4{font-weight:700;font-size:18px;margin-bottom:9px;line-height:1.3;letter-spacing:-.015em}
 .card p{font-size:13.5px;color:var(--ink-soft);flex:1;line-height:1.6}
 .card .meta{font-size:11.5px;color:var(--ink-faint);margin-top:12px;font-family:var(--mono);line-height:1.5}
+/* tag chips inside .meta */
+.meta-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.meta-chip{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:var(--surface-2);border:1px solid var(--line-2);border-radius:100px;padding:4px 11px;letter-spacing:.02em;white-space:nowrap;transition:.18s}
+.card:hover .meta-chip{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+/* card arrow indicator */
+.card-arrow{position:absolute;top:18px;right:18px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:16px;transition:transform .25s cubic-bezier(0.33,1,0.68,1),color .18s}
+.card:hover .card-arrow{color:var(--accent);transform:translate(3px,-3px)}
 .card-actions{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+/* enhanced "상세 보기" button */
+.card-actions .btn.ghost.sm{border:1.5px solid var(--accent);color:var(--accent);font-weight:600;transition:.18s}
+.card-actions .btn.ghost.sm:hover,.card:hover .card-actions .btn.ghost.sm{background:var(--accent);color:#fff;border-color:var(--accent)}
 .card.placeholder{border-style:dashed;background:var(--surface-2);cursor:default}
 .card.placeholder:hover{transform:none;box-shadow:none}
 .placeholder-badge{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--ink-faint);background:var(--bg);border:1px solid var(--line-2);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
@@ -297,7 +331,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .modal-bg.open{display:flex}
 .modal{background:var(--surface);border-radius:18px;max-width:740px;width:100%;box-shadow:0 30px 90px rgba(0,0,0,.28);animation:pop .3s ease}
 @keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.modal-head{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);padding:20px clamp(22px,4vw,32px);display:flex;justify-content:space-between;align-items:center;border-radius:18px 18px 0 0;z-index:2}
+.modal-head{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);padding:20px clamp(22px,4vw,32px);display:flex;justify-content:space-between;align-items:center;border-radius:16px 16px 0 0;z-index:2}
 .modal-head h3{font-weight:700;font-size:18px;letter-spacing:-.01em}
 .modal-close{background:var(--surface-2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;color:var(--ink-soft);transition:.18s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .modal-close:hover{background:var(--line)}
@@ -351,6 +385,9 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .case-name{font-family:var(--serif);font-size:clamp(14px,1.4vw,16px);color:var(--accent);font-weight:700;margin:0}
 .case-steps{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
 .case-step{padding:clamp(18px,2.4vw,26px)}
+/* book-card hover affordance */
+.book-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(var(--accent-rgb),.08) 0%,transparent 50%);opacity:0;transition:opacity .2s ease;pointer-events:none;border-radius:inherit}
+.book-card:hover::after{opacity:1}
 .case-step:nth-child(odd){border-right:1px solid var(--line)}
 .case-step:nth-child(1),.case-step:nth-child(2){border-bottom:1px solid var(--line)}
 .step-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mark);font-weight:500;display:block;margin-bottom:10px}
@@ -372,6 +409,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .shot-item{margin:0;cursor:pointer;transition:.2s}
 .shot-item:hover .shot-frame{border-color:var(--accent);box-shadow:0 6px 20px rgba(0,0,0,.1)}
 .shot-item:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:14px}
+.book-card:focus-visible,.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .shot-frame{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-2);position:relative;aspect-ratio:16/10;transition:.2s}
 .shot-frame img{width:100%;height:100%;object-fit:cover;display:block}
 .shot-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:absolute;inset:0;font-size:12px;color:var(--ink-faint);font-family:var(--mono);text-align:center;padding:20px;line-height:1.5}
@@ -381,12 +420,17 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .shot-modal-img{width:100%;height:auto;border-radius:8px;display:block}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1)}
 .reveal.in{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-20px) translateY(0);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1)}
+.reveal-left.in{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(20px) translateY(0);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1)}
+.reveal-right.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1!important;transform:none!important;transition:none}
+  .reveal,.reveal-left,.reveal-right{opacity:1!important;transform:none!important;transition:none}
   *{animation:none!important}
   .card:hover,.book-card:hover,.about-card:hover{transform:none}
+  .hero-anim .hero-top,.hero-anim .hero-title,.hero-anim .lead,.hero-anim .hero-cta,.hero-anim .metrics{opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important}
 }
 
 /* print — 일반 */
@@ -399,7 +443,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
   .card,.about-card,.panel,.book-card{box-shadow:none;border:1px solid #ccc}
   .career-hidden,.cert-hidden{display:block!important}
   .toggle-btn,.cert-toggle{display:none!important}
-  .reveal{opacity:1!important;transform:none!important}
+  .reveal,.reveal-left,.reveal-right{opacity:1!important;transform:none!important}
 }
 /* print — 이력서 모달 전용 */
 body.printing-resume *{display:none!important}
@@ -450,24 +494,25 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
 <!-- ════════ HERO ════════ -->
 <header id="hero">
   <div class="wrap">
-    <div class="hero-top reveal">
+    <div class="hero-top">
       <span class="eyebrow">AI·SW 교육 · 콘텐츠 개발 · IT</span>
       <span class="avail"><i></i> 제안 환영</span>
+      <span class="hero-date mono">Updated 2026.07.07</span>
     </div>
-    <h1 class="hero-title reveal">기술을 <em>배움</em>으로<br>설계하는 사람</h1>
+    <h1 class="hero-title">기술을 <em>배움</em>으로<br>설계하는 사람</h1>
     <div class="hero-grid">
-      <p class="lead reveal">코드를 이해하고, AI를 도구로 쓰고, 배움을 설계합니다. 교육 현장에서 출발해 SW·AI 교육 콘텐츠를 만들어 온 <b>12년 차 콘텐츠 기획자</b> 조아리입니다.</p>
-      <div class="hero-cta reveal">
+      <p class="lead">코드를 이해하고, AI를 도구로 쓰고, 배움을 설계합니다. 교육 현장에서 출발해 SW·AI 교육 콘텐츠를 만들어 온 <b>12년 차 콘텐츠 기획자</b> 조아리입니다.</p>
+      <div class="hero-cta">
         <a class="btn" href="#materials">교육 콘텐츠 보기</a>
         <button class="btn ghost" onclick="openModal('m-resume')">이력서 보기</button>
         <a class="btn ghost" href="#contact">연락하기</a>
       </div>
     </div>
-    <div class="metrics reveal">
-      <div class="metric"><div class="num">12<small>년</small></div><div class="lab">IT·SW·AI 교육 경력</div></div>
-      <div class="metric"><div class="num">20<small>+</small></div><div class="lab">SW·AI 교육 과정 개발</div></div>
-      <div class="metric"><div class="num">10<small>권</small></div><div class="lab">교육 도서 기획·집필·편집</div></div>
-      <div class="metric"><div class="num">석사</div><div class="lab">AI융합교육 · 연세대</div></div>
+    <div class="metrics">
+      <div class="metric"><div class="num" data-count="12" data-suffix="년">12<small>년</small></div><div class="lab">IT·SW·AI 교육 경력</div></div>
+      <div class="metric"><div class="num" data-count="20" data-suffix="+">20<small>+</small></div><div class="lab">SW·AI 교육 과정 개발</div></div>
+      <div class="metric"><div class="num" data-count="10" data-suffix="권">10<small>권</small></div><div class="lab">교육 도서 기획·집필·편집</div></div>
+      <div class="metric"><div class="num" data-fade="석사">석사</div><div class="lab">AI융합교육 · 연세대</div></div>
     </div>
   </div>
 </header>
@@ -626,7 +671,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
           </div>
           <div class="case-step">
             <span class="step-label">접근</span>
-            <div class="step-body">모험 스토리 기반 <strong>16차시 커리큘럼</strong>을 직접 설계하고, 집필·코드 전수 검증·편집·조판까지 단독으로 수행했습니다. 교사용 교수안 <strong>56p</strong>, 차시별 PPT·실습파일·YouTube 영상까지 제작했습니다.</div>
+            <div class="step-body">모험 스토리 기반 <strong>16차시 커리큘럼</strong>을 직접 설계하고, 집필·코드 전수 검증·편집·조판까지 단독으로 수행했습니다. 교사용 교수안과 차시별 PPT·실습파일·YouTube 영상까지 제작했습니다.</div>
           </div>
           <div class="case-step">
             <span class="step-label">결과</span>
@@ -645,7 +690,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
     <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">경력</h2><span class="sec-line"></span></div>
     <div class="tl">
 
-      <div class="job now reveal">
+      <div class="job now reveal-left">
         <div class="when">2025.07 — 현재</div>
         <div class="role">한빛미디어 <span class="badge">재직 중</span><span class="pos">콘텐츠1팀 · 기획편집자</span></div>
         <ul>
@@ -654,7 +699,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         </ul>
       </div>
 
-      <div class="job reveal">
+      <div class="job reveal-left">
         <div class="when">2022.02 — 2025.03 · 3년 2개월</div>
         <div class="role">다산북스<span class="pos">다산스마트에듀 · 매니저</span></div>
         <ul>
@@ -665,7 +710,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         </ul>
       </div>
 
-      <div class="job reveal">
+      <div class="job reveal-left">
         <div class="when">2017.03 — 2020.11 · 3년 9개월</div>
         <div class="role">플레이랩스<span class="pos">교육팀 · 연구원</span></div>
         <ul>
@@ -676,7 +721,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
       </div>
 
       <div class="career-hidden" id="career-hidden">
-        <div class="job reveal">
+        <div class="job reveal-left">
           <div class="when">2016.02 — 2017.02 · 1년 1개월</div>
           <div class="role">엔트리<span class="pos">네이버 엔트리교육연구소 · 연구원</span></div>
           <ul>
@@ -684,7 +729,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
             <li>다양한 학습층 대상 SW교육 강의·자료 개발</li>
           </ul>
         </div>
-        <div class="job reveal">
+        <div class="job reveal-left">
           <div class="when">2014.08 — 2016.01 · 1년 6개월</div>
           <div class="role">피에스텍 (PSTEC)<span class="pos">기술연구소 · 연구원</span></div>
           <ul>
@@ -692,7 +737,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
             <li>현장 중심 문제 해결로 기술 이해도·개발 실무 기반 확보</li>
           </ul>
         </div>
-        <div class="job reveal">
+        <div class="job reveal-left">
           <div class="when">2013.05 — 2014.04 · 1년</div>
           <div class="role">대건정보처리학원<span class="pos">교육팀</span></div>
           <ul>
@@ -700,7 +745,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
             <li>아동·성인 대상별 교안·교수법 차별화 설계·강의</li>
           </ul>
         </div>
-        <div class="job reveal">
+        <div class="job reveal-left">
           <div class="when">2012.09 — 2013.05 · 9개월</div>
           <div class="role">인문학가<span class="pos">교육팀</span></div>
           <ul>
@@ -724,31 +769,35 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
 
     <div class="work-grid">
       <div class="card reveal" onclick="openModal('m-cloud')">
+        <span class="card-arrow">&#8599;</span>
         <div class="type mono">플랫폼 교육 · 20+ 과정</div>
         <h4>클라우드스쿨 응용SW 교육</h4>
         <p>초·중·고 학교 SW교육 프로그램에 투입되는 종합 교육 자료. 컴퓨터 기초, OA, 블록코딩(엔트리·스크래치), 텍스트코딩(Python·HTML/CSS·C), 피지컬(다빈치AI·햄스터), AI, 교과서 연계(주요 출판사), 디자인.</p>
-        <div class="meta">20+ 과정 · PPT · PDF · 교수안 · 동영상 · 실습파일</div>
+        <div class="meta-chips"><span class="meta-chip">20+ 과정</span><span class="meta-chip">PPT</span><span class="meta-chip">PDF</span><span class="meta-chip">교수안</span><span class="meta-chip">동영상</span><span class="meta-chip">실습파일</span></div>
         <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button></div>
       </div>
       <div class="card reveal" onclick="openModal('m-scratch')">
+        <span class="card-arrow">&#8599;</span>
         <div class="type mono">프로젝트형 코딩 · 16차시</div>
         <h4>런잇나우 스크래치 프로젝트</h4>
         <p>스크래치 기반 16차시 프로젝트형 코딩 교육. 순차→반복→조건→변수→리스트→게임 제작까지 단계별 학습.</p>
-        <div class="meta">16차시 · 강의안 · 답안지 · 동영상</div>
+        <div class="meta-chips"><span class="meta-chip">16차시</span><span class="meta-chip">강의안</span><span class="meta-chip">답안지</span><span class="meta-chip">동영상</span></div>
         <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button> <a class="btn sm" href="https://event.coderland.io/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">코더랜드 →</a></div>
       </div>
       <div class="card reveal" onclick="openModal('m-ai-ssok')">
+        <span class="card-arrow">&#8599;</span>
         <div class="type mono">도서 연계 교사용 · 14차시</div>
         <h4>인공지능 쏙쏙 교사용 자료</h4>
         <p>도서 연계 수업 자료. AI 인식(영상·사물·음성) → 분류(이미지·소리) → 예측(선형·로지스틱 회귀) → 군집화(k-평균) 단계별 14차시. 이론→프로젝트 일지→실습 3단계 구조.</p>
-        <div class="meta">초5~중2 · 차시당 80분 · PPT · 수업안 · YouTube</div>
+        <div class="meta-chips"><span class="meta-chip">초5~중2</span><span class="meta-chip">차시당 80분</span><span class="meta-chip">PPT</span><span class="meta-chip">수업안</span><span class="meta-chip">YouTube</span></div>
         <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button></div>
       </div>
       <div class="card reveal" onclick="openModal('m-goldland')">
+        <span class="card-arrow">&#8599;</span>
         <div class="type mono">도서 연계 교사용 · 16차시</div>
         <h4>모험 골드랜드 교사용 자료</h4>
         <p>도서 연계 수업 자료. 모험 스토리를 따라가며 순차→반복→이벤트→좌표→선택→변수→리스트→복제→종합 게임까지. 기본 활동 + 추가 활동 2단계 구성.</p>
-        <div class="meta">초등 · 교수안 56p · PPT · 실습파일 · YouTube</div>
+        <div class="meta-chips"><span class="meta-chip">초등</span><span class="meta-chip">교수안</span><span class="meta-chip">PPT</span><span class="meta-chip">실습파일</span><span class="meta-chip">YouTube</span></div>
         <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button></div>
       </div>
     </div>
@@ -943,7 +992,7 @@ function toggleCareer(){
   const open=el.classList.toggle('open');
   arrow.classList.toggle('rotated',open);
   btn.querySelector('.tt').textContent=open?'이전 경력 접기':'이전 경력 4건 더 보기';
-  if(open)el.querySelectorAll('.reveal').forEach(r=>io&&io.observe(r));
+  if(open)el.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(r=>io&&io.observe(r));
 }
 /* ── 자격증 토글 ── */
 function toggleCert(){
@@ -957,6 +1006,14 @@ function filterBooks(cat,btn){
   btn.classList.add('active');
   document.querySelectorAll('.book-card').forEach(c=>c.classList.toggle('hidden',!(cat==='all'||c.dataset.cat===cat)));
 }
+/* ── 도서 카드 키보드 접근성 ── */
+document.querySelectorAll('.book-card').forEach(c=>{
+  c.setAttribute('role','button');
+  c.setAttribute('tabindex','0');
+  const t=c.querySelector('.book-title');
+  if(t)c.setAttribute('aria-label',t.textContent+' 상세 보기');
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click()}});
+});
 /* ── 표지 이미지 폴백 ── */
 function coverFallback(img){
   const wrap=img.closest('.book-cover-wrap')||img.closest('.modal-book-cover')||img.parentElement;
@@ -990,6 +1047,8 @@ function openShot(src,caption){
   mh.style.padding='';
   bg.classList.add('open');
   document.body.style.overflow='hidden';
+  lastFocused=document.activeElement;
+  document.querySelector('.modal-close').focus();
 }
 
 /* ── 모달 ── */
@@ -1137,7 +1196,7 @@ const contents={
       <a class="btn ghost sm" href="samples/ai-ssokssok-chapter1.pdf" target="_blank" rel="noopener noreferrer">1챕터 강의 PDF 샘플</a>
     </div>`},
   'm-goldland':{title:'모험 골드랜드 교사용 자료',html:`
-    <p>도서 『모험! 골드랜드 with 엔트리』 연계 교사용 수업 자료. 교수안 56페이지.</p>
+    <p>도서 『모험! 골드랜드 with 엔트리』 연계 교사용 수업 자료.</p>
     <h4>16차시 커리큘럼 — 스토리텔링 기반</h4>
     <ul>
       <li>00. 엔트리와 SW교육 — SW 정의, 화면 구성</li>
@@ -1164,7 +1223,7 @@ const contents={
     <p class="yt-links"><a href="https://youtu.be/CH4kKlUG1xA" target="_blank" rel="noopener noreferrer">01차시</a> · <a href="https://youtu.be/9toG1IXdWRw" target="_blank" rel="noopener noreferrer">02차시</a> · <a href="https://youtu.be/ocJo4WJyckk" target="_blank" rel="noopener noreferrer">03차시</a> · <a href="https://youtu.be/0-xdDELaLAQ" target="_blank" rel="noopener noreferrer">04차시</a> · <a href="https://youtu.be/99uW6mPkEbo" target="_blank" rel="noopener noreferrer">05차시</a> · <a href="https://youtu.be/7IsqsYVvwBM" target="_blank" rel="noopener noreferrer">06차시</a> · <a href="https://youtu.be/8D7btygLgmk" target="_blank" rel="noopener noreferrer">07차시</a> · <a href="https://youtu.be/d0NbJYD4Ui0" target="_blank" rel="noopener noreferrer">08차시</a> · <a href="https://youtu.be/JbNWWv2L3-M" target="_blank" rel="noopener noreferrer">09차시</a> · <a href="https://youtu.be/hyVOBifRCuE" target="_blank" rel="noopener noreferrer">10차시</a> · <a href="https://youtu.be/v7F14M1wUPU" target="_blank" rel="noopener noreferrer">11차시</a> · <a href="https://youtu.be/iZi03nCUQCA" target="_blank" rel="noopener noreferrer">12차시</a> · <a href="https://youtu.be/AYfmPWA3mY8" target="_blank" rel="noopener noreferrer">13차시</a> · <a href="https://youtu.be/857JASsmoTw" target="_blank" rel="noopener noreferrer">14차시</a> · <a href="https://youtu.be/NL-gTAsIDiE" target="_blank" rel="noopener noreferrer">15차시</a> · <a href="https://youtu.be/lcCfOAtgrSE" target="_blank" rel="noopener noreferrer">16차시</a></p>
     <h4>샘플 자료 보기</h4>
     <div class="links">
-      <a class="btn ghost sm" href="samples/goldland-plan.pdf" target="_blank" rel="noopener noreferrer">전체 교수안 PDF (56p)</a>
+      <a class="btn ghost sm" href="samples/goldland-plan.pdf" target="_blank" rel="noopener noreferrer">전체 교수안 PDF</a>
       <a class="btn ghost sm" href="samples/goldland-lesson1.pdf" target="_blank" rel="noopener noreferrer">1차시 강의 PDF 샘플</a>
     </div>`},
   'book-writing':{title:'AI도 모르는 글쓰기',html:bookHTML('ai-writing.png','한빛미디어','AI도 모르는 글쓰기','저자: 정나래','2026.06','편집','AI가 만든 초안을 실무에서 통하는 완성도 높은 문서로 다듬는 법을 단계별로 안내하는 AI 협업 글쓰기 실전서.','https://www.yes24.com/product/goods/192630667','글쓰기를 다루는 책인 만큼 본문 문장이 곧 시범이 된다는 기준으로, 문장과 목차 구조를 저자와 함께 다듬었습니다.')},
@@ -1235,17 +1294,100 @@ function openModal(id){
   if(id==='m-resume'){mh.querySelector('h3').style.display='none';mh.style.borderBottom='none';mh.style.padding='12px clamp(22px,4vw,32px)';fillResumePhone();fetch('resume.pdf',{method:'HEAD'}).then(r=>{if(!r.ok)hidePdfBtn()}).catch(hidePdfBtn)}
   else{mh.querySelector('h3').style.display='';mh.style.borderBottom='';mh.style.padding=''}
   document.body.style.overflow='hidden';
+  lastFocused=document.activeElement;
+  document.querySelector('.modal-close').focus();
 }
-function closeModal(){document.getElementById('modal-bg').classList.remove('open');document.body.style.overflow=''}
+let lastFocused=null;
+function closeModal(){
+  document.getElementById('modal-bg').classList.remove('open');
+  document.body.style.overflow='';
+  if(lastFocused){lastFocused.focus();lastFocused=null}
+}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
 /* ── reveal ── */
 const prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 let io=null;
 if(!prefersReduced){
-  io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*50)+'ms';io.observe(el)});
-}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'))}
+  io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach((el,i)=>{el.style.transitionDelay=(i%4*80)+'ms';io.observe(el)});
+  /* Hero sequential animation */
+  document.getElementById('hero').classList.add('hero-anim');
+}else{document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>el.classList.add('in'));/* Show hero immediately */document.getElementById('hero').classList.add('hero-anim');document.querySelectorAll('.hero-anim .hero-top,.hero-anim .hero-title,.hero-anim .lead,.hero-anim .hero-cta,.hero-anim .metrics').forEach(el=>{el.style.opacity='1';el.style.transform='none';el.style.clipPath='none';el.style.animation='none'})}
+
+/* ── countup ── */
+(function(){
+  if(prefersReduced)return;
+  const easeOutCubic=t=>1-Math.pow(1-t,3);
+  let counted=false;
+  const metricsEl=document.querySelector('.metrics');
+  if(!metricsEl)return;
+  const cio=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting&&!counted){
+        counted=true;cio.disconnect();
+        metricsEl.querySelectorAll('.num[data-count]').forEach(el=>{
+          const target=parseInt(el.dataset.count);
+          const suffix=el.dataset.suffix||'';
+          const dur=target===12?1200:1000;
+          const start=performance.now();
+          el.textContent='0';
+          function step(now){
+            const t=Math.min((now-start)/dur,1);
+            const v=Math.round(easeOutCubic(t)*target);
+            el.innerHTML=v+'<small>'+suffix+'</small>';
+            if(t<1)requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+        metricsEl.querySelectorAll('.num[data-fade]').forEach(el=>{
+          el.style.opacity='0';el.style.transition='opacity 600ms ease-out 200ms';
+          requestAnimationFrame(()=>{el.style.opacity='1'});
+        });
+      }
+    });
+  },{threshold:0.3});
+  cio.observe(metricsEl);
+})();
+
+/* ── 도서 표지 3D 틸트 ── */
+(function(){
+  if(prefersReduced)return;
+  const grid=document.querySelector('.book-grid');
+  if(!grid)return;
+  let ticking=false;
+  grid.addEventListener('mousemove',function(e){
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(()=>{
+      const card=e.target.closest('.book-card');
+      if(!card){ticking=false;return}
+      const wrap=card.querySelector('.book-cover-wrap');
+      if(!wrap){ticking=false;return}
+      const rect=card.getBoundingClientRect();
+      const x=(e.clientX-rect.left)/rect.width;
+      const y=(e.clientY-rect.top)/rect.height;
+      const rotateY=(x-0.5)*10;
+      const rotateX=(0.5-y)*10;
+      wrap.style.transform='rotateY('+rotateY+'deg) rotateX('+rotateX+'deg)';
+      wrap.style.transition='none';
+      ticking=false;
+    });
+  });
+  grid.addEventListener('mouseleave',function(e){
+    const card=e.target.closest('.book-card');
+    if(card){
+      const wrap=card.querySelector('.book-cover-wrap');
+      if(wrap){wrap.style.transition='transform 300ms ease-out';wrap.style.transform='none'}
+    }
+  },true);
+  grid.addEventListener('mouseout',function(e){
+    if(e.target.classList&&e.target.classList.contains('book-card')){
+      const wrap=e.target.querySelector('.book-cover-wrap');
+      if(wrap){wrap.style.transition='transform 300ms ease-out';wrap.style.transform='none'}
+    }
+  });
+})()
 
 /* ── 이력서 인쇄 ── */
 function printResume(){
