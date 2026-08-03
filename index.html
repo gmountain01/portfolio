@@ -17,6 +17,9 @@
 <meta property="og:image" content="https://gmountain01.github.io/portfolio/profile.jpg">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"조아리","alternateName":"Cho Ari","jobTitle":"AI·SW 교육 콘텐츠 기획자","url":"https://gmountain01.github.io/portfolio/","image":"https://gmountain01.github.io/portfolio/profile.jpg","alumniOf":[{"@type":"CollegeOrUniversity","name":"한국기술교육대학교"},{"@type":"CollegeOrUniversity","name":"연세대학교 교육대학원"}],"knowsAbout":["SW교육","AI교육","교육 콘텐츠 기획","커리큘럼 설계","교수설계","IT 도서 기획편집"]}
+</script>
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nOCcgZmlsbD0nIzI2NGE2ZScvPjx0ZXh0IHg9JzE2JyB5PScyMicgZm9udC1zaXplPScxOCcgZm9udC1mYW1pbHk9J3NlcmlmJyBmb250LXdlaWdodD0nYm9sZCcgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nI2ZmZic+QTwvdGV4dD48L3N2Zz4=">
 <style>
 :root{
@@ -185,11 +188,9 @@ section + section{padding-top:0}
 .job{position:relative;margin-bottom:clamp(24px,3vw,34px)}
 .job:last-child{margin-bottom:0}
 .job::before{content:"";position:absolute;left:-30px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--line-2);transition:.2s}
-.job.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
 .job .when{font-family:var(--mono);font-size:12px;color:var(--mark);margin-bottom:6px;letter-spacing:.02em}
 .job .role{font-size:17.5px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
 .job .pos{font-size:13.5px;color:var(--ink-faint);font-weight:500;flex-basis:100%;margin-top:1px}
-.badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;color:#fff;background:var(--accent);border-radius:6px;padding:3px 8px;font-weight:500;letter-spacing:.04em}
 .job ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:6px}
 .job li{font-size:14px;color:var(--ink-soft);padding-left:18px;position:relative;line-height:1.55}
 .job li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1.5px;background:var(--mark)}
@@ -362,8 +363,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .book-role-body{font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0}
 
 /* profile photo responsive */
-@media(max-width:600px){
-  .about-intro{flex-direction:column!important;align-items:center!important;text-align:center}
+@media(max-width:640px){
+  .about-intro{flex-direction:column!important;align-items:center!important}
   .about-intro img{width:120px!important;height:120px!important}
 }
 
@@ -496,15 +497,15 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
   <div class="wrap">
     <div class="hero-top">
       <span class="eyebrow">AI·SW 교육 · 콘텐츠 개발 · IT</span>
-      <span class="avail"><i></i> 제안 환영</span>
-      <span class="hero-date mono">Updated 2026.07.07</span>
+      <span class="avail"><i></i> 구직 중 · 제안 환영</span>
+      <span class="hero-date mono">Updated 2026.08.03</span>
     </div>
     <h1 class="hero-title">기술을 <em>배움</em>으로<br>설계하는 사람</h1>
     <div class="hero-grid">
       <p class="lead">코드를 이해하고, AI를 도구로 쓰고, 배움을 설계합니다. 교육 현장에서 출발해 SW·AI 교육 콘텐츠를 만들어 온 <b>12년 차 콘텐츠 기획자</b> 조아리입니다.</p>
       <div class="hero-cta">
-        <a class="btn" href="#materials">교육 콘텐츠 보기</a>
-        <button class="btn ghost" onclick="openModal('m-resume')">이력서 보기</button>
+        <button class="btn" onclick="openModal('m-resume')">이력서 보기</button>
+        <a class="btn ghost" href="#materials">교육 콘텐츠 보기</a>
         <a class="btn ghost" href="#contact">연락하기</a>
       </div>
     </div>
@@ -524,7 +525,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
     <div class="about-intro reveal" style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,4vw,40px);line-height:1.85;font-size:clamp(14.5px,1.4vw,16px);color:var(--ink-soft);display:flex;gap:clamp(24px,4vw,36px);align-items:flex-start">
       <img src="profile.jpg" alt="조아리 프로필 사진" style="width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;border:3px solid var(--line)">
       <div>
-      <p>12년간 IT/SW·AI 교육 콘텐츠를 기획·개발해온 콘텐츠 기획자입니다. 교육 현장에서 커리어를 시작해 컴퓨터공학 전공과 SW 개발 경험을 토대로 콘텐츠의 기술적 정확성을 직접 검증할 수 있으며, 네이버 엔트리·플레이랩스에서 SW교육 콘텐츠를, 다산북스·한빛미디어에서 교육 도서와 강의 자료를 기획·집필·제작해 왔습니다.</p>
+      <p>12년간 IT/SW·AI 교육 콘텐츠를 기획·개발해온 콘텐츠 기획자입니다. 교육 현장에서 커리어를 시작해 컴퓨터공학 전공과 SW 개발 경험을 토대로 콘텐츠의 기술적 정확성을 직접 검증할 수 있으며, 네이버 엔트리·플레이랩스에서 SW교육 콘텐츠를, 다산북스·한빛앤에서 교육 도서와 강의 자료를 기획·집필·제작해 왔습니다.</p>
       <p style="margin-top:14px">특히 생성형 AI를 콘텐츠 제작 전반에 적극 활용하고, Claude Code를 이용해 업무용 도구를 직접 개발·운영하며, 커리큘럼 설계부터 강의·교재·실습 자료 제작까지 한 흐름으로 수행할 수 있습니다. <b style="color:var(--accent)">코드를 이해하고 AI를 도구로 쓰는 콘텐츠 기획자</b>로서 IT 전문성과 학습 효과를 동시에 끌어올릴 수 있으며, 현재 연세대학교 교육대학원 AI융합교육 석사과정을 통해 학습과학·교수설계 이론까지 함께 다지고 있습니다.</p>
       </div>
     </div>
@@ -554,7 +555,7 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
       <div class="about-card reveal">
         <span class="ic mono">/ 04</span>
         <h3>이론적 토대</h3>
-        <p>연세대 교육대학원 AI융합교육학과 석사과정에서 학습과학·교수설계를 연구합니다. 10년간 현장에서 쌓은 SW·AI 교육 경험을 학문적으로 체계화하고, 다수의 교육 과정과 교사용 수업 자료를 직접 기획·제작한 실전 역량이 뒷받침합니다.</p>
+        <p>연세대 교육대학원 AI융합교육학과 석사과정에서 학습과학·교수설계를 연구합니다. 12년간 현장에서 쌓은 SW·AI 교육 경험을 학문적으로 체계화하고, 다수의 교육 과정과 교사용 수업 자료를 직접 기획·제작한 실전 역량이 뒷받침합니다.</p>
       </div>
     </div>
   </div>
@@ -567,10 +568,37 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
     <p class="sec-intro reveal">문제를 어떻게 정의하고 풀었는지 보여주는 두 가지 사례입니다.</p>
     <div class="case-list">
 
-      <!-- Case A -->
+      <!-- Case A · 골드랜드 -->
       <div class="case reveal">
         <div class="case-head">
-          <span class="case-eyebrow">Case A · 사이드 프로젝트 · Claude Code</span>
+          <span class="case-eyebrow">Case A · 기획·집필·편집 전 과정</span>
+          <h3 class="case-title">기획부터 편집까지 전 과정 단독 수행</h3>
+          <p class="case-name">골드랜드 시리즈</p>
+        </div>
+        <div class="case-steps">
+          <div class="case-step">
+            <span class="step-label">배경</span>
+            <div class="step-body">아동 SW교육 도서는 흥미로운 스토리, 코딩의 정확성, 교육과정 연계라는 세 가지 조건을 동시에 만족해야 합니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">문제</span>
+            <div class="step-body">기획·집필·편집이 분업되면 스토리, 코드, 교육과정 연계가 단계마다 조금씩 어긋나기 쉽습니다. 아이들이 읽는 책일수록 이 틈이 학습 경험을 무너뜨립니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">접근</span>
+            <div class="step-body">모험 스토리 기반 <strong>16차시 커리큘럼</strong>을 직접 설계하고, 집필·코드 전수 검증·편집·조판까지 단독으로 수행했습니다. 교사용 교수안과 차시별 PPT·실습파일·YouTube 영상까지 제작했습니다.</div>
+          </div>
+          <div class="case-step">
+            <span class="step-label">결과</span>
+            <div class="step-body">시리즈 <strong>총 3권 출간</strong>(모험! 골드랜드, 차원의 골드랜드 1·2). 도서에 <strong>16차시 교수안 + 차시별 PPT·실습파일·YouTube 영상</strong>을 묶은 완결형 교육 패키지로 완성해, 교사가 책 한 권으로 바로 수업을 시작할 수 있게 했습니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case B · 리리가 도와줌 -->
+      <div class="case reveal">
+        <div class="case-head">
+          <span class="case-eyebrow">Case B · 사이드 프로젝트 · Claude Code</span>
           <h3 class="case-title">편집자가 직접 만든 출판 실무 도구</h3>
           <p class="case-name">리리가 도와줌</p>
         </div>
@@ -653,33 +681,6 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
         </div>
       </div>
 
-      <!-- Case B -->
-      <div class="case reveal">
-        <div class="case-head">
-          <span class="case-eyebrow">Case B · 기획·집필·편집 전 과정</span>
-          <h3 class="case-title">기획부터 편집까지 전 과정 단독 수행</h3>
-          <p class="case-name">골드랜드 시리즈</p>
-        </div>
-        <div class="case-steps">
-          <div class="case-step">
-            <span class="step-label">배경</span>
-            <div class="step-body">아동 SW교육 도서는 흥미로운 스토리, 코딩의 정확성, 교육과정 연계라는 세 가지 조건을 동시에 만족해야 합니다.</div>
-          </div>
-          <div class="case-step">
-            <span class="step-label">문제</span>
-            <div class="step-body">기획·집필·편집이 분업되면 스토리, 코드, 교육과정 연계가 단계마다 조금씩 어긋나기 쉽습니다. 아이들이 읽는 책일수록 이 틈이 학습 경험을 무너뜨립니다.</div>
-          </div>
-          <div class="case-step">
-            <span class="step-label">접근</span>
-            <div class="step-body">모험 스토리 기반 <strong>16차시 커리큘럼</strong>을 직접 설계하고, 집필·코드 전수 검증·편집·조판까지 단독으로 수행했습니다. 교사용 교수안과 차시별 PPT·실습파일·YouTube 영상까지 제작했습니다.</div>
-          </div>
-          <div class="case-step">
-            <span class="step-label">결과</span>
-            <div class="step-body">시리즈 <strong>총 3권 출간</strong>(모험! 골드랜드, 차원의 골드랜드 1·2). 도서·수업자료·영상이 연결된 완결형 교육 패키지로 완성했습니다.</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -690,12 +691,14 @@ body.printing-resume .modal-bg .resume-section h4{color:#264a6e!important}
     <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">경력</h2><span class="sec-line"></span></div>
     <div class="tl">
 
-      <div class="job now reveal-left">
-        <div class="when">2025.07 — 현재</div>
-        <div class="role">한빛미디어 <span class="badge">재직 중</span><span class="pos">콘텐츠1팀 · 기획편집자</span></div>
+      <div class="job reveal-left">
+        <div class="when">2025.07 — 2026.07 · 1년 1개월</div>
+        <div class="role">한빛앤<span class="pos">콘텐츠1팀 · 기획편집자</span></div>
         <ul>
-          <li>성인 AI·IT 전문 콘텐츠 기획·개발 전 과정 담당</li>
-          <li>Claude Code 기반 콘텐츠 분석·자동화 도구 직접 개발</li>
+          <li>성인 대상 AI·IT 교육 도서 <b>6종</b> 출간 — 기획편집 4종 · 편집 2종</li>
+          <li>시장조사 → 아이템 발굴 → 저자 섭외 → 편집 → 출간까지 콘텐츠 개발 전 과정 담당</li>
+          <li>Spring AI·멀티 에이전트·Dify 등 최신 AI 기술을 학습자 눈높이의 교육 콘텐츠로 구조화</li>
+          <li>Claude Code 기반 시장조사·원고 분석 자동화 도구(리리가 도와줌) 직접 개발·실무 적용</li>
         </ul>
       </div>
 
@@ -1070,7 +1073,7 @@ const contents={
     <div class="resume-section">
       <h4>경력</h4>
       <ul>
-        <li><span class="rs-left">한빛미디어 · 콘텐츠1팀 기획편집자</span><span class="rs-right">2025.07 — 현재</span></li>
+        <li><span class="rs-left">한빛앤 · 콘텐츠1팀 기획편집자 — AI·IT 교육 도서 6종 기획편집</span><span class="rs-right">2025.07 — 2026.07</span></li>
         <li><span class="rs-left">다산북스 · 매니저 — 도서 4권, 학교 SW교육 자료 20+ 과정</span><span class="rs-right">2022.02 — 2025.03</span></li>
         <li><span class="rs-left">플레이랩스 · 연구원 — SW교육 콘텐츠, SW선도대학 캠프 다수</span><span class="rs-right">2017.03 — 2020.11</span></li>
         <li><span class="rs-left">엔트리 · 네이버 엔트리교육연구소 연구원</span><span class="rs-right">2016.02 — 2017.02</span></li>
