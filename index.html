@@ -445,6 +445,8 @@ summary.case-head:hover::after{background:var(--accent);color:#fff}
 @media(max-width:640px){summary.case-head{padding-right:clamp(24px,3.4vw,36px);padding-bottom:64px}summary.case-head::after{top:auto;bottom:20px;left:clamp(24px,3.4vw,36px);right:auto;transform:none}}
 .case-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;display:block;margin-bottom:12px}
 .case-title{font-weight:800;font-size:clamp(19px,2.2vw,25px);letter-spacing:-.03em;line-height:1.2;margin-bottom:7px;color:var(--ink)}
+.case-teaser{margin:14px 0 0;font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+.case-teaser b{color:var(--ink);font-weight:700}
 .case-name{font-size:clamp(14px,1.4vw,16px);color:var(--ink-faint);font-weight:600;margin:0}
 .case-steps{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
 .case-step{padding:clamp(18px,2.4vw,26px)}
@@ -674,6 +676,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <span class="case-eyebrow">Case A · 기획·집필·편집 전 과정</span>
           <h3 class="case-title">기획부터 편집까지 전 과정 단독 수행</h3>
           <p class="case-name">골드랜드 시리즈</p>
+          <p class="case-teaser"><b>시리즈 3권 출간</b> · 16차시 교수안 + PPT·실습파일·영상 패키지</p>
         </summary>
         <div class="case-steps">
           <div class="case-step">
@@ -701,6 +704,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <span class="case-eyebrow">Case B · 사이드 프로젝트 · Claude Code</span>
           <h3 class="case-title">편집자가 직접 만든 출판 실무 도구</h3>
           <p class="case-name">리리가 도와줌</p>
+          <p class="case-teaser"><b>베스트셀러 데이터 약 2만 9천 건</b> · 55개 IT 카테고리 · 22개 분석 패널</p>
         </summary>
         <div class="case-steps">
           <div class="case-step">
@@ -896,7 +900,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <h4>런잇나우 스크래치 프로젝트</h4>
         <p>스크래치 기반 16차시 프로젝트형 코딩 교육. 순차→반복→조건→변수→리스트→게임 제작까지 단계별 학습.</p>
         <div class="meta-chips"><span class="meta-chip">16차시</span><span class="meta-chip">강의안</span><span class="meta-chip">답안지</span><span class="meta-chip">동영상</span></div>
-        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button> <a class="btn sm" href="https://event.coderland.io/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">코더랜드 →</a></div>
+        <div class="card-actions"><button class="btn ghost sm">상세 보기 →</button> <a class="btn ghost sm" href="https://event.coderland.io/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">코더랜드 →</a></div>
       </div>
       <div class="card reveal" onclick="openModal('m-ai-ssok')">
         <span class="card-arrow">&#8599;</span>
@@ -923,21 +927,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <h4>메타인지의 착각과 생성형 AI</h4>
         <p>생성형 AI가 학습자의 메타인지 착각을 키우는지를 논문 3편(IJAIED·PNAS·JCAL)으로 분석하고, '산출→점검' 루프를 지키는 5단계 AI 튜터 설계안을 제시한 40분 발표. 4인 팀 프로젝트로 주제 선정부터 발표까지 함께 진행했습니다.</p>
         <div class="meta-chips"><span class="meta-chip">팀 프로젝트</span><span class="meta-chip">메타인지</span><span class="meta-chip">인지부하이론</span><span class="meta-chip">논문 분석</span></div>
-        <div class="card-actions"><a class="btn sm" href="https://gmountain01.github.io/LearningScience/" target="_blank" rel="noopener noreferrer">사이트 보기 →</a></div>
+        <div class="card-actions"><a class="btn ghost sm" href="https://gmountain01.github.io/LearningScience/" target="_blank" rel="noopener noreferrer">사이트 보기 →</a></div>
       </div>
       <div class="card reveal">
         <div class="type mono">대학원 · AI 기반 교육평가 · 2인 공동 개발</div>
         <h4>영어 요약 자동 피드백 시스템</h4>
         <p>LLM이 영어 요약문을 루브릭으로 채점하고 피드백 초안을 쓰면 교사가 최종 확정하는 형성평가 도구. 채점→감점·피드백→자체 검증 3단계 파이프라인에 Hattie &amp; Timperley 피드백 모델과 IRT·BKT를 적용했습니다.</p>
         <div class="meta-chips"><span class="meta-chip">공동 개발</span><span class="meta-chip">Human-in-the-Loop</span><span class="meta-chip">Claude API</span><span class="meta-chip">IRT·BKT</span></div>
-        <div class="card-actions"><a class="btn sm" href="https://gmountain01.github.io/english_assessment/" target="_blank" rel="noopener noreferrer">사이트 보기 →</a></div>
+        <div class="card-actions"><a class="btn ghost sm" href="https://gmountain01.github.io/english_assessment/" target="_blank" rel="noopener noreferrer">사이트 보기 →</a></div>
       </div>
       <div class="card reveal">
         <div class="type mono">대학원 · 생성형 AI 활용 융합교육 · 교육용 웹앱</div>
         <h4>책공방 — 나만의 책 만들기</h4>
         <p>중·고등학생이 출판 4단계(기획·편집·제작·유통)를 예시 책과 퀴즈로 배우고, 8단계를 따라 직접 디지털 책을 만들어 인쇄·PDF로 완성하는 웹앱. 출판 실무 경험을 융합 수업으로 옮겼습니다.</p>
         <div class="meta-chips"><span class="meta-chip">기획·개발</span><span class="meta-chip">중·고등</span><span class="meta-chip">8단계 실습</span><span class="meta-chip">웹앱</span></div>
-        <div class="card-actions"><a class="btn sm" href="https://gmountain01.github.io/bookedu/" target="_blank" rel="noopener noreferrer">사이트 보기 →</a></div>
+        <div class="card-actions"><a class="btn ghost sm" href="https://gmountain01.github.io/bookedu/" target="_blank" rel="noopener noreferrer">사이트 보기 →</a></div>
       </div>
     </div>
   </div>
