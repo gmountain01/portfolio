@@ -246,7 +246,6 @@ header + section{padding-top:clamp(40px,5vw,72px)}
 /* ───────────── MATERIALS CARDS ───────────── */
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:680px){.work-grid{grid-template-columns:1fr}}
-.work-grid.auto{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,2.8vw,30px);transition:border-color .18s,transform .18s;display:flex;flex-direction:column;position:relative}
 .card[onclick]{cursor:pointer}
 .card:hover{border-color:var(--line-2);transform:translateY(-3px)}
@@ -264,7 +263,7 @@ header + section{padding-top:clamp(40px,5vw,72px)}
 .card-actions{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
 /* "상세 보기" button */
 .card-actions .btn.ghost.sm{border:1px solid var(--line-2);color:var(--accent);font-weight:600;transition:.18s}
-.card-actions .btn.ghost.sm:hover,.card:hover .card-actions .btn.ghost.sm{background:var(--accent);color:#fff;border-color:var(--accent)}
+.card-actions .btn.ghost.sm:hover,.card:hover .card-actions .btn.ghost.sm:only-child{background:var(--accent);color:#fff;border-color:var(--accent)}
 .card.placeholder{border-style:dashed;background:var(--surface-2);cursor:default}
 .card.placeholder:hover{transform:none}
 .placeholder-badge{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--ink-faint);background:var(--bg);border:1px solid var(--line-2);border-radius:6px;padding:3px 9px;letter-spacing:.04em}
@@ -920,8 +919,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>
     </div>
 
-    <p class="sec-intro reveal" style="margin-top:44px"><b style="color:var(--ink)">대학원 프로젝트</b> — 연세대학교 교육대학원 AI융합교육 석사과정에서 학습과학·교육평가 이론을 실제 발표·도구로 구현한 작업입니다.</p>
-    <div class="work-grid auto">
+    <p class="sec-intro reveal" style="margin-top:44px;max-width:none"><b style="color:var(--ink)">대학원 프로젝트</b> — 연세대학교 교육대학원 AI융합교육 석사과정에서 학습과학·교육평가 이론을 실제 발표·도구로 구현한 작업입니다.</p>
+    <div class="work-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
       <div class="card reveal">
         <div class="type mono">대학원 · 학습과학 · 4인 팀 발표</div>
         <h4>메타인지의 착각과 생성형 AI</h4>
@@ -1038,8 +1037,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <div class="panel reveal">
         <h3>강연·강의</h3>
         <div class="edu-item">
+          <div class="t">2026 해외 청소년 한국어교육 연수</div>
+          <div class="m">2026 · 강의</div>
+          <div class="d">한국어 교육을 위한 앱 개발 및 강의 진행</div>
+        </div>
+        <div class="edu-item">
           <div class="t">제24회 해외 한국어교육자 국제학술대회</div>
-          <div class="m">2026.06 · 강연</div>
+          <div class="m">2026.06 · 강의</div>
           <div class="d">AI 도구 활용 한국어 수업 설계</div>
         </div>
         <div class="edu-item">
@@ -1215,7 +1219,8 @@ const contents={
     <div class="rv-sec">
       <h4 class="rv-h">강연·강의</h4>
       <div class="rv-body">
-      <div class="rv-item"><div class="rv-when">2026.06<span class="rv-dur">강연</span></div><div class="rv-what"><div class="rv-org">제24회 해외 한국어교육자 국제학술대회 <span class="rv-pos">AI 도구 활용 한국어 수업 설계</span></div></div></div>
+      <div class="rv-item"><div class="rv-when">2026<span class="rv-dur">강의</span></div><div class="rv-what"><div class="rv-org">2026 해외 청소년 한국어교육 연수 <span class="rv-pos">한국어 교육을 위한 앱 개발 및 강의 진행</span></div></div></div>
+      <div class="rv-item"><div class="rv-when">2026.06<span class="rv-dur">강의</span></div><div class="rv-what"><div class="rv-org">제24회 해외 한국어교육자 국제학술대회 <span class="rv-pos">AI 도구 활용 한국어 수업 설계</span></div></div></div>
       <div class="rv-item"><div class="rv-when">2016 — 2020<span class="rv-dur">강의</span></div><div class="rv-what"><div class="rv-org">SW선도대학 캠프·초중등 SW교육 강의 다수 <span class="rv-pos">엔트리·플레이랩스 재직 시</span></div></div></div>
       </div>
     </div>
