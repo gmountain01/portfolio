@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>숏폼 제작 강의 1~4교시</title>
+<style>
+:root{
+  --bg:#EEF2EF; --panel:#FFFFFF; --ink:#0F2A1D; --muted:#5E6E65; --line:#D5DED8;
+  --brand:#0E5A36; --brand-ink:#FFFFFF; --accent:#E97132; --stage-bg:#1B2620; --chip:#E3F1E9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1512; --panel:#18211C; --ink:#E6EEE9; --muted:#9AAAA1; --line:#2A3730;
+    --brand:#3FA36F; --brand-ink:#0B1410; --accent:#F08A4E; --stage-bg:#070B09; --chip:#1F2E26;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1512; --panel:#18211C; --ink:#E6EEE9; --muted:#9AAAA1; --line:#2A3730;
+  --brand:#3FA36F; --brand-ink:#0B1410; --accent:#F08A4E; --stage-bg:#070B09; --chip:#1F2E26;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+button,input{font:inherit;color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bar */
+header{display:flex;flex-wrap:wrap;row-gap:6px;align-items:center;gap:8px;padding:8px 12px;background:var(--panel);border-bottom:1px solid var(--line);min-width:0}
+header .title{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:120px;flex:1 1 120px}
+header .title small{font-weight:500;color:var(--muted);margin-left:8px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap;line-height:1.2}
+.btn:hover{border-color:var(--brand)}
+.btn[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.btn kbd{font-family:inherit;font-size:11px;opacity:.65;margin-left:4px}
+.count{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;padding:0 4px}
+.tool{display:flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:2px 4px 2px 10px;font-size:13px;color:var(--muted);white-space:nowrap}
+.tool select{border:0;background:var(--chip);color:var(--ink);border-radius:999px;padding:4px 8px;font-weight:700;cursor:pointer}
+.item .tg{font-size:11px;color:var(--brand);border:1px solid var(--line);border-radius:999px;padding:0 6px;margin-left:auto;white-space:nowrap;align-self:center}
+
+/* main */
+main{display:grid;grid-template-columns:auto 1fr auto;min-height:0;min-width:0}
+.viewport{position:relative;container-type:size;min-width:0;min-height:0;display:grid;place-items:center;padding:12px}
+.stage{position:relative;width:min(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9;background:#fff;box-shadow:0 6px 28px rgba(0,0,0,.18);border-radius:6px;overflow:hidden;user-select:none}
+.stage img.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+.hot{position:absolute;display:block;border-radius:8px;outline:2px dashed transparent;outline-offset:2px;cursor:pointer}
+.hot:hover,.hot:focus-visible{outline-color:var(--accent)}
+.vid{position:absolute;display:grid;place-items:center;background:transparent;border:0;padding:0;cursor:pointer}
+.vid .play{width:clamp(36px,9cqw,72px);aspect-ratio:1;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;font-size:clamp(14px,3cqw,28px)}
+.vid video{width:100%;height:100%;object-fit:contain;background:#000}
+.revealhint{position:absolute;right:12px;bottom:12px;background:rgba(14,90,54,.92);color:#fff;border-radius:999px;padding:6px 12px;font-size:13px;pointer-events:none}
+.jump{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.75);color:#fff;font-size:32px;font-weight:700;padding:10px 22px;border-radius:12px;pointer-events:none;display:none}
+.navzone{position:absolute;top:0;bottom:0;width:12%;cursor:pointer}
+.canvas{position:absolute;inset:0;transform-origin:0 0;transition:transform .35s ease}
+.zone{position:absolute;cursor:zoom-in;border-radius:6px}
+.zone:hover{outline:2px solid rgba(233,113,50,.75);outline-offset:-2px}
+.zone::after{content:"🔍 확대";position:absolute;right:6px;top:6px;font-size:clamp(9px,1.3cqw,14px);background:rgba(255,255,255,.9);color:#0F2A1D;border-radius:999px;padding:2px 7px;opacity:0;transition:opacity .15s;pointer-events:none}
+.zone:hover::after{opacity:1}
+.stage.zoomed .zone{cursor:zoom-out}
+.stage.zoomed .zone::after{content:"🔍 원래대로"}
+.mask{position:absolute;transition:opacity .25s;pointer-events:none}
+.mask.off{opacity:0}
+.timer{display:flex;gap:4px;align-items:center}
+.timer[hidden]{display:none}
+.timer #tPlay b{font-variant-numeric:tabular-nums}
+.timer.run #tPlay{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.timer.done #tPlay{background:var(--accent);color:#fff;border-color:var(--accent)}
+.timer:not(.run):not(.done) #tReset{display:none}
+@keyframes blink{50%{opacity:.45}}
+.ftimer{display:none;position:fixed;bottom:12px;right:12px;z-index:20;border:0;border-radius:999px;padding:7px 16px;font-size:clamp(15px,1.5vw,22px);font-weight:700;font-variant-numeric:tabular-nums;background:rgba(15,42,29,.82);color:#fff;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.ftimer.run{background:rgba(14,90,54,.92)}
+.ftimer.idle{background:rgba(255,255,255,.95);color:#0E5A36;border:2px solid #0E5A36}
+.ftimer.idle:hover{background:#0E5A36;color:#fff}
+.ftimer.done{background:#E97132}
+:fullscreen .ftimer.on,body.present .ftimer.on{display:block}
+@media (prefers-reduced-motion: reduce){.canvas{transition:none}.timer.done #tPlay{animation:none}}
+.navzone.left{left:0}.navzone.right{right:0}
+
+/* side panels */
+aside{background:var(--panel);border-color:var(--line);overflow:auto;min-height:0;display:none}
+aside.open{display:block}
+#toc{grid-column:1;grid-row:1;width:320px;border-right:1px solid var(--line)}
+.viewport{grid-column:2;grid-row:1}
+#notes{grid-column:3;grid-row:1;width:380px;border-left:1px solid var(--line)}
+aside h2{font-size:14px;margin:0;padding:12px 14px 8px;color:var(--muted);position:sticky;top:0;background:var(--panel)}
+.search{margin:0 12px 8px;width:calc(100% - 24px);border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--bg)}
+.sec{font-weight:700;font-size:13px;padding:10px 14px 4px;color:var(--brand)}
+.item{display:flex;gap:8px;width:100%;text-align:left;border:0;background:none;padding:6px 14px;cursor:pointer;font-size:13.5px;line-height:1.35}
+.item:hover{background:var(--chip)}
+.item[aria-current="true"]{background:var(--chip);font-weight:700}
+.item .no{color:var(--muted);font-variant-numeric:tabular-nums;min-width:28px}
+.item.hid{opacity:.6}
+.item.hid .t::after{content:" · 강사용";color:var(--accent);font-size:12px}
+.notesbody{padding:4px 16px 24px;white-space:pre-wrap;font-size:14px;line-height:1.6}
+.notesbody .empty{color:var(--muted)}
+.slidetext{margin:0 16px 20px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:12.5px;color:var(--muted);white-space:pre-wrap}
+details summary{cursor:pointer;padding:6px 16px;color:var(--muted);font-size:13px}
+
+/* footer progress */
+footer{height:4px;background:var(--line)}
+footer i{display:block;height:100%;background:var(--brand);width:0;transition:width .2s}
+
+@media (max-width:900px){
+  #toc,#notes{position:fixed;top:var(--hdr,49px);bottom:4px;z-index:5;width:min(86vw,360px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+  #toc{left:0}#notes{right:0}
+  .btn .lbl{display:none}
+  header .title small{display:none}
+  .btn kbd{display:none}
+}
+@media (max-width:600px){
+  header{flex-wrap:wrap;row-gap:6px}
+  header .title{display:none}
+}
+:fullscreen header,:fullscreen footer{display:none}
+:fullscreen body{grid-template-rows:1fr}
+body.present header,body.present footer{display:none}
+body.present{grid-template-rows:1fr;background:var(--stage-bg)}
+body.present .viewport{padding:0}
+body.present .stage{border-radius:0;box-shadow:none}
+</style>
+</head>
+<body>
+<header>
+  <button class="btn" id="bToc" aria-pressed="false" title="목차 (T)">☰<span class="lbl"> 목차</span></button>
+  <div class="title" id="docTitle">숏폼 제작 강의<small id="secLabel"></small></div>
+  <label class="tool" title="노래 도구">노래<select id="selSong"><option value="gemini">제미나이</option><option value="suno">Suno</option><option value="all">둘 다</option></select></label>
+  <label class="tool" title="편집 도구">편집<select id="selEdit"><option value="canva">Canva</option><option value="cutter">비디오 커터</option><option value="all">둘 다</option></select></label>
+  <span class="timer" id="timer" hidden><button class="btn" id="tPlay" title="활동 타이머 시작 · 멈춤 (P)">⏱ <b id="tTime">0:00</b></button><button class="btn" id="tReset" title="타이머 처음으로">↺</button></span>
+  <span class="count" id="count">1 / 1</span>
+  <button class="btn" id="bPrev" title="이전 (←)">◀</button>
+  <button class="btn" id="bNext" title="다음 (→ · Space)">▶</button>
+  <button class="btn" id="bHidden" aria-pressed="false" title="강사용 숨김 장도 보기 (H)">강사용 장<kbd>H</kbd></button>
+  <button class="btn" id="bStep" aria-pressed="false" title="학생이 할 일을 한 단계씩 보여 주기 (S)">한 단계씩<kbd>S</kbd></button>
+  <button class="btn" id="bNotes" aria-pressed="false" title="강사 노트 (N)">노트<kbd>N</kbd></button>
+  <button class="btn" id="bFull" title="전체 화면 (F)">⛶<span class="lbl"> 발표</span></button>
+</header>
+<main>
+  <aside id="toc" aria-label="목차">
+    <h2>목차 · 교시별</h2>
+    <input class="search" id="q" type="search" placeholder="장 제목 · 내용 · 노트 검색">
+    <div id="tocList"></div>
+  </aside>
+  <div class="viewport" id="viewport">
+    <div class="stage" id="stage">
+      <div class="canvas" id="canvas">
+        <img class="slide" id="img" alt="">
+        <div id="overlay"></div>
+      </div>
+      <div class="navzone left" id="zl" aria-hidden="true"></div>
+      <div class="jump" id="jump"></div>
+      <div class="sr" id="srText" aria-live="polite"></div>
+    </div>
+  </div>
+  <aside id="notes" aria-label="강사 노트">
+    <h2 id="notesTitle">강사 노트</h2>
+    <div class="notesbody" id="notesBody"></div>
+    <details><summary>이 장의 글자 전체</summary><div class="slidetext" id="slideText"></div></details>
+  </aside>
+</main>
+<footer><i id="bar"></i></footer>
+<button class="ftimer" id="fTimer" title="활동 타이머 시작 · 멈춤 (P)">⏱ 0:00</button>
+
+<script src="deck.js"></script>
+<script>
+(() => {
+  const D = window.DECK, S = D.slides, N = S.length;
+  const $ = id => document.getElementById(id);
+  const img = $('img'), overlay = $('overlay');
+  const store = {
+    get(k, d){ try { const v = localStorage.getItem('webdeck:'+k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
+    set(k, v){ try { localStorage.setItem('webdeck:'+k, JSON.stringify(v)); } catch(e){} }
+  };
+  let showHidden = store.get('hidden', false);
+  const qs = new URLSearchParams(location.search);
+  const pick = (k, ok, d) => { const v = qs.get(k) || store.get(k, d); return ok.includes(v) ? v : d; };
+  let song = pick('song', ['gemini','suno','all'], 'gemini');
+  let edit = pick('edit', ['canva','cutter','all'], 'canva');
+  const TOOL_LABEL = {gemini:'제미나이', suno:'Suno', canva:'Canva', cutter:'커터'};
+  const toolOk = i => { const t = S[i].tool; if (!t) return true; if (t === 'gemini' || t === 'suno') return song === 'all' || song === t; return edit === 'all' || edit === t; };
+  let cur = 0, revealed = false, stepIdx = 0, zoomed = false, stepMode = store.get('step', false);
+  const canvas = $('canvas'), stage = $('stage');
+  const src = (s, pre) => 's/' + String(s.n).padStart(3,'0') + (pre ? '_pre' : '') + '.webp';
+  const visible = i => (showHidden || !S[i].hidden) && toolOk(i);
+
+  // ---- TOC ----
+  function buildToc(filter){
+    const q = (filter || '').trim().toLowerCase();
+    const box = $('tocList'); box.innerHTML = '';
+    let lastSec = null;
+    S.forEach((s, i) => {
+      if (q && !(s.title + '\n' + s.text + '\n' + s.notes).toLowerCase().includes(q)) return;
+      if (!showHidden && s.hidden && !q) return;
+      if (!toolOk(i)) return;
+      if (s.sec !== lastSec){ const h = document.createElement('div'); h.className = 'sec'; h.textContent = s.sec || '시작'; box.append(h); lastSec = s.sec; }
+      const b = document.createElement('button');
+      b.className = 'item' + (s.hidden ? ' hid' : ''); b.dataset.i = i;
+      b.innerHTML = '<span class="no">' + s.n + '</span><span class="t"></span>';
+      b.querySelector('.t').textContent = s.title || '(제목 없음)';
+      if (s.tool){ const tg = document.createElement('span'); tg.className = 'tg'; tg.textContent = TOOL_LABEL[s.tool]; b.append(tg); }
+      b.onclick = () => { if (s.hidden && !showHidden) setHidden(true); go(i, true); if (matchMedia('(max-width:900px)').matches) toggle('toc', false); };
+      box.append(b);
+    });
+    markToc();
+  }
+  function markToc(){
+    document.querySelectorAll('.item').forEach(b => {
+      const on = +b.dataset.i === cur; b.setAttribute('aria-current', on); if (on && $('toc').classList.contains('open')) b.scrollIntoView({block:'nearest'});
+    });
+  }
+
+  // ---- render ----
+  function render(){
+    const s = S[cur];
+    const pre = s.reveal && !revealed;
+    img.src = src(s, pre);
+    img.alt = (s.title || '') + ' (' + s.n + '번 장)';
+    overlay.innerHTML = ''; unzoom();
+    (s.zones || []).forEach(z => {
+      const b = document.createElement('div'); b.className = 'zone'; b.title = '누르면 크게 보기';
+      Object.assign(b.style, {left:z.x+'%', top:z.y+'%', width:z.w+'%', height:z.h+'%'});
+      b.addEventListener('click', e => { e.stopPropagation(); zoomed ? unzoom() : zoomTo(z); });
+      overlay.append(b);
+    });
+    (s.steps || []).forEach((m, k) => {
+      const b = document.createElement('div'); b.className = 'mask'; b.dataset.k = k;
+      Object.assign(b.style, {left:m.x+'%', top:m.y+'%', width:m.w+'%', height:m.h+'%', background:m.c});
+      overlay.append(b);
+    });
+    updateMasks();
+    s.links.forEach(l => {
+      const a = document.createElement('a'); a.className = 'hot'; a.href = l.href; a.target = '_blank'; a.rel = 'noopener';
+      a.title = '열기: ' + l.href; a.setAttribute('aria-label', '링크 열기');
+      Object.assign(a.style, {left:l.x+'%', top:l.y+'%', width:l.w+'%', height:l.h+'%'});
+      a.addEventListener('click', e => e.stopPropagation());
+      overlay.append(a);
+    });
+    s.videos.forEach(v => {
+      const b = document.createElement('button'); b.className = 'vid'; b.setAttribute('aria-label', '영상 재생');
+      Object.assign(b.style, {left:v.x+'%', top:v.y+'%', width:v.w+'%', height:v.h+'%'});
+      b.innerHTML = '<span class="play">▶</span>';
+      b.addEventListener('click', e => {
+        e.stopPropagation();
+        if (b.querySelector('video')) return;
+        const vd = document.createElement('video'); vd.src = v.src; vd.controls = true; vd.autoplay = true; vd.playsInline = true;
+        vd.addEventListener('click', ev => ev.stopPropagation());
+        b.innerHTML = ''; b.append(vd);
+      });
+      overlay.append(b);
+    });
+    if (pre){ const t = document.createElement('div'); t.className = 'revealhint'; t.textContent = '클릭 · → 하면 답이 나와요'; overlay.append(t); }
+    timerOnSlide(s);
+    $('count').textContent = s.n + ' / ' + N;
+    $('secLabel').textContent = (s.sec ? s.sec + ' · ' : '') + (s.title || '');
+    $('bar').style.width = ((cur + 1) / N * 100) + '%';
+    $('notesTitle').textContent = '강사 노트 · ' + s.n + '번 장';
+    const nb = $('notesBody'); nb.textContent = s.notes || '';
+    if (!s.notes) nb.innerHTML = '<span class="empty">이 장에는 노트가 없어요.</span>';
+    $('slideText').textContent = s.text || '';
+    $('srText').textContent = s.text || '';
+    document.title = s.n + '. ' + (s.title || '') + ' · 숏폼 제작 강의';
+    if (location.hash !== '#' + s.n) history.replaceState(null, '', '#' + s.n);
+    markToc(); preload();
+  }
+  function preload(){
+    [cur + 1, cur - 1, cur + 2].forEach(i => { if (i >= 0 && i < N){ const im = new Image(); im.src = src(S[i], S[i].reveal); } });
+    if (S[cur].reveal){ const im = new Image(); im.src = src(S[cur], false); }
+  }
+  const stepCount = i => (S[i].steps || []).length;
+  function updateMasks(){
+    overlay.querySelectorAll('.mask').forEach(m => m.classList.toggle('off', !stepMode || +m.dataset.k < stepIdx));
+  }
+  function zoomTo(z){
+    const sc = Math.min(100 / z.w, 100 / z.h) * 0.94;
+    const tx = 50 - (z.x + z.w / 2) * sc, ty = 50 - (z.y + z.h / 2) * sc;
+    canvas.style.transform = 'translate(' + tx + '%,' + ty + '%) scale(' + sc + ')';
+    stage.classList.add('zoomed'); zoomed = true;
+  }
+  function unzoom(){ canvas.style.transform = ''; stage.classList.remove('zoomed'); zoomed = false; }
+  function go(i, fromStart){
+    if (i < 0 || i >= N) return;
+    cur = i; revealed = !fromStart; stepIdx = fromStart ? 0 : stepCount(i); render();
+  }
+  function next(){
+    if (zoomed){ unzoom(); return; }
+    if (stepMode && stepIdx < stepCount(cur)){ stepIdx++; updateMasks(); return; }
+    if (S[cur].reveal && !revealed){ revealed = true; render(); return; }
+    let i = cur + 1; while (i < N && !visible(i)) i++;
+    if (i < N){ cur = i; revealed = false; stepIdx = 0; render(); }
+  }
+  function prev(){
+    if (zoomed){ unzoom(); return; }
+    let i = cur - 1; while (i >= 0 && !visible(i)) i--;
+    if (i >= 0){ cur = i; revealed = true; stepIdx = stepCount(i); render(); }
+  }
+
+  // ---- activity timer ----
+  const T = {total:0, left:0, running:false, iv:null, slide:null};
+  const fmt = sec => Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+  function drawTimer(){
+    const done = T.showDone;
+    const shown = T.running || done;
+    $('tTime').textContent = done ? '시간 끝' : (shown ? fmt(T.left) : '타이머');
+    $('timer').classList.toggle('run', T.running);
+    $('timer').classList.toggle('done', !!done);
+    const f = $('fTimer');
+    const idle = !shown && !!S[cur].timer;
+    f.textContent = done ? '⏱ 시간 끝' : (idle ? '⏱ 타이머' : '⏱ ' + fmt(T.left));
+    f.title = idle ? '활동 타이머 ' + fmt(T.total) + ' · 누르면 시작 (P)' : '누르면 멈춤 (P)';
+    f.classList.toggle('on', shown || idle);
+    f.classList.toggle('idle', idle);
+    f.classList.toggle('run', T.running);
+    f.classList.toggle('done', !!done);
+  }
+  function timerOnSlide(s){
+    if (s.timer && T.slide !== s.n){
+      clearInterval(T.iv); clearTimeout(T.doneTo); T.running = false; T.showDone = false;
+      T.total = T.left = s.timer.sec; T.slide = s.n;
+    }
+    $('timer').hidden = !(s.timer || T.running || T.showDone);
+    $('tPlay').title = '활동 타이머 ' + fmt(T.total) + ' · 누르면 시작 · 멈춤 (P)';
+    drawTimer();
+  }
+  function timerToggle(){
+    if (!T.total) return;
+    if (T.showDone){ T.showDone = false; clearTimeout(T.doneTo); T.left = T.total; drawTimer(); return; }
+    if (T.running){ clearInterval(T.iv); T.running = false; }
+    else {
+      if (T.left === 0) T.left = T.total;
+      T.running = true;
+      T.showDone = false; clearTimeout(T.doneTo);
+      T.iv = setInterval(() => { T.left = Math.max(0, T.left - 1); if (T.left === 0){ clearInterval(T.iv); T.running = false; T.showDone = true; T.doneTo = setTimeout(() => { T.showDone = false; T.left = T.total; drawTimer(); }, 10000); } drawTimer(); }, 1000);
+    }
+    drawTimer();
+  }
+  function timerReset(){
+    clearInterval(T.iv); clearTimeout(T.doneTo); T.running = false; T.showDone = false;
+    const s = S[cur];
+    if (s.timer) T.total = s.timer.sec;
+    T.left = T.total;
+    if (!s.timer){ T.total = T.left = 0; }
+    timerOnSlide(s);
+  }
+  function setStep(on){ stepMode = on; store.set('step', on); $('bStep').setAttribute('aria-pressed', on); stepIdx = 0; updateMasks(); }
+
+  // ---- panels / modes ----
+  function toggle(id, force){
+    const el = $(id), on = force === undefined ? !el.classList.contains('open') : force;
+    el.classList.toggle('open', on);
+    $(id === 'toc' ? 'bToc' : 'bNotes').setAttribute('aria-pressed', on);
+    store.set('panel:' + id, on);
+    if (id === 'toc' && on) markToc();
+  }
+  function setHidden(on){
+    showHidden = on; store.set('hidden', on); $('bHidden').setAttribute('aria-pressed', on); buildToc($('q').value);
+  }
+  async function fullscreen(){
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await document.documentElement.requestFullscreen();
+    } catch(e){ document.body.classList.toggle('present'); }
+  }
+
+  $('bToc').onclick = () => toggle('toc');
+  $('bNotes').onclick = () => toggle('notes');
+  $('bHidden').onclick = () => setHidden(!showHidden);
+  $('bFull').onclick = fullscreen;
+  $('bPrev').onclick = prev; $('bNext').onclick = next;
+  $('zl').onclick = e => { e.stopPropagation(); prev(); };
+  $('stage').addEventListener('click', () => next());
+  $('bStep').onclick = () => setStep(!stepMode);
+  $('tPlay').onclick = e => { e.stopPropagation(); timerToggle(); };
+  $('tReset').onclick = e => { e.stopPropagation(); timerReset(); };
+  $('fTimer').onclick = e => { e.stopPropagation(); timerToggle(); };
+  $('q').addEventListener('input', e => buildToc(e.target.value));
+
+  // keyboard (PowerPoint 슬라이드 쇼와 비슷하게)
+  let digits = '', digitTimer;
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea')) { if (e.key === 'Escape') e.target.blur(); return; }
+    const k = e.key;
+    if (/^[0-9]$/.test(k)){
+      digits += k; $('jump').textContent = digits + ' 번 장'; $('jump').style.display = 'block';
+      clearTimeout(digitTimer); digitTimer = setTimeout(() => { digits = ''; $('jump').style.display = 'none'; }, 2500);
+      return;
+    }
+    if (k === 'Enter' && digits){
+      const t = +digits - 1; digits = ''; $('jump').style.display = 'none';
+      if (t >= 0 && t < N){ if (S[t].hidden && !showHidden) setHidden(true); go(t, true); }
+      e.preventDefault(); return;
+    }
+    if (['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(k)){ e.preventDefault(); next(); return; }
+    if (['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(k)){ e.preventDefault(); prev(); return; }
+    if (k === 'Escape' && zoomed){ unzoom(); return; }
+    if (k === 'Home'){ go(0, true); return; }
+    if (k === 'End'){ go(N - 1, true); return; }
+    const l = k.toLowerCase();
+    if (l === 'n' || l === 'ㅜ'){ toggle('notes'); return; }
+    if (l === 's' || l === 'ㄴ'){ setStep(!stepMode); return; }
+    if (l === 'p' || l === 'ㅔ'){ timerToggle(); return; }
+    if (l === 't' || l === 'ㅅ'){ toggle('toc'); return; }
+    if (l === 'h' || l === 'ㅗ'){ setHidden(!showHidden); return; }
+    if (l === 'f' || l === 'ㄹ'){ fullscreen(); return; }
+    if (k === 'Escape'){ document.body.classList.remove('present'); toggle('toc', false); }
+  });
+  // swipe
+  let sx = null;
+  $('stage').addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+  $('stage').addEventListener('touchend', e => {
+    if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 50){ (dx < 0 ? next : prev)(); }
+  });
+  window.addEventListener('hashchange', () => {
+    const n = parseInt(location.hash.slice(1), 10);
+    if (n >= 1 && n <= N && n - 1 !== cur){ if (S[n-1].hidden && !showHidden) setHidden(true); go(n - 1, true); }
+  });
+
+  function setTool(kind, v){
+    if (kind === 'song') song = v; else edit = v;
+    store.set(kind, v);
+    const u = new URL(location.href); u.searchParams.set('song', song); u.searchParams.set('edit', edit); history.replaceState(null, '', u.pathname + u.search + location.hash);
+    buildToc($('q').value);
+    if (!toolOk(cur)){ let i = cur; while (i < N && !visible(i)) i++; if (i >= N){ i = cur; while (i >= 0 && !visible(i)) i--; } if (i >= 0 && i < N) go(i, true); }
+  }
+  $('selSong').value = song; $('selEdit').value = edit;
+  $('selSong').onchange = e => setTool('song', e.target.value);
+  $('selEdit').onchange = e => setTool('edit', e.target.value);
+
+  const setHdr = () => document.documentElement.style.setProperty('--hdr', document.querySelector('header').offsetHeight + 'px');
+  addEventListener('resize', setHdr); setHdr();
+  if (window.ResizeObserver) new ResizeObserver(setHdr).observe(document.querySelector('header'));
+
+  // start
+  $('bHidden').setAttribute('aria-pressed', showHidden);
+  $('bStep').setAttribute('aria-pressed', stepMode);
+  buildToc('');
+  if (store.get('panel:notes', false)) toggle('notes', true);
+  if (store.get('panel:toc', false)) toggle('toc', true);
+  const h = parseInt(location.hash.slice(1), 10);
+  let start = (h >= 1 && h <= N) ? h - 1 : 0;
+  if (!(h >= 1 && h <= N)) while (start < N && !visible(start)) start++;
+  else if (S[start].hidden) setHidden(true);
+  go(start, true);
+})();
+</script>
+</body>
+</html>
